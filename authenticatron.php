@@ -41,12 +41,20 @@ $Base32_Chars = array(
 
 // Create a new Secret
 function Authenticator_Secret($Length = 16) {
+
 	global $Base32_Chars;
+
+	if ( function_exists('mcrypt_create_iv') ) $Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
+	else if ( function_exists('openssl_random_pseudo_bytes') ) {
+		$Random = openssl_random_pseudo_bytes($Length, $Strong);
+		if ( !$Strong ) return false;
+	} else return false;
+
 	$Secret = '';
-	$Random = openssl_random_pseudo_bytes($Length);
-	for ($i = 0; $i < $Length; $i++)
-		$Secret .= $Base32_Chars[ord($Random[$i]) & 31];
+	for ( $i = 0; $i < $Length; $i++ ) $Secret .= $Base32_Chars[ord($Random[$i]) & 31];
+
 	return $Secret;
+
 }
 
 
@@ -198,7 +206,6 @@ function Authenticator_Check($Code, $Secret, $Variance = false) {
 	else return false;
 
 }
-
 
 
 
