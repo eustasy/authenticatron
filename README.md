@@ -30,6 +30,8 @@ Quickly re-using an intercepted token to gain access, by taking advantage of the
 
 [Google TOTP Two-factor Authentication for PHP - idontplaydarts.com](https://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/)
 
+To fix this, log used codes and disallow them from being used.
+
 
 ### Brute Force
 
@@ -38,6 +40,8 @@ Quickly re-using an intercepted token to gain access, by taking advantage of the
 > If the seed is too small and an attacker can intercept a few tokens it may be possible to brute-force the seed value allowing the attacker to generate new one-time tokens. For this reason Google enforces a minimum seed length of 16 characters or 80-bits.
 
 [Google TOTP Two-factor Authentication for PHP - idontplaydarts.com](https://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/)
+
+Brute forcing of codes can be fixed in much the same way as brute forcing passwords, primarily with rate-limiting of some kind. Brute forcing of secrest, or seeds, can only be done with intercepted codes. Again, [HTTPS is your friend](https://www.ssls.com/comodo-ssl-certificates/positivessl.html).
 
 
 
