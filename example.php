@@ -17,6 +17,9 @@
 			padding: .3em .5em;
 		}
 
+		a {
+			text-decoration: none;
+		}
 		p {
 			margin: 0 0 1em;
 		}
