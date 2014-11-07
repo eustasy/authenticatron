@@ -3,6 +3,7 @@
 <head>
 	<meta charset="ASCII">
 	<title>Authenticatron</title>
+	<link rel="icon" media="all" href="//labs.eustasy.org/favicon.ico">
 	<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/g/normalize,colors.css">
 	<style>
 
