@@ -1,9 +1,8 @@
 <?php
 
-// Authentricatron
-// MIT License
-// Property of eustasy
-// eustasy.org
+////	Authentricatron
+// MIT Licensed - Property of eustasy
+// http://labs.eustasy.org/authenticatron/example.php
 
 $Sitewide_Title = 'Example Site'; // This is a short name to identify your site or service.
 $Member_Name = 'John Smith'; // This could be their email, name, or username.
@@ -26,10 +25,24 @@ $PHPQRCode = __DIR__.'/phpqrcode_2010100721_1.1.4.php';
 
 // A reference for Base32 valid characters.
 $Base32_Chars = array(
-	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', //  8
+	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 8
 	'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 16
 	'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 24
-	'Y', 'Z', '2', '3', '4', '5', '6', '7'  // 32
+	'Y', 'Z', '2', '3', '4', '5', '6', '7' // 32
+);
+
+// A reference for converting from Base32
+$Base32_Chars_Flipped = array(
+	'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, // 4
+	'E' => 4, 'F' => 5, 'G' => 6, 'H' => 7, // 8
+	'I' => 8, 'J' => 9, 'K' => 10, 'L' => 11, // 12
+	'M' => 12, 'N' => 13, 'O' => 14, 'P' => 15, // 16
+	'Q' => 16, 'R' => 17, 'S' => 18, 'T' => 19, // 20
+	'U' => 20, 'V' => 21, 'W' => 22, 'X' => 23, // 24
+	'Y' => 24, 'Z' => 25, // 26
+	2 => 26, 3 => 27, // 28
+	4 => 28, 5 => 29, // 30
+	6 => 30, 7 => 31 // 32
 );
 
 
@@ -37,13 +50,12 @@ $Base32_Chars = array(
 
 
 
-
-
-// Create a new Secret
-function Authenticator_Secret($Length = 16) {
+////	Create a new Secret
+function Authentricatron_Secret($Length = 16) {
 
 	global $Base32_Chars;
 
+	// TODO Comment
 	if ( function_exists('mcrypt_create_iv') ) $Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
 	else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
@@ -63,13 +75,24 @@ function Authenticator_Secret($Length = 16) {
 
 
 
-// Create an OTPAuth URL
-function Authenticator_URL($Account, $Secret, $Issuer = null) {
+////	Create an OTPAuth URL
+function Authentricatron_URL($Account, $Secret, $Issuer = null) {
+
 	global $Sitewide_Title;
+
+	// Override the Issuer if they want
 	$Issuer = isset($Issuer) ? $Issuer : $Sitewide_Title;
+
+	// Strip any colons, they screw things up.
 	$Issuer = str_replace (':', '', $Issuer);
 	$Account = str_replace (':', '', $Account);
+	// It might also be a good idea to strip special characters,
+	// like ? as it might break the rest.
+
+	// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
+	// This could cause issues with certain characters. Try to keep it alphanumeric.
 	return 'otpauth://totp/'.$Issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
+
 }
 
 
@@ -78,11 +101,16 @@ function Authenticator_URL($Account, $Secret, $Issuer = null) {
 
 
 
-// Create a Base64 PNG QR Code
-function Authenticator_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
+////	Create a Base64 PNG QR Code
+function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 
 	// Require the PHPQRCode Library
 	global $PHPQRCode;
+
+	////	TODO Consider Function checking.
+	// It just fails blankly without `php5-gd`
+	//
+	// if ( !extension_loaded('gd') || !function_exists('gd_info') ) fail;
 	require_once $PHPQRCode;
 
 	// Use the object cache to capture the PNG without outputting it.
@@ -103,29 +131,40 @@ function Authenticator_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 
 
 
-// Decode as Base32
+////	Decode as Base32
 function Base32_Decode($Secret) {
-	global $Base32_Chars;
-	if (empty($Secret)) return false;
-	// Flip the array
-	$Base32_CharsFlipped = array_flip($Base32_Chars);
+
+	global $Base32_Chars, $Base32_Chars_Flipped;
+
+	// If there is no secret or it is too small.
+	if ( empty($Secret) || strlen($Secret) < 16 ) return false;
+
 	// Remove padding characters (there shouldn't be any)
 	$Secret = str_replace('=','', $Secret);
+
 	// Split into an array
 	$Secret = str_split($Secret);
-	$String = '';
+
+	// Set an empty string.
+	$Secret_Decoded = '';
+
+	// While $i is less than the length of $Secret, 8 bits at a time.
 	for ($i = 0; $i < count($Secret); $i = $i+8) {
+		// TODO Comment
 		$x = '';
 		if (!in_array($Secret[$i], $Base32_Chars)) return false;
 		for ($j = 0; $j < 8; $j++) {
-			$x .= str_pad(base_convert(@$Base32_CharsFlipped[@$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+			// Flipped and Secret both had @ for suppression originally.
+			$x .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 		}
 		$eightBits = str_split($x, 8);
 		for ($z = 0; $z < count($eightBits); $z++) {
-			$String .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) == 48 ) ? $y:'';
+			$Secret_Decoded .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) == 48 ) ? $y:'';
 		}
 	}
-	return $String;
+
+	return $Secret_Decoded;
+
 }
 
 
@@ -134,35 +173,47 @@ function Base32_Decode($Secret) {
 
 
 
-// Calculate the current code.
-function Authenticator_Code($Secret, $timeSlice = null, $CodeLength = 6) {
+////	Calculate the current code.
+// This function heavily based on the BSD 2 Licensed one found within https://github.com/PHPGangsta/GoogleAuthenticator
+function Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 
-	if ($timeSlice === null) $timeSlice = floor(time() / 30);
+	// Set the timestamp to something sensible.
+	// You should only over-ride this if you really know why.
+	if ( !$Timestamp ) $Timestamp = floor(time() / 30);
+	else $Timestamp = intval($Timestamp);
 
-	$Secret = Base32_Decode($Secret);
+	// Pack the Timestamp into a binary string
+	// N = Unsigned long (always 32 bit, big endian byte order)
+	$Timestamp_Packed = chr(0).chr(0).chr(0).chr(0).pack('N*', $Timestamp);
 
-	// Pack time into binary string
-	$time = chr(0).chr(0).chr(0).chr(0).pack('N*', $timeSlice);
+	// Decode (?) the Secret
+	$Secret_Decoded = Base32_Decode($Secret);
 
-	// Hash it with users secret key
-	$hm = hash_hmac('SHA1', $time, $Secret, true);
+	// Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
+	$HMAC = hash_hmac('SHA1', $Timestamp_Packed, $Secret_Decoded, true);
 
 	// Use last nibble of result as index/offset
-	$offset = ord(substr($hm, -1)) & 0x0F;
+	$Offset = ord(substr($HMAC, -1)) & 0x0F;
+	// Gives a generated number that varies.
 
-	// grab 4 bytes of the result
-	$hashpart = substr($hm, $offset, 4);
+	// Take 4 bytes of the result from the Offset
+	$Part = substr($HMAC, $Offset, 4);
 
-	// Unpak binary value
-	$value = unpack('N', $hashpart);
-	$value = $value[1];
+	// Unpack the binary value
+	$Value = unpack('N', $Part);
+	$Value = $Value[1];
 
-	// Only 32 bits
-	$value = $value & 0x7FFFFFFF;
+	// Make it a 32bit signed value.
+	$Value = $Value & 0x7FFFFFFF;
 
-	$modulo = pow(10, $CodeLength);
+	// Make a Modulo
+	// When the $CodeLength is 6, it is
+	// equivalent to 10**6, 10^6, or 1,000,000
+	$Denominator = pow(10, $CodeLength);
 
-	return str_pad($value % $modulo, $CodeLength, '0', STR_PAD_LEFT);
+	// This function adds leading zeros (the third parameter) to the left-hand side (the fourth)
+	// to the remainder of our unpacked hash-part divided by 10 to the power of the required code length.
+	return str_pad($Value % $Denominator, $CodeLength, '0', STR_PAD_LEFT);
 
 }
 
@@ -172,9 +223,25 @@ function Authenticator_Code($Secret, $timeSlice = null, $CodeLength = 6) {
 
 
 
-// Create an array of all codes within an acceptable range.
-function Authenticator_Acceptable($Secret, $Variance = 2) {
+////	Create an array of all codes within an acceptable range.
+//
+// The output will look like this.
+//
+//	array(5) {
+//		[-2] => string(6) "398599"
+//		[-1] => string(6) "283062"
+//		[0] => string(6) "809226"
+//		[1] => string(6) "541727"
+//		[2] => string(6) "667780"
+//	}
+//
+// Note the indexes, which can be used to determine the time difference,
+// and perhaps warn users on the outer bounds. Code generation is expensive,
+// so avoid generating any you don't want to check against later.
 
+function Authentricatron_Acceptable($Secret, $Variance = 2) {
+
+	// Create an empty array to be returned.
 	$Acceptable = array();
 
 	// From the negative of the variance to the positive equivalent.
@@ -182,9 +249,10 @@ function Authenticator_Acceptable($Secret, $Variance = 2) {
 		// Add that amount in increments of 30 seconds.
 		$LoopTime_Negative = floor(time() / 30) + $i;
 		// Add the code to the array.
-		$Acceptable[$i] = Authenticator_Code($Secret, $LoopTime_Negative);
+		$Acceptable[$i] = Authentricatron_Code($Secret, $LoopTime_Negative);
 	}
 
+	// Return the list of codes.
 	return $Acceptable;
 
 }
@@ -196,17 +264,18 @@ function Authenticator_Acceptable($Secret, $Variance = 2) {
 
 
 
-// Check a given Code against a Secret
-function Authenticator_Check($Code, $Secret, $Variance = false) {
+////	Check a given Code against a Secret
+function Authentricatron_Check($Code, $Secret, $Variance = false) {
 
-	if ( $Variance === false ) $Acceptable = Authenticator_Acceptable($Secret);
-	else $Acceptable = Authenticator_Acceptable($Secret, $Variance);
+	// Pass the Variance if it is set, allow to default if not.
+	if ( $Variance === false ) $Acceptable = Authentricatron_Acceptable($Secret);
+	else $Acceptable = Authentricatron_Acceptable($Secret, $Variance);
 
+	// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
 	if ( in_array($Code, $Acceptable) ) return true;
 	else return false;
 
 }
-
 
 
 
