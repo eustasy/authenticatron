@@ -68,6 +68,7 @@ function Authentricatron_Secret($Length = 16) {
 		return false;
 	}
 
+	// TODO Comment
 	$Secret = '';
 	for ( $i = 0; $i < $Length; $i++ ) {
 		$Secret .= $Base32_Chars[ord($Random[$i]) & 31];
@@ -84,22 +85,22 @@ function Authentricatron_Secret($Length = 16) {
 
 
 ////	Create an OTPAuth URL
-function Authentricatron_URL($Account, $Secret, $Issuer = null) {
+function Authentricatron_URL($Account, $Secret, $issuer = null) {
 
 	global $Sitewide_Title;
 
 	// Override the Issuer if they want
-	$Issuer = isset($Issuer) ? $Issuer : $Sitewide_Title;
+	$issuer = isset($issuer) ? $issuer : $Sitewide_Title;
 
 	// Strip any colons, they screw things up.
-	$Issuer = str_replace (':', '', $Issuer);
+	$issuer = str_replace (':', '', $issuer);
 	$Account = str_replace (':', '', $Account);
 	// It might also be a good idea to strip special characters,
 	// like ? as it might break the rest.
 
 	// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
 	// This could cause issues with certain characters. Try to keep it alphanumeric.
-	return 'otpauth://totp/'.$Issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
+	return 'otpauth://totp/'.$issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($issuer);
 
 }
 
@@ -150,7 +151,7 @@ function Base32_Decode($Secret) {
 	}
 
 	// Remove padding characters (there shouldn't be any)
-	$Secret = str_replace('=','', $Secret);
+	$Secret = str_replace('=', '', $Secret);
 
 	// Split into an array
 	$Secret = str_split($Secret);
@@ -160,21 +161,25 @@ function Base32_Decode($Secret) {
 
 	// While $i is less than the length of $Secret, 8 bits at a time.
 	for ($i = 0; $i < count($Secret); $i = $i+8) {
+	
 		// TODO Comment
 		if (!in_array($Secret[$i], $Base32_Chars)) {
 			return false;
 		}
 
-		$x = '';
+		// TODO Comment
+		$String = '';
 		for ($j = 0; $j < 8; $j++) {
 			// Flipped and Secret both had @ for suppression originally.
-			$x .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+			$String .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 		}
 
-		$eightBits = str_split($x, 8);
+		// TODO Comment
+		$eightBits = str_split($String, 8);
 
+		// TODO Comment
 		for ($z = 0; $z < count($eightBits); $z++) {
-			$Secret_Decoded .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) == 48 ) ? $y:'';
+			$Secret_Decoded .= ( ($Convert = chr(base_convert($eightBits[$z], 2, 10))) || ord($Convert) == 48 ) ? $Convert:'';
 		}
 
 	}
