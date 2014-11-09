@@ -3,7 +3,8 @@
 <head>
 	<meta charset="ASCII">
 	<title>Authenticatron</title>
-	<link rel="icon" media="all" href="//labs.eustasy.org/favicon.ico">
+	<link rel="icon" href="assets/favicon.ico">
+	<link rel="stylesheet" media="all" href="assets/normalize.css">
 	<style>
 	
 		body {
