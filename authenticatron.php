@@ -85,22 +85,22 @@ function Authentricatron_Secret($Length = 16) {
 
 
 ////	Create an OTPAuth URL
-function Authentricatron_URL($Account, $Secret, $issuer = null) {
+function Authentricatron_URL($Account, $Secret, $Issuer = null) {
 
 	global $Sitewide_Title;
 
 	// Override the Issuer if they want
-	$issuer = isset($issuer) ? $issuer : $Sitewide_Title;
+	$Issuer = isset($Issuer) ? $Issuer : $Sitewide_Title;
 
 	// Strip any colons, they screw things up.
-	$issuer = str_replace (':', '', $issuer);
+	$Issuer = str_replace (':', '', $Issuer);
 	$Account = str_replace (':', '', $Account);
 	// It might also be a good idea to strip special characters,
 	// like ? as it might break the rest.
 
 	// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
 	// This could cause issues with certain characters. Try to keep it alphanumeric.
-	return 'otpauth://totp/'.$issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($issuer);
+	return 'otpauth://totp/'.$Issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
 
 }
 
