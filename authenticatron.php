@@ -161,7 +161,7 @@ function Base32_Decode($Secret) {
 
 	// While $i is less than the length of $Secret, 8 bits at a time.
 	for ($i = 0; $i < count($Secret); $i = $i+8) {
-	
+
 		// TODO Comment
 		if (!in_array($Secret[$i], $Base32_Chars)) {
 			return false;
