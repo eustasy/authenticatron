@@ -18,6 +18,7 @@
 		}
 		img {
 			max-width: 100%;
+			vertical-align: bottom;
 		}
 
 		a {
