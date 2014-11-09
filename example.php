@@ -64,8 +64,11 @@
 
 		require __DIR__.'/authenticatron.php';
 
-		if ( !empty($_GET['secret']) ) $Secret = $_GET['secret'];
-		else $Secret = Authentricatron_Secret();
+		if ( !empty($_GET['secret']) ) {
+			$Secret = $_GET['secret'];
+		} else {
+			$Secret = Authentricatron_Secret();
+		}
 
 		if ( !$Secret ) {
 			$Secret = 'AUTHENTICATRION23';
@@ -92,7 +95,7 @@
 	<div class="right">
 		<h3>Authentricatron Secret</h3>
 		<p><code>Authentricatron_Secret();</code></p>
-		<p><a href="?secret=<?php echo $Secret; ?>"><?php echo $Secret; ?></a></p>
+		<?php echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>'; ?>
 		<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
 		<p>Valid characters are Base32, which means A to Z and 2 through 7.</p>
 		<p>While most applications will tolerate lowercase, they should really be uppercase.</p>
@@ -133,9 +136,11 @@
 				echo '<!-- Google Chart -->';
 				if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
 					echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
-					echo 'This isn\'t secure, and you should install <code>php5-gd</code> to fix it.</p>';
+					echo '<p>This isn\'t secure, and you should install <code>php5-gd</code> to fix it.</p>';
 				}
-				if ( isset($_GET['googlechart']) ) echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
+				if ( isset($_GET['googlechart']) ) {
+					echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
+				}
 				echo '<p><img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl='.urlencode($URL).'"></p>';
 			}
 		?>
