@@ -15,6 +15,9 @@
 			border-radius: .3em;
 			padding: .3em .5em;
 		}
+		img {
+			max-width: 100%;
+		}
 
 		a {
 			text-decoration: none;
@@ -128,8 +131,8 @@
 				!isset($_GET['googlechart'])
 			) {
 				echo '<!-- PHPQRCode -->';
-				$QR = Authentricatron_QR($URL);
-				echo '<p><img src="'.$QR.'"></p>';
+				$QR_Base64 = Authentricatron_QR($URL);
+				echo '<p><img src="'.$QR_Base64.'"></p>';
 			} else {
 				echo '<!-- Google Chart -->';
 				if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
