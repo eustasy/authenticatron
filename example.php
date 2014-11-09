@@ -112,7 +112,7 @@
 	<div class="right">
 		<h3>Authentricatron URL</h3>
 		<p><code>Authentricatron_URL($Member_Name, $Secret);</code></p>
-		<p><a href="<?php echo $URL; ?>"><?php echo $URL; ?></a></p>
+		<p><?php echo '<a href="'.$URL.'">'.$URL.'</a></p>'; ?>
 	</div>
 	<div class="clear"></div>
 	<div class="left">

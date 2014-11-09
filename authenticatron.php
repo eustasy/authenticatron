@@ -60,7 +60,10 @@ function Authentricatron_Secret($Length = 16) {
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
-		if ( !$Strong ) return false;
+		if ( !$Strong ) {
+			// TODO Decision time
+			return false;
+		}
 	} else {
 		return false;
 	}
@@ -69,7 +72,7 @@ function Authentricatron_Secret($Length = 16) {
 	for ( $i = 0; $i < $Length; $i++ ) {
 		$Secret .= $Base32_Chars[ord($Random[$i]) & 31];
 	}
-	
+
 	return $Secret;
 
 }
@@ -167,13 +170,13 @@ function Base32_Decode($Secret) {
 			// Flipped and Secret both had @ for suppression originally.
 			$x .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 		}
-		
+
 		$eightBits = str_split($x, 8);
-		
+
 		for ($z = 0; $z < count($eightBits); $z++) {
 			$Secret_Decoded .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) == 48 ) ? $y:'';
 		}
-		
+
 	}
 
 	return $Secret_Decoded;
@@ -192,8 +195,11 @@ function Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 
 	// Set the timestamp to something sensible.
 	// You should only over-ride this if you really know why.
-	if ( !$Timestamp ) $Timestamp = floor(time() / 30);
-	else $Timestamp = intval($Timestamp);
+	if ( !$Timestamp ) {
+		$Timestamp = floor(time() / 30);
+	} else {
+		$Timestamp = intval($Timestamp);
+	}
 
 	// Pack the Timestamp into a binary string
 	// N = Unsigned long (always 32 bit, big endian byte order)
@@ -293,7 +299,7 @@ function Authentricatron_Check($Code, $Secret, $Variance = false) {
 	} else {
 		return false;
 	}
-	
+
 }
 
 
