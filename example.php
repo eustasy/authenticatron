@@ -53,7 +53,8 @@
 	</div>
 	<div class="right">
 		<h1>Authenticatron</h1>
-		<p>A simple, procedural PHP script to create Google Authenticator secrets, corresponding QR links and code verification.<br>
+		<p>A simple, procedural PHP script to create Google Authenticator secrets and corresponding QR codes,<br>
+		then verify the entered response over a given time variance.<br>
 		<a href="http://labs.eustasy.org/authenticatron/example.php">labs.eustasy.org/authenticatron/example.php</a></p>
 	</div>
 

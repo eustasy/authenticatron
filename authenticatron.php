@@ -125,11 +125,11 @@ function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 	// Kind of hacky but the best way I can find without writing a new QR Library.
 	ob_start();
 	QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
-	$QR = base64_encode(ob_get_contents());
+	$QR_Base64 = base64_encode(ob_get_contents());
 	ob_end_clean();
 
 	// Return it as a Base64 PNG
-	return 'data:image/png;base64,'.$QR;
+	return 'data:image/png;base64,'.$QR_Base64;
 
 }
 
@@ -164,7 +164,7 @@ function Base32_Decode($Secret) {
 		if (!in_array($Secret[$i], $Base32_Chars)) {
 			return false;
 		}
-		
+
 		$x = '';
 		for ($j = 0; $j < 8; $j++) {
 			// Flipped and Secret both had @ for suppression originally.
