@@ -53,7 +53,7 @@
 
 	<div class="break clear"></div>
 	<div class="left">
-		<img alt="Padlock Icon" src="assets/iconarchive_simiographics_padlock.png">
+		<h1><img alt="Padlock Icon" src="assets/iconarchive_simiographics_padlock.png"></h1>
 	</div>
 	<div class="right">
 		<h1>Authenticatron</h1>
