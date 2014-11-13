@@ -12,7 +12,7 @@ Heavily modified to improve security and suit our needs.
 
 Rather than rely on expensive SMS (text messages) that lack global deliverability, Google Authenticator does not even require a network connection to generate it's codes. Instead, simply scan the generated QR code with your camera, and receive a new, 6 digit second factor of authentication from your phone every 30 seconds.
 
-It does this by generating a 16 character secret, or seed, that is then encoded as a special URL, along with some identifying information, and outputted as a QR code. The phone reads the codes, and the Google Authenticator app runs the secret through a code generation process to output a time-restricted code. The website follows the same process to prouce matching codes without actually having to cmmunicate further.
+It does this by generating a 16 character secret, or seed, that is then encoded as a special URL, along with some identifying information, and outputted as a QR code. The phone reads the codes, and the Google Authenticator app runs the secret through a code generation process to output a time-restricted code. The website follows the same process to prouce matching codes without actually having to communicate further.
 
 
 
@@ -54,6 +54,7 @@ Brute forcing of codes can be fixed in much the same way as brute forcing passwo
 - Encodes URL to work best with Google Authenticator.
 - Removes `rand` in favour of `openssl_random_pseudo_bytes` for improved security.
 - Returns base64 PNG rather than Google Chart to better obscure secret from snoopers.
+
 With thanks to [RebThrees bug report](https://github.com/PHPGangsta/GoogleAuthenticator/issues/11).
 
 
