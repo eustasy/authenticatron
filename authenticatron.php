@@ -247,9 +247,9 @@ function Authentricatron_Acceptable($Secret, $Variance = 2) {
 	// From the negative of the variance to the positive equivalent.
 	for ($i = -$Variance; $i <= $Variance; $i++) {
 		// Add that amount in increments of 30 seconds.
-		$LoopTime_Negative = floor(time() / 30) + $i;
+		$LoopTime = floor(time() / 30) + $i;
 		// Add the code to the array.
-		$Acceptable[$i] = Authentricatron_Code($Secret, $LoopTime_Negative);
+		$Acceptable[$i] = Authentricatron_Code($Secret, $LoopTime);
 	}
 
 	// Return the list of codes.
@@ -276,7 +276,6 @@ function Authentricatron_Check($Code, $Secret, $Variance = false) {
 	else return false;
 
 }
-
 
 
 
