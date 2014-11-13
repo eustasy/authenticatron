@@ -3,10 +3,10 @@
 <head>
 	<meta charset="ASCII">
 	<title>Authenticatron</title>
-	<link rel="icon" media="all" href="//labs.eustasy.org/favicon.ico">
-	<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/g/normalize,colors.css">
+	<link rel="icon" href="assets/favicon.ico">
+	<link rel="stylesheet" media="all" href="assets/normalize.css">
 	<style>
-
+	
 		body {
 			padding: 0 15%;
 		}
@@ -15,6 +15,10 @@
 			background: #eee;
 			border-radius: .3em;
 			padding: .3em .5em;
+		}
+		img {
+			max-width: 100%;
+			vertical-align: bottom;
 		}
 
 		a {
@@ -49,19 +53,27 @@
 <body>
 
 	<div class="break clear"></div>
-	<div class="left"></div>
+	<div class="left">
+		<h1><img alt="Padlock Icon" src="assets/iconarchive_simiographics_padlock.png"></h1>
+	</div>
 	<div class="right">
 		<h1>Authenticatron</h1>
-		<p>A simple, procedural PHP script to create Google Authenticator secrets, corresponding QR links and code verification.<br>
-		<a href="http://labs.eustasy.org/authenticatron/example.php">labs.eustasy.org/authenticatron/example.php</a></p>
+		<p>A simple, procedural PHP script to create Google Authenticator secrets and corresponding QR codes,<br>
+		then verify the entered response over a given time variance.<br>
+		<a href="http://labs.eustasy.org/authenticatron/example.php">labs.eustasy.org/authenticatron/example.php</a> &emsp;
+		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg" /></a> &emsp;
+		<a href="https://www.codacy.com/public/eustasy/authenticatron"><img src="https://www.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c"/></a></p>
 	</div>
 
 	<?php
 
 		require __DIR__.'/authenticatron.php';
 
-		if ( !empty($_GET['secret']) ) $Secret = $_GET['secret'];
-		else $Secret = Authentricatron_Secret();
+		if ( !empty($_GET['secret']) ) {
+			$Secret = $_GET['secret'];
+		} else {
+			$Secret = Authentricatron_Secret();
+		}
 
 		if ( !$Secret ) {
 			$Secret = 'AUTHENTICATRION23';
@@ -88,7 +100,7 @@
 	<div class="right">
 		<h3>Authentricatron Secret</h3>
 		<p><code>Authentricatron_Secret();</code></p>
-		<p><a href="?secret=<?php echo $Secret; ?>"><?php echo $Secret; ?></a></p>
+		<?php echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>'; ?>
 		<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
 		<p>Valid characters are Base32, which means A to Z and 2 through 7.</p>
 		<p>While most applications will tolerate lowercase, they should really be uppercase.</p>
@@ -105,11 +117,12 @@
 	<div class="right">
 		<h3>Authentricatron URL</h3>
 		<p><code>Authentricatron_URL($Member_Name, $Secret);</code></p>
-		<p><a href="<?php echo $URL; ?>"><?php echo $URL; ?></a></p>
+		<p><?php echo '<a href="'.$URL.'">'.$URL.'</a></p>'; ?>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
 		<p>Information</p>
+		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
 	</div>
 	<div class="right">
 		<p>Generates the URL for launching and adding the Secret we made earlier.</p>
@@ -122,15 +135,17 @@
 				!isset($_GET['googlechart'])
 			) {
 				echo '<!-- PHPQRCode -->';
-				$QR = Authentricatron_QR($URL);
-				echo '<p><img src="'.$QR.'"></p>';
+				$QR_Base64 = Authentricatron_QR($URL);
+				echo '<p><img src="'.$QR_Base64.'"></p>';
 			} else {
 				echo '<!-- Google Chart -->';
 				if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
 					echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
-					echo 'This isn\'t secure, and you should install <code>php5-gd</code> to fix it.</p>';
+					echo '<p>This isn\'t secure, and you should install <code>php5-gd</code> to fix it.</p>';
 				}
-				if ( isset($_GET['googlechart']) ) echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
+				if ( isset($_GET['googlechart']) ) {
+					echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
+				}
 				echo '<p><img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl='.urlencode($URL).'"></p>';
 			}
 		?>
@@ -184,6 +199,7 @@
 	<div class="clear"></div>
 	<div class="left">
 		<p>Information</p>
+		<img alt="Vault Icon" src="assets/google_authenticator-128.png">
 	</div>
 	<div class="right">
 		<p>This is the array <code>Authentricatron_Check</code> uses to check for valid codes.</p>

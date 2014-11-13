@@ -56,14 +56,23 @@ function Authentricatron_Secret($Length = 16) {
 	global $Base32_Chars;
 
 	// TODO Comment
-	if ( function_exists('mcrypt_create_iv') ) $Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
-	else if ( function_exists('openssl_random_pseudo_bytes') ) {
+	if ( function_exists('mcrypt_create_iv') ) {
+		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
+	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
-		if ( !$Strong ) return false;
-	} else return false;
+		if ( !$Strong ) {
+			// TODO Decision time
+			return false;
+		}
+	} else {
+		return false;
+	}
 
+	// TODO Comment
 	$Secret = '';
-	for ( $i = 0; $i < $Length; $i++ ) $Secret .= $Base32_Chars[ord($Random[$i]) & 31];
+	for ( $i = 0; $i < $Length; $i++ ) {
+		$Secret .= $Base32_Chars[ord($Random[$i]) & 31];
+	}
 
 	return $Secret;
 
@@ -117,11 +126,11 @@ function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 	// Kind of hacky but the best way I can find without writing a new QR Library.
 	ob_start();
 	QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
-	$QR = base64_encode(ob_get_contents());
+	$QR_Base64 = base64_encode(ob_get_contents());
 	ob_end_clean();
 
 	// Return it as a Base64 PNG
-	return 'data:image/png;base64,'.$QR;
+	return 'data:image/png;base64,'.$QR_Base64;
 
 }
 
@@ -137,10 +146,12 @@ function Base32_Decode($Secret) {
 	global $Base32_Chars, $Base32_Chars_Flipped;
 
 	// If there is no secret or it is too small.
-	if ( empty($Secret) || strlen($Secret) < 16 ) return false;
+	if ( empty($Secret) || strlen($Secret) < 16 ) {
+		return false;
+	}
 
 	// Remove padding characters (there shouldn't be any)
-	$Secret = str_replace('=','', $Secret);
+	$Secret = str_replace('=', '', $Secret);
 
 	// Split into an array
 	$Secret = str_split($Secret);
@@ -150,17 +161,27 @@ function Base32_Decode($Secret) {
 
 	// While $i is less than the length of $Secret, 8 bits at a time.
 	for ($i = 0; $i < count($Secret); $i = $i+8) {
+
 		// TODO Comment
-		$x = '';
-		if (!in_array($Secret[$i], $Base32_Chars)) return false;
+		if (!in_array($Secret[$i], $Base32_Chars)) {
+			return false;
+		}
+
+		// TODO Comment
+		$String = '';
 		for ($j = 0; $j < 8; $j++) {
 			// Flipped and Secret both had @ for suppression originally.
-			$x .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+			$String .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 		}
-		$eightBits = str_split($x, 8);
+
+		// TODO Comment
+		$eightBits = str_split($String, 8);
+
+		// TODO Comment
 		for ($z = 0; $z < count($eightBits); $z++) {
-			$Secret_Decoded .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) == 48 ) ? $y:'';
+			$Secret_Decoded .= ( ($Convert = chr(base_convert($eightBits[$z], 2, 10))) || ord($Convert) == 48 ) ? $Convert:'';
 		}
+
 	}
 
 	return $Secret_Decoded;
@@ -179,8 +200,11 @@ function Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 
 	// Set the timestamp to something sensible.
 	// You should only over-ride this if you really know why.
-	if ( !$Timestamp ) $Timestamp = floor(time() / 30);
-	else $Timestamp = intval($Timestamp);
+	if ( !$Timestamp ) {
+		$Timestamp = floor(time() / 30);
+	} else {
+		$Timestamp = intval($Timestamp);
+	}
 
 	// Pack the Timestamp into a binary string
 	// N = Unsigned long (always 32 bit, big endian byte order)
@@ -268,12 +292,18 @@ function Authentricatron_Acceptable($Secret, $Variance = 2) {
 function Authentricatron_Check($Code, $Secret, $Variance = false) {
 
 	// Pass the Variance if it is set, allow to default if not.
-	if ( $Variance === false ) $Acceptable = Authentricatron_Acceptable($Secret);
-	else $Acceptable = Authentricatron_Acceptable($Secret, $Variance);
+	if ( $Variance === false ) {
+		$Acceptable = Authentricatron_Acceptable($Secret);
+	} else {
+		$Acceptable = Authentricatron_Acceptable($Secret, $Variance);
+	}
 
 	// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
-	if ( in_array($Code, $Acceptable) ) return true;
-	else return false;
+	if ( in_array($Code, $Acceptable) ) {
+		return true;
+	} else {
+		return false;
+	}
 
 }
 
