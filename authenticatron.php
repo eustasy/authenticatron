@@ -58,7 +58,7 @@ function Authentricatron_Secret($Length = 16) {
 	// Use MCRYPT if you can.
 	if ( function_exists('mcrypt_create_iv') ) {
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
-		
+
 	// Otherwise try to use OpenSSL
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
@@ -66,7 +66,7 @@ function Authentricatron_Secret($Length = 16) {
 			// TODO Decision time
 			return false;
 		}
-		
+
 	// Otherwise fail.
 	} else {
 		return false;
@@ -174,11 +174,11 @@ function Base32_Decode($Secret) {
 
 		// Create 8 letters
 		for ($j = 0; $j < 8; $j++) {
-			
+
 			// Convert the characters to numbers, and pad them if necessary.
 			$String .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 			// Flipped and Secret both had an @ for suppression originally.
-			
+
 		}
 
 		// Turn into an array
