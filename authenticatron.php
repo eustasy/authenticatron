@@ -58,12 +58,16 @@ function Authentricatron_Secret($Length = 16) {
 	// Use MCRYPT if you can.
 	if ( function_exists('mcrypt_create_iv') ) {
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
+		
+	// Otherwise try to use OpenSSL
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
 		if ( !$Strong ) {
 			// TODO Decision time
 			return false;
 		}
+		
+	// Otherwise fail.
 	} else {
 		return false;
 	}
