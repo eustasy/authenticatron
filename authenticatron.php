@@ -55,7 +55,7 @@ function Authentricatron_Secret($Length = 16) {
 
 	global $Base32_Chars;
 
-	// TODO Comment
+	// Use MCRYPT if you can.
 	if ( function_exists('mcrypt_create_iv') ) {
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
@@ -68,7 +68,7 @@ function Authentricatron_Secret($Length = 16) {
 		return false;
 	}
 
-	// TODO Comment
+	// For each letter of the secret, generate a random Base32 Characters.
 	$Secret = '';
 	for ( $i = 0; $i < $Length; $i++ ) {
 		$Secret .= $Base32_Chars[ord($Random[$i]) & 31];
@@ -144,6 +144,7 @@ function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 function Base32_Decode($Secret) {
 
 	global $Base32_Chars, $Base32_Chars_Flipped;
+	$String = '';
 
 	// If there is no secret or it is too small.
 	if ( empty($Secret) || strlen($Secret) < 16 ) {
@@ -162,22 +163,24 @@ function Base32_Decode($Secret) {
 	// While $i is less than the length of $Secret, 8 bits at a time.
 	for ($i = 0; $i < count($Secret); $i = $i+8) {
 
-		// TODO Comment
+		// If the letter is not a Base32 Character
 		if (!in_array($Secret[$i], $Base32_Chars)) {
 			return false;
 		}
 
-		// TODO Comment
-		$String = '';
+		// Create 8 letters
 		for ($j = 0; $j < 8; $j++) {
-			// Flipped and Secret both had @ for suppression originally.
+			
+			// Convert the characters to numbers, and pad them if necessary.
 			$String .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+			// Flipped and Secret both had an @ for suppression originally.
+			
 		}
 
-		// TODO Comment
+		// Turn into an array
 		$eightBits = str_split($String, 8);
 
-		// TODO Comment
+		// Got each bit, convert the numbers to ASCII codes.
 		for ($z = 0; $z < count($eightBits); $z++) {
 			$Secret_Decoded .= ( ($Convert = chr(base_convert($eightBits[$z], 2, 10))) || ord($Convert) == 48 ) ? $Convert:'';
 		}
