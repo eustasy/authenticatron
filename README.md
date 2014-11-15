@@ -67,6 +67,15 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 
 
 
+## TODO
+
+- Documentation
+- Unit Tests
+- Server Test
+- Homepage with Quick Functions
+
+
+
 ## References
 - [About 2-Step Verification - Google](https://support.google.com/accounts/answer/180744)
 - [Install Google Authenticator - Google](https://support.google.com/accounts/answer/1066447)
