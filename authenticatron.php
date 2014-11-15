@@ -331,8 +331,8 @@ function Authentricatron_Check($Code, $Secret, $Variance = false) {
 // Also, add a homepage with this and the wrapper for checking.
 function Authentricatron_New($Member_Name) {
 	$Return['Secret'] = Authentricatron_Secret();
-	$Return['URL'] = Authentricatron_URL($Member_Name, $Secret);
-	$Return['QR'] = Authentricatron_QR($URL);
+	$Return['URL'] = Authentricatron_URL($Member_Name, $Return['Secret']);
+	$Return['QR'] = Authentricatron_QR($Return['URL']);
 	return $Return;
 }
 
