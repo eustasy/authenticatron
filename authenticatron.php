@@ -63,7 +63,7 @@ function Authentricatron_Secret($Length = 16) {
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
 		if ( !$Strong ) {
-			// TODO Decision time
+			// Fail if not strong.
 			return false;
 		}
 
