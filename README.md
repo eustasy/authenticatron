@@ -73,6 +73,7 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 - Unit Tests
 - Server Test
 - Homepage with Quick Functions
+- Swap Code Quality Badges (loading time)
 
 
 
