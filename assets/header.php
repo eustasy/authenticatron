@@ -4,51 +4,7 @@
 	<meta charset="ASCII">
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
-	<link rel="stylesheet" media="all" href="assets/normalize.css">
-	<style>
-	
-		body {
-			padding: 0 15%;
-		}
-
-		code {
-			background: #eee;
-			border-radius: .3em;
-			padding: .3em .5em;
-		}
-		img {
-			max-width: 100%;
-			vertical-align: bottom;
-		}
-
-		a {
-			text-decoration: none;
-		}
-		p {
-			margin: 0 0 1em;
-		}
-
-		.break {
-			padding-top: 10%;
-			width: 100%;
-		}
-		.clear {
-			clear: both;
-		}
-		.left {
-			color: #888;
-			float: left;
-			text-align: right;
-			padding-right: 3%;
-			min-height: 1em;
-			width: 10%;
-		}
-		.right {
-			float: left;
-			max-width: 80%;
-		}
-
-	</style>
+	<link rel="stylesheet" media="all" href="assets/styles.css">
 </head>
 <body>
 
