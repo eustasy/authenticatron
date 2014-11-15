@@ -120,21 +120,26 @@ function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 	// Require the PHPQRCode Library
 	global $PHPQRCode;
 
-	////	TODO Consider Function checking.
-	// It just fails blankly without `php5-gd`
-	//
-	// if ( !extension_loaded('gd') || !function_exists('gd_info') ) fail;
-	require_once $PHPQRCode;
+	// If the required functions are not loaded, fail.
+	if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
+		return false;
 
-	// Use the object cache to capture the PNG without outputting it.
-	// Kind of hacky but the best way I can find without writing a new QR Library.
-	ob_start();
-	QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
-	$QR_Base64 = base64_encode(ob_get_contents());
-	ob_end_clean();
+	// Otherwise proceed with PHPQRCode
+	} else {
 
-	// Return it as a Base64 PNG
-	return 'data:image/png;base64,'.$QR_Base64;
+		require_once $PHPQRCode;
+
+		// Use the object cache to capture the PNG without outputting it.
+		// Kind of hacky but the best way I can find without writing a new QR Library.
+		ob_start();
+		QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
+		$QR_Base64 = base64_encode(ob_get_contents());
+		ob_end_clean();
+
+		// Return it as a Base64 PNG
+		return 'data:image/png;base64,'.$QR_Base64;
+
+	}
 
 }
 
