@@ -102,7 +102,6 @@
 	<div class="clear"></div>
 	<div class="left">
 		<p>Output</p>
-		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
 	</div>
 	<div class="right">
 		<p>Outputs a QR Code image in 64bit data-URI form.</p>
@@ -126,10 +125,6 @@
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>&nbsp;</p>
-		<p>Output</p>
-		<p>Information</p>
 	</div>
 	<div class="right">
 		<h3>Glossary</h3>
