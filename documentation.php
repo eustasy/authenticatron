@@ -18,50 +18,48 @@
 		<p>If returning <code>false</code>, try installing <code>php5-mcrypt</code> on Ubuntu.</p>
 	</div>
 	<?php
-		if ( $_GET['debug'] ) {
-			$MCrypt = false;
-			$OpenSSL = false;
-			echo '
+		$MCrypt = false;
+		$OpenSSL = false;
+		echo '
 	<div class="clear"></div>
 	<div class="left">
 		<p>Debug</p>
 	</div>
 	<div class="right">';
-			if ( function_exists('mcrypt_create_iv') ) {
-				$MCrypt = true;
-				echo '
-		<p class="color-nephritis">MCrypt is installed.</p>';
-			} else {
-				echo '
-		<p class="color-pomegranate">MCrypt is not installed.</p>';
-				if ( function_exists('openssl_random_pseudo_bytes') ) {
-					$Random = openssl_random_pseudo_bytes($Length, $Strong);
-					if ( $Strong ) {
-						$OpenSSL = true;
-						echo '
-		<p class="color-nephritis">OpenSSL is installed, and secure.</p>';
-					} else {
-						echo '
-		<p class="color-pomegranate">OpenSSL is installed, but not secure.</p>';
-					}
-				} else {
-					echo '
-		<p class="color-pomegranate">OpenSSL is not installed.</p>';
-				}
-			}
-			if ( $MCrypt ) {
-				echo '
-		<p><strong>Your installation will use MCrypt.</strong></p>';
-			} else if ( $OpenSSL ) {
-				echo '
-		<p><strong>Your installation will use OpenSSL.</strong></p>';
-			} else {
-				echo '
-		<p class="color-nephritis"><strong>Your installation will not work.</strong></p>';
-			}
+		if ( function_exists('mcrypt_create_iv') ) {
+			$MCrypt = true;
 			echo '
-	</div>';
+		<p class="color-nephritis">MCrypt is installed.</p>';
+		} else {
+			echo '
+		<p class="color-pomegranate">MCrypt is not installed.</p>';
 		}
+		if ( function_exists('openssl_random_pseudo_bytes') ) {
+			$Random = openssl_random_pseudo_bytes($Length, $Strong);
+			if ( $Strong ) {
+				$OpenSSL = true;
+				echo '
+		<p class="color-nephritis">OpenSSL is installed, and secure.</p>';
+			} else {
+				echo '
+		<p class="color-pomegranate">OpenSSL is installed, but not secure.</p>';
+			}
+		} else {
+			echo '
+		<p class="color-pomegranate">OpenSSL is not installed.</p>';
+		}
+		if ( $MCrypt ) {
+			echo '
+		<p><strong>Your installation will use MCrypt.</strong></p>';
+		} else if ( $OpenSSL ) {
+			echo '
+		<p><strong>Your installation will use OpenSSL.</strong></p>';
+		} else {
+			echo '
+		<p class="color-nephritis"><strong>Your installation will not work.</strong></p>';
+		}
+		echo '
+	</div>';
 	?>
 
 	<div class="break clear"></div>
@@ -123,74 +121,7 @@
 		?>
 	</div>
 	
-	<!-- TODO Rewrite from here. -->
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-		<p>Information</p>
-	</div>
-	<div class="right">
-		<h3>Base32 Decoded</h3>
-		<p><code>Base32_Decode($Secret);</code></p>
-		<p>You shouldn't need to be using this function, it's just part of the hashing.</p>
-		<p>It also isn't decoding, at least not in any real sense.</p>
-	</div>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-		<p>Information</p>
-	</div>
-	<div class="right">
-		<h3>Current Code</h3>
-		<p><code>Authentricatron_Code($Secret);</code></p>
-		<p><pre><?php echo $Code; ?></pre></p>
-		<p>This is the current authentication code.</p>
-		<p>Check the Acceptable list to see the two either side.</p>
-	</div>
-
-	<?php $Acceptable = Authentricatron_Acceptable($Secret); ?>
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-	</div>
-	<div class="right">
-		<h3>Acceptable Codes</h3>
-		<p><code>Authentricatron_Acceptable($Secret);</code></p>
-		<p><pre><?php var_dump($Acceptable); ?></pre></p>
-	</div>
-	<div class="clear"></div>
-	<div class="left">
-		<p>Information</p>
-		<img alt="Vault Icon" src="assets/google_authenticator-128.png">
-	</div>
-	<div class="right">
-		<p>This is the array <code>Authentricatron_Check</code> uses to check for valid codes.</p>
-		<p><strong>Your phone should produce one of these from the QR code above.</strong></p>
-		<p>These are only valid for 30 seconds, so click the Secret link to get a new list.</p>
-	</div>
-
-	<?php $Check =  Authentricatron_Check($Code, $Secret); ?>
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-		<p>Information</p>
-	</div>
-	<div class="right">
-		<h3>Check a Code</h3>
-		<p><code>Authentricatron_Check($Code, $Secret);</code></p>
-		<p><pre><?php var_dump($Check); ?></pre></p>
-		<p>This returns a simple boolean value to prevent data-leakage and zero-equivalent values from codes or keys.</p>
-	</div>
+	<!-- TODO Rewrite others. -->
 
 	<div class="break clear"></div>
 	<div class="left">
