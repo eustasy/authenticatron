@@ -1,69 +1,4 @@
-<!DocType html>
-<html>
-<head>
-	<meta charset="ASCII">
-	<title>Authenticatron</title>
-	<link rel="icon" href="assets/favicon.ico">
-	<link rel="stylesheet" media="all" href="assets/normalize.css">
-	<style>
-	
-		body {
-			padding: 0 15%;
-		}
-
-		code {
-			background: #eee;
-			border-radius: .3em;
-			padding: .3em .5em;
-		}
-		img {
-			max-width: 100%;
-			vertical-align: bottom;
-		}
-
-		a {
-			text-decoration: none;
-		}
-		p {
-			margin: 0 0 1em;
-		}
-
-		.break {
-			padding-top: 10%;
-			width: 100%;
-		}
-		.clear {
-			clear: both;
-		}
-		.left {
-			color: #888;
-			float: left;
-			text-align: right;
-			padding-right: 3%;
-			min-height: 1em;
-			width: 10%;
-		}
-		.right {
-			float: left;
-			max-width: 80%;
-		}
-
-	</style>
-</head>
-<body>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h1><img alt="Padlock Icon" src="assets/iconarchive_simiographics_padlock.png"></h1>
-	</div>
-	<div class="right">
-		<h1>Authenticatron</h1>
-		<p>A simple, procedural PHP script to create Google Authenticator secrets and corresponding QR codes,<br>
-		then verify the entered response over a given time variance.<br>
-		<a href="http://labs.eustasy.org/authenticatron/example.php">labs.eustasy.org/authenticatron/example.php</a> &emsp;
-		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg" /></a> &emsp;
-		<a href="https://www.codacy.com/public/eustasy/authenticatron"><img src="https://www.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c"/></a></p>
-	</div>
+<?php require __DIR__.'/assets/header.php'; ?>
 
 	<?php
 
@@ -118,16 +53,21 @@
 		<h3>Authentricatron URL</h3>
 		<p><code>Authentricatron_URL($Member_Name, $Secret);</code></p>
 		<p><?php echo '<a href="'.$URL.'">'.$URL.'</a></p>'; ?>
+		<p>Generates the URL for launching and adding the Secret we made earlier.</p>
+		<p>This link won't do anything unless you have a Authentication program on your computer.</p>
 	</div>
-	<div class="clear"></div>
+
+	<div class="break clear"></div>
 	<div class="left">
-		<p>Information</p>
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>Output</p>
 		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
 	</div>
 	<div class="right">
-		<p>Generates the URL for launching and adding the Secret we made earlier.</p>
-		<p>This link won't do anything unless you have a Authentication program on your computer.</p>
-		<p><strong>Try scanning this QR code with your phone instead.</strong></p>
+		<h3>Authentricatron QR</h3>
+		<p><code>Authentricatron_QR($URL);</code></p>
+		<p><strong>Try scanning this QR code with your phone.</strong></p>
 		<?php
 			if (
 				extension_loaded('gd') &&
@@ -149,7 +89,7 @@
 				echo '<p><img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl='.urlencode($URL).'"></p>';
 			}
 		?>
-		<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.
+		<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.</p>
 	</div>
 
 	<?php $Decoded = Base32_Decode($Secret); ?>
