@@ -27,40 +27,39 @@
 		<p>Debug</p>
 	</div>
 	<div class="right">';
-				if ( function_exists('mcrypt_create_iv') ) {
-					$MCrypt = true;
-					echo '
+			if ( function_exists('mcrypt_create_iv') ) {
+				$MCrypt = true;
+				echo '
 		<p class="color-nephritis">MCrypt is installed.</p>';
-				} else {
-					echo '
+			} else {
+				echo '
 		<p class="color-pomegranate">MCrypt is not installed.</p>';
-					if ( function_exists('openssl_random_pseudo_bytes') ) {
-						$Random = openssl_random_pseudo_bytes($Length, $Strong);
-						if ( $Strong ) {
-							$OpenSSL = true;
-							echo '
+				if ( function_exists('openssl_random_pseudo_bytes') ) {
+					$Random = openssl_random_pseudo_bytes($Length, $Strong);
+					if ( $Strong ) {
+						$OpenSSL = true;
+						echo '
 		<p class="color-nephritis">OpenSSL is installed, and secure.</p>';
-						} else {
-							echo '
-		<p class="color-pomegranate">OpenSSL is installed, but not secure.</p>';
-						}
 					} else {
 						echo '
-		<p class="color-pomegranate">OpenSSL is not installed.</p>';
+		<p class="color-pomegranate">OpenSSL is installed, but not secure.</p>';
 					}
-				}
-				if ( $MCrypt ) {
-					echo '
-		<p><strong>Your installation will use MCrypt.</strong></p>';
-				} else if ( $OpenSSL ) {
-					echo '
-		<p><strong>Your installation will use OpenSSL.</strong></p>';
 				} else {
 					echo '
-		<p class="color-nephritis"><strong>Your installation will not work.</strong></p>';
+		<p class="color-pomegranate">OpenSSL is not installed.</p>';
 				}
 			}
-		echo '
+			if ( $MCrypt ) {
+				echo '
+		<p><strong>Your installation will use MCrypt.</strong></p>';
+			} else if ( $OpenSSL ) {
+				echo '
+		<p><strong>Your installation will use OpenSSL.</strong></p>';
+			} else {
+				echo '
+		<p class="color-nephritis"><strong>Your installation will not work.</strong></p>';
+			}
+			echo '
 	</div>';
 		}
 	?>
