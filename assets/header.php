@@ -4,7 +4,7 @@
 	<meta charset="ASCII">
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
-	<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/g/normalize,colors.css>
+	<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/g/normalize,colors.css">
 	<link rel="stylesheet" media="all" href="assets/styles.css">
 </head>
 <body>
