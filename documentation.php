@@ -101,7 +101,7 @@
 			<li>Level H (High) &emsp; 30% of codewords can be restored.</li>
 		</ul>
 	</div>
-	<div class="break"></div>
+	<div class="clear"></div>
 	<div class="left">
 		<p>Output</p>
 		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
@@ -113,11 +113,8 @@
 				extension_loaded('gd') &&
 				function_exists('gd_info')
 			) {
-				echo '<!-- PHPQRCode -->';
-				$QR_Base64 = Authentricatron_QR($URL);
 				echo '
-		<p><img src="'.$QR_Base64.'"></p>
-		<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.</p>';
+		<p class="color-nephritis">The GD functions are loaded.</p>';
 			} else {
 				echo '
 		<p class="color-pomegranate">The GD functions are not loaded.</p>
