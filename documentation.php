@@ -93,10 +93,10 @@
 		<p><code>$Margin</code> is an integer, defaults to 0.</p>
 		<p><code>$Level</code> is a string, defaults to 'M'. It defines the error correction level.</p>
 		<ul>
-			<li>Level L (Low) &emsp; 7% of codewords can be restored.</li>
+			<li>Level L (Low) &emsp;&emsp; 7% of codewords can be restored.</li>
 			<li>Level M (Medium) &emsp; 15% of codewords can be restored.</li>
 			<li>Level Q (Quartile) &emsp; 25% of codewords can be restored.</li>
-			<li>Level H (High) &emsp; 30% of codewords can be restored.</li>
+			<li>Level H (High) &emsp;&emsp; 30% of codewords can be restored.</li>
 		</ul>
 	</div>
 	<div class="clear"></div>
@@ -130,7 +130,26 @@
 		<h3>Base32 Decode</h3>
 		<p><code>Base32_Decode($Secret);</code></p>
 		<p>Outputs a string of the numeric representation of the Secret as ASCII text.</p>
-		<p>The lone parameter is a string value that expects a balid Base32 secret.</p>
+		<p>The lone parameter is a string value that expects a valid Base32 secret.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<h3>Authentricatron Code</h3>
+		<p><code>Authentricatron_Code($Secret);</code></p>
+		<p><code>Authentricatron_Code($Secret, $Timestamp = false);</code></p>
+		<p><code>Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6);</code></p>
+		<p>Outputs the calculated code for the current or provided timestamp.</p>
+		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
+		<p><code>$Timestamp</code> is a unix timestamp, defaults to false to use the current timestamp.</p>
+		<p><code>$CodeLength</code> is a non-zero integer, the desired length of the generated code. Defaults to 6.</p>
 	</div>
 	
 	<!-- TODO Rewrite others. -->
