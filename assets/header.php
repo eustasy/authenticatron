@@ -19,6 +19,6 @@
 		then verify the entered response over a given time variance.<br>
 		<a href="http://labs.eustasy.org/authenticatron/examples.php">examples</a> &emsp;
 		<a href="http://labs.eustasy.org/authenticatron/documentation.php">documentation</a> &emsp;
-		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg" /></a> &emsp;
-		<a href="https://www.codacy.com/public/eustasy/authenticatron"><img src="https://www.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c"/></a></p>
+		<a href="https://www.codacy.com/public/eustasy/authenticatron"><img src="https://www.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c"/></a> &emsp;
+		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg" /></a></p>
 	</div>
