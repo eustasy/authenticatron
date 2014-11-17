@@ -50,13 +50,13 @@
 		}
 		if ( $MCrypt ) {
 			echo '
-		<p><strong>Your installation will use MCrypt.</strong></p>';
+		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
 		} else if ( $OpenSSL ) {
 			echo '
-		<p><strong>Your installation will use OpenSSL.</strong></p>';
+		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
 		} else {
 			echo '
-		<p class="color-nephritis"><strong>Your installation will not work.</strong></p>';
+		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>';
 		}
 		echo '
 	</div>';
@@ -119,6 +119,19 @@
 			}
 		?>
 	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<h3>Base32 Decode</h3>
+		<p><code>Base32_Decode($Secret);</code></p>
+		<p>Outputs a string of the numeric representation of the Secret as ASCII text.</p>
+		<p>The lone parameter is a string value that expects a balid Base32 secret.</p>
+	</div>
 	
 	<!-- TODO Rewrite others. -->
 
@@ -133,7 +146,6 @@
 	</div>
 
 	<div class="break clear"></div>
-
 
 </body>
 </html>
