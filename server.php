@@ -32,7 +32,7 @@ if ( function_exists('mcrypt_create_iv') ) {
 		<p class="color-pomegranate">Not Installed</p>';
 }
 $MCrypt_Block .= '
-		<p>TODO</p>
+		<p>MCrypt is used for secure key generation.</p>
 	</div>';
 
 
@@ -67,6 +67,7 @@ if ( function_exists('openssl_random_pseudo_bytes') ) {
 		<p class="color-pomegranate">Not Installed</p>';
 }
 $OpenSSL_Block .= '
+		<p>OpenSSL is used as a fallback for secure key generation.</p>
 	</div>';
 
 
@@ -122,11 +123,13 @@ if (
 	function_exists('gd_info')
 ) {
 	$GD_Block .= '
-<p class="color-nephritis">The GD functions are loaded. You can create QR Codes.</p>';
+		<p class="color-nephritis">The GD functions are loaded. You can create QR Codes.</p>
+		<p>The GD extension is used for generating a secure QR code.</p>';
 } else {
 	$GD_Block .= '
-<p class="color-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
-<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
+		<p class="color-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
+		<p>The GD extension is used for generating a secure QR code.</p>
+		<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
 }
 $GD_Block .= '
 	</div>';
