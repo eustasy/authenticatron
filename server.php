@@ -76,16 +76,30 @@ $OpenSSL_Block .= '
 
 
 ////	Security
+$Security_Block = '
+	<div class="clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Status</p>
+		<p>Information</p>
+	</div>
+	<div class="right">
+		<h3>Security</h3>';
 if ( $MCrypt ) {
-	$Security_Block = '
-		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
+	$Security_Block .= '
+		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>
+		<p>This is the best option, but it\'s good to have a fallback.</p>';
 } else if ( $OpenSSL ) {
-	$Security_Block = '
-		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
+	$Security_Block .= '
+		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
+		<p>This is the second best option, maybe try installing <code>php5-mcrypt</code> ?</p>';
 } else {
-	$Security_Block = '
-		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>';
+	$Security_Block .= '
+		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>
+		<p>Maybe try installing <code>php5-mcrypt</code> or <code>openssl</code> ?</p>';
 }
+$Security_Block .= '
+	</div>';
 
 
 
@@ -93,18 +107,32 @@ if ( $MCrypt ) {
 
 
 
-////	QD
+////	GD
+$GD_Block = '
+	<div class="clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Status</p>
+		<p>Information</p>
+	</div>
+	<div class="right">
+		<h3>GD</h3>';
 if (
 	extension_loaded('gd') &&
 	function_exists('gd_info')
 ) {
-	$GD_Block = '
+	$GD_Block .= '
 <p class="color-nephritis">The GD functions are loaded. You can create QR Codes.</p>';
 } else {
-	$GD_Block = '
+	$GD_Block .= '
 <p class="color-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
 <p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
 }
+$GD_Block .= '
+	</div>';
+
+
+
 
 
 
