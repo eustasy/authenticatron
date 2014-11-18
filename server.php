@@ -18,7 +18,8 @@ $MCrypt_Block = '
 	<div class="left">
 		<p>MCrypt</p>
 	</div>
-	<div class="right">';
+	<div class="right">
+		<p>MCrypt is used for secure key generation.</p>';
 if ( function_exists('mcrypt_create_iv') ) {
 	$MCrypt = true;
 	$Secure = true;
@@ -29,7 +30,6 @@ if ( function_exists('mcrypt_create_iv') ) {
 		<p class="color-pomegranate">Not Installed</p>';
 }
 $MCrypt_Block .= '
-		<p>MCrypt is used for secure key generation.</p>
 	</div>';
 
 
@@ -44,7 +44,8 @@ $OpenSSL_Block = '
 	<div class="left">
 		<p>OpenSSL</p>
 	</div>
-	<div class="right">';
+	<div class="right">
+		<p>OpenSSL is used as a fallback for secure key generation.</p>';
 if ( function_exists('openssl_random_pseudo_bytes') ) {
 	openssl_random_pseudo_bytes(1, $Strong);
 	if ( $Strong ) {
@@ -61,7 +62,6 @@ if ( function_exists('openssl_random_pseudo_bytes') ) {
 		<p class="color-pomegranate">Not Installed</p>';
 }
 $OpenSSL_Block .= '
-		<p>OpenSSL is used as a fallback for secure key generation.</p>
 	</div>';
 
 
@@ -142,5 +142,6 @@ echo $OpenSSL_Block;
 echo $GD_Block;
 
 echo '
+	<div class="clear break"></div>
 </body>
 </html>';

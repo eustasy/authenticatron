@@ -71,7 +71,6 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 
 - Expand Glossary in Documentation
 - Unit Tests
-- Server Test
 - Homepage with Quick Functions
 
 
