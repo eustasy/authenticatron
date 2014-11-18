@@ -163,13 +163,13 @@
 		<h3>Authentricatron Acceptable</h3>
 		<p><code>Authentricatron_Acceptable($Secret);</code></p>
 		<p><code>Authentricatron_Acceptable($Secret, $Variance = 2));</code></p>
-		<p><pre><code>array(5) {
+		<pre>array(5) {
 	[-2] => string(6) "398599"
 	[-1] => string(6) "283062"
 	[0] => string(6) "809226"
 	[1] => string(6) "541727"
 	[2] => string(6) "667780"
-}</code></pre></p>
+}</pre>
 		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
 		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value. Default to 2, or 1 minute.</p>
 		<p>Note the indexes, which can be used to determine the time difference, and perhaps warn users on the outer bounds.</p>
@@ -205,11 +205,11 @@
 		<h3>Authentricatron New</h3>
 		<p><code>Authentricatron_New($Member_Name);</code></p>
 		<p>Outputs an array.</p>
-		<p><pre><code>array(3) {
+		<pre>array(3) {
 	['Secret'] => string // the Secret for the member
 	['URL'] => string // an OTPAuth URL
 	['QR'] => string // the Data64 URI for the QR code
-}</code></pre></p>
+}</pre>
 		<p><code>$Member_Name</code> is a string containing the data your member will identify with.</p>
 	</div>
 

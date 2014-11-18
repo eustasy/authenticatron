@@ -69,7 +69,7 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 
 ## TODO
 
-- Documentation
+- Expand Glossary in Documentation
 - Unit Tests
 - Server Test
 - Homepage with Quick Functions
