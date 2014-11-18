@@ -16,12 +16,9 @@ $Secure = false;
 $MCrypt_Block = '
 	<div class="clear"></div>
 	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Status</p>
-		<p>Information</p>
+		<p>MCrypt</p>
 	</div>
-	<div class="right">
-		<h3>MCrypt</h3>';
+	<div class="right">';
 if ( function_exists('mcrypt_create_iv') ) {
 	$MCrypt = true;
 	$Secure = true;
@@ -45,12 +42,9 @@ $MCrypt_Block .= '
 $OpenSSL_Block = '
 	<div class="clear"></div>
 	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Status</p>
-		<p>Information</p>
+		<p>OpenSSL</p>
 	</div>
-	<div class="right">
-		<h3>OpenSSL</h3>';
+	<div class="right">';
 if ( function_exists('openssl_random_pseudo_bytes') ) {
 	openssl_random_pseudo_bytes(1, $Strong);
 	if ( $Strong ) {
@@ -78,7 +72,7 @@ $OpenSSL_Block .= '
 
 ////	Security
 $Security_Block = '
-	<div class="clear"></div>
+	<div class="clear break"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
 		<p>Status</p>
@@ -110,7 +104,7 @@ $Security_Block .= '
 
 ////	GD
 $GD_Block = '
-	<div class="clear"></div>
+	<div class="clear break"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
 		<p>Status</p>
