@@ -327,7 +327,7 @@ function Authentricatron_Check($Code, $Secret, $Variance = false) {
 
 
 ////	Create a Secret and QR code for a given Member
-// TODO Document and Example
+// TODO Example
 // Also, add a homepage with this and the wrapper for checking.
 function Authentricatron_New($Member_Name) {
 	$Return['Secret'] = Authentricatron_Secret();
