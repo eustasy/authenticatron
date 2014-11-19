@@ -35,7 +35,7 @@
 		<p class="color-pomegranate">MCrypt is not installed.</p>';
 		}
 		if ( function_exists('openssl_random_pseudo_bytes') ) {
-			$Random = openssl_random_pseudo_bytes($Length, $Strong);
+			$Random = openssl_random_pseudo_bytes(1, $Strong);
 			if ( $Strong ) {
 				$OpenSSL = true;
 				echo '
