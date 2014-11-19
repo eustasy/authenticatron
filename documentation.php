@@ -1,4 +1,4 @@
-<?php require __DIR__.'/assets/header.php'; ?>
+<?php include __DIR__.'/assets/header.php'; ?>
 
 	<div class="break clear"></div>
 	<div class="left">

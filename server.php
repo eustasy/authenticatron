@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/assets/header.php';
+include __DIR__.'/assets/header.php';
 
 $MCrypt = false;
 $OpenSSL = false;
