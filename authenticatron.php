@@ -121,12 +121,19 @@ function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 	global $PHPQRCode;
 
 	// If the required functions are not loaded, fail.
-	if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
+	// If the file we are about to require doesn't exist or isn't readable, fail.
+	if (
+		!extension_loaded('gd') ||
+		!function_exists('gd_info') ||
+		!is_readable($PHPQRCode)
+	) {
 		return false;
 
 	// Otherwise proceed with PHPQRCode
 	} else {
 
+		// We've checked the file exists, so we can require instead of include.
+		// Something has gone horribly wrong if this doesn't work.
 		require_once $PHPQRCode;
 
 		// Use the object cache to capture the PNG without outputting it.
