@@ -181,12 +181,10 @@
 		<h3>&nbsp;</h3>
 		<p>Code</p>
 		<p>&nbsp;</p>
-		<p>&nbsp;</p>
 		<p>Output</p>
 	</div>
 	<div class="right">
 		<h3>Authentricatron Check</h3>
-		<p><code>Authentricatron_Check($Code);</code></p>
 		<p><code>Authentricatron_Check($Code, $Secret);</code></p>
 		<p><code>Authentricatron_Check($Code, $Secret, $Variance = false);</code></p>
 		<p>Outputs a boolean value, true or false.</p>
