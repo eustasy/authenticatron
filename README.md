@@ -52,7 +52,7 @@ Brute forcing of codes can be fixed in much the same way as brute forcing passwo
 - Procedural over Object Orientated to give faster responses and match [Simplet](https://github.com/eustasy/simplet).
 - Fixes time-matching bug for better code recognition.
 - Encodes URL to work best with Google Authenticator.
-- Removes `rand` in favour of `openssl_random_pseudo_bytes` for improved security.
+- Removes `rand` in favour of `mcrypt` or `openssl_random_pseudo_bytes` for improved security.
 - Returns base64 PNG rather than Google Chart to better obscure secret from snoopers.
 
 With thanks to [RebThrees bug report](https://github.com/PHPGangsta/GoogleAuthenticator/issues/11).
