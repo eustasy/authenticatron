@@ -11,7 +11,8 @@
 		<h3>Authentricatron Secret</h3>
 		<p><code>Authentricatron_Secret();</code></p>
 		<p><code>Authentricatron_Secret($Length = 16);</code></p>
-		<p>Returns a <code>$Length</code> long string with 32bit only Characters, or <code>false</code> on failure (usually security).</p>
+		<p>Returns a <code>$Length</code> long string with 32bit only Characters,
+		or <code>false</code> on failure (usually security).</p>
 		<p>For generating secrets. Usually accessed only from within the URL/QRCode functions</p>
 		<p><code>$Length</code> should be an integer, longer than 16. Usually left to default.</p>
 		<p>Generated using MCrypt if it is available, falling back to OpenSSL if it is secure.</p>
@@ -171,8 +172,10 @@
 	[2] => string(6) "667780"
 }</pre>
 		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
-		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value. Default to 2, or 1 minute.</p>
-		<p>Note the indexes, which can be used to determine the time difference, and perhaps warn users on the outer bounds.</p>
+		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value.
+		Defaults to 2, or 1 minute.</p>
+		<p>Note the indexes, which can be used to determine the time difference,
+		and perhaps warn users on the outer bounds.</p>
 		<p>Code generation is expensive, so avoid generating any you don't want to check against later.</p>
 	</div>
 
@@ -190,7 +193,8 @@
 		<p>Outputs a boolean value, true or false.</p>
 		<p><code>$Code</code> is a 6 digit string, usually numeric, but not necessarily an integer.</p>
 		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
-		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value. Default to 2, or 1 minute.</p>
+		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value.
+		Defaults to 2, or 1 minute.</p>
 	</div>
 
 	<div class="break clear"></div>
