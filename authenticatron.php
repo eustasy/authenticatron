@@ -1,7 +1,8 @@
 <?php
 
 ////	Authenticatron
-// MIT Licensed - Property of eustasy
+// v0.6 - MIT Licensed - Property of eustasy
+// https://github.com/eustasy/authenticatron
 // http://labs.eustasy.org/authenticatron/example.php
 
 $Sitewide_Title = 'Example Site'; // This is a short name to identify your site or service.
@@ -342,4 +343,3 @@ function Authenticatron_New($Member_Name) {
 	$Return['QR'] = Authenticatron_QR($Return['URL']);
 	return $Return;
 }
-
