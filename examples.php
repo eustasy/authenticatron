@@ -31,12 +31,17 @@
 		<h3>&nbsp;</h3>
 		<p>Code</p>
 		<p>Output</p>
-		<p>Information</p>
 	</div>
 	<div class="right">
 		<h3>Authenticatron New</h3>
 		<p><code>Authenticatron_New($Member_Name);</code></p>
 		<p><pre><?php var_dump($New); ?></pre></p>
+	</div>
+	<div class="clear"></div>
+	<div class="left">
+		<p>Information</p>
+	</div>
+	<div class="right">
 		<p>Create a new Secret and get the QR Code all in one.</p>
 	</div>
 
@@ -64,6 +69,7 @@
 		<h3>&nbsp;</h3>
 		<p>Code</p>
 		<p>Output</p>
+		<p>Information</p>
 	</div>
 	<div class="right">
 		<h3>Authenticatron URL</h3>
@@ -83,7 +89,6 @@
 	<div class="right">
 		<h3>Authenticatron QR</h3>
 		<p><code>Authenticatron_QR($URL);</code></p>
-		<p><strong>Try scanning this QR code with your phone.</strong></p>
 		<?php
 			if (
 				extension_loaded('gd') &&
@@ -105,6 +110,13 @@
 				echo '<p><img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl='.urlencode($URL).'"></p>';
 			}
 		?>
+	</div>
+	<div class="clear"></div>
+	<div class="left">
+		<p>Information</p>
+	</div>
+	<div class="right">
+		<p><strong>Try scanning this QR code with your phone.</strong></p>
 		<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.</p>
 	</div>
 
