@@ -335,7 +335,6 @@ function Authenticatron_Check($Code, $Secret, $Variance = false) {
 
 
 ////	Create a Secret and QR code for a given Member
-// TODO Example
 // Also, add a homepage with this and the wrapper for checking.
 function Authenticatron_New($Member_Name) {
 	$Return['Secret'] = Authenticatron_Secret();
