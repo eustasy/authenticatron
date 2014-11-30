@@ -82,8 +82,14 @@ $Security_Block = '
 		<h3>Security</h3>';
 if ( $MCrypt ) {
 	$Security_Block .= '
-		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>
+		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
+	if ( $OpenSSL ) {
+		$Security_Block .= '
+		<p>OpenSSL is available as a fallback if necessary.</p>';
+	} else {
+		$Security_Block .= '
 		<p>This is the best option, but it\'s good to have a fallback.</p>';
+	}
 } else if ( $OpenSSL ) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
