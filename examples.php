@@ -1,30 +1,31 @@
-<?php include __DIR__.'/assets/header.php'; ?>
+<?php
 
-	<?php
+	include __DIR__.'/assets/header.php';
 
-		require_once __DIR__.'/authenticatron.php';
+	require_once __DIR__.'/authenticatron.php';
 
-		if ( !empty($_GET['secret']) ) {
-			$Secret = $_GET['secret'];
-		} else {
-			$Secret = Authenticatron_Secret();
-		}
+	if ( !empty($_GET['secret']) ) {
+		$Secret = $_GET['secret'];
+	} else {
+		$Secret = Authenticatron_Secret();
+	}
 
-		if ( !$Secret ) {
-			$Secret = 'AUTHENTICATRION23';
-			?>
-				<div class="break clear"></div>
-				<div class="left"></div>
-				<div class="right">
-					<h3>No cryptographically secure random available.</h3>
-					<p>Try installing OpenSSL.</p>
-					<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
-				</div>
-			<?php
-		}
+	if ( !$Secret ) {
+		$Secret = 'AUTHENTICATRION23';
+		?>
+			<div class="break clear"></div>
+			<div class="left"></div>
+			<div class="right">
+				<h3>No cryptographically secure random available.</h3>
+				<p>Try installing OpenSSL.</p>
+				<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
+			</div>
+		<?php
+	}
 
-	?>
+?>
 
+	<?php $New =  Authenticatron_New('Member Name'); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
@@ -33,13 +34,28 @@
 		<p>Information</p>
 	</div>
 	<div class="right">
-		<h3>Authenticatron Secret</h3>
-		<p><code>Authenticatron_Secret();</code></p>
-		<?php echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>'; ?>
-		<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
-		<p>Valid characters are Base32, which means A to Z and 2 through 7.</p>
-		<p>While most applications will tolerate lowercase, they should really be uppercase.</p>
-		<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
+		<h3>Authenticatron New</h3>
+		<p><code>Authenticatron_New($Member_Name);</code></p>
+		<p><pre><?php var_dump($New); ?></pre></p>
+		<p>Create a new Secret and get the QR Code all in one.</p>
+	</div>
+
+	<?php
+		$Code = Authenticatron_Code($Secret);
+		$Check =  Authenticatron_Check($Code, $Secret);
+	?>
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>Output</p>
+		<p>Information</p>
+	</div>
+	<div class="right">
+		<h3>Check a Code</h3>
+		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
+		<p><pre><?php var_dump($Check); ?></pre></p>
+		<p>This returns a simple boolean value to prevent data-leakage and zero-equivalent values from codes or keys.</p>
 	</div>
 
 	<?php $URL = Authenticatron_URL($Member_Name, $Secret); ?>
@@ -90,6 +106,23 @@
 			}
 		?>
 		<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>Output</p>
+		<p>Information</p>
+	</div>
+	<div class="right">
+		<h3>Authenticatron Secret</h3>
+		<p><code>Authenticatron_Secret();</code></p>
+		<?php echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>'; ?>
+		<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
+		<p>Valid characters are Base32, which means A to Z and 2 through 7.</p>
+		<p>While most applications will tolerate lowercase, they should really be uppercase.</p>
+		<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 	</div>
 
 	<?php $Decoded = Base32_Decode($Secret); ?>
@@ -145,21 +178,6 @@
 		<p>This is the array <code>Authenticatron_Check</code> uses to check for valid codes.</p>
 		<p><strong>Your phone should produce one of these from the QR code above.</strong></p>
 		<p>These are only valid for 30 seconds, so click the Secret link to get a new list.</p>
-	</div>
-
-	<?php $Check =  Authenticatron_Check($Code, $Secret); ?>
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-		<p>Information</p>
-	</div>
-	<div class="right">
-		<h3>Check a Code</h3>
-		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
-		<p><pre><?php var_dump($Check); ?></pre></p>
-		<p>This returns a simple boolean value to prevent data-leakage and zero-equivalent values from codes or keys.</p>
 	</div>
 
 	<div class="break clear"></div>

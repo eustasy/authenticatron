@@ -4,6 +4,101 @@
 	<div class="left">
 		<h3>&nbsp;</h3>
 		<p>Code</p>
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<h3>Authenticatron New</h3>
+		<p><code>Authenticatron_New($Member_Name);</code></p>
+		<p>Outputs an array.</p>
+		<pre>array(3) {
+	['Secret'] => string // the Secret for the member
+	['URL'] => string // an OTPAuth URL
+	['QR'] => string // the Data64 URI for the QR code
+}</pre>
+		<p><code>$Member_Name</code> is a string containing the data your member will identify with.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>&nbsp;</p>
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<h3>Authenticatron Check</h3>
+		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
+		<p><code>Authenticatron_Check($Code, $Secret, $Variance = false);</code></p>
+		<p>Outputs a boolean value, true or false.</p>
+		<p><code>$Code</code> is a 6 digit string, usually numeric, but not necessarily an integer.</p>
+		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
+		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value.
+		Defaults to 2, or 1 minute.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+		<p>&nbsp;</p>
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<h3>Authenticatron URL</h3>
+		<p><code>Authenticatron_URL($Member_Name, $Secret);</code></p>
+		<p><code>Authenticatron_URL($Member_Name, $Secret, $Issuer = DEFAULT);</code></p>
+		<p>Outputs an OTPAuth URL that gives people their Secret along with a passed Member Name and an optional Issuer.</p>
+		<p>All parameters should be strings, with the optional issuer defaulting to the configured value if not passed.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
+	</div>
+	<div class="right">
+		<h3>Authenticatron QR</h3>
+		<p><code>Authenticatron_QR($URL);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M');</code></p>
+		<p><code>$URL</code> is a valid OTPAuth URL in string form.</p>
+		<p><code>$Size</code> is a non-zero integer, defaults to 4.</p>
+		<p><code>$Margin</code> is an integer, defaults to 0.</p>
+		<p><code>$Level</code> is a string, defaults to 'M'. It defines the error correction level.</p>
+		<ul>
+			<li>Level L (Low) &emsp;&emsp; 7% of codewords can be restored.</li>
+			<li>Level M (Medium) &emsp; 15% of codewords can be restored.</li>
+			<li>Level Q (Quartile) &emsp; 25% of codewords can be restored.</li>
+			<li>Level H (High) &emsp;&emsp; 30% of codewords can be restored.</li>
+		</ul>
+	</div>
+
+	<div class="clear"></div>
+	<div class="left">
+		<p>Output</p>
+	</div>
+	<div class="right">
+		<p>Outputs a QR Code image in 64bit data-URI form.</p>
+		<?php
+			if (
+				extension_loaded('gd') &&
+				function_exists('gd_info')
+			) {
+				echo '
+		<p class="color-nephritis">The GD functions are loaded.</p>';
+			} else {
+				echo '
+		<p class="color-pomegranate">The GD functions are not loaded.</p>
+		<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
+			}
+		?>
+	</div>
+
+	<div class="break clear"></div>
+	<div class="left">
+		<h3>&nbsp;</h3>
+		<p>Code</p>
 		<p>&nbsp;</p>
 		<p>Output</p>
 	</div>
@@ -67,64 +162,6 @@
 	<div class="left">
 		<h3>&nbsp;</h3>
 		<p>Code</p>
-		<p>&nbsp;</p>
-		<p>Output</p>
-	</div>
-	<div class="right">
-		<h3>Authenticatron URL</h3>
-		<p><code>Authenticatron_URL($Member_Name, $Secret);</code></p>
-		<p><code>Authenticatron_URL($Member_Name, $Secret, $Issuer = DEFAULT);</code></p>
-		<p>Outputs an OTPAuth URL that gives people their Secret along with a passed Member Name and an optional Issuer.</p>
-		<p>All parameters should be strings, with the optional issuer defaulting to the configured value if not passed.</p>
-	</div>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-	</div>
-	<div class="right">
-		<h3>Authenticatron QR</h3>
-		<p><code>Authenticatron_QR($URL);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M');</code></p>
-		<p><code>$URL</code> is a valid OTPAuth URL in string form.</p>
-		<p><code>$Size</code> is a non-zero integer, defaults to 4.</p>
-		<p><code>$Margin</code> is an integer, defaults to 0.</p>
-		<p><code>$Level</code> is a string, defaults to 'M'. It defines the error correction level.</p>
-		<ul>
-			<li>Level L (Low) &emsp;&emsp; 7% of codewords can be restored.</li>
-			<li>Level M (Medium) &emsp; 15% of codewords can be restored.</li>
-			<li>Level Q (Quartile) &emsp; 25% of codewords can be restored.</li>
-			<li>Level H (High) &emsp;&emsp; 30% of codewords can be restored.</li>
-		</ul>
-	</div>
-	<div class="clear"></div>
-	<div class="left">
-		<p>Output</p>
-	</div>
-	<div class="right">
-		<p>Outputs a QR Code image in 64bit data-URI form.</p>
-		<?php
-			if (
-				extension_loaded('gd') &&
-				function_exists('gd_info')
-			) {
-				echo '
-		<p class="color-nephritis">The GD functions are loaded.</p>';
-			} else {
-				echo '
-		<p class="color-pomegranate">The GD functions are not loaded.</p>
-		<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
-			}
-		?>
-	</div>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
 		<p>Output</p>
 	</div>
 	<div class="right">
@@ -177,42 +214,6 @@
 		<p>Note the indexes, which can be used to determine the time difference,
 		and perhaps warn users on the outer bounds.</p>
 		<p>Code generation is expensive, so avoid generating any you don't want to check against later.</p>
-	</div>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>&nbsp;</p>
-		<p>Output</p>
-	</div>
-	<div class="right">
-		<h3>Authenticatron Check</h3>
-		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
-		<p><code>Authenticatron_Check($Code, $Secret, $Variance = false);</code></p>
-		<p>Outputs a boolean value, true or false.</p>
-		<p><code>$Code</code> is a 6 digit string, usually numeric, but not necessarily an integer.</p>
-		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
-		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value.
-		Defaults to 2, or 1 minute.</p>
-	</div>
-
-	<div class="break clear"></div>
-	<div class="left">
-		<h3>&nbsp;</h3>
-		<p>Code</p>
-		<p>Output</p>
-	</div>
-	<div class="right">
-		<h3>Authenticatron New</h3>
-		<p><code>Authenticatron_New($Member_Name);</code></p>
-		<p>Outputs an array.</p>
-		<pre>array(3) {
-	['Secret'] => string // the Secret for the member
-	['URL'] => string // an OTPAuth URL
-	['QR'] => string // the Data64 URI for the QR code
-}</pre>
-		<p><code>$Member_Name</code> is a string containing the data your member will identify with.</p>
 	</div>
 
 	<div class="break clear"></div>
