@@ -7,7 +7,7 @@
 		if ( !empty($_GET['secret']) ) {
 			$Secret = $_GET['secret'];
 		} else {
-			$Secret = Authentricatron_Secret();
+			$Secret = Authenticatron_Secret();
 		}
 
 		if ( !$Secret ) {
@@ -33,8 +33,8 @@
 		<p>Information</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron Secret</h3>
-		<p><code>Authentricatron_Secret();</code></p>
+		<h3>Authenticatron Secret</h3>
+		<p><code>Authenticatron_Secret();</code></p>
 		<?php echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>'; ?>
 		<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
 		<p>Valid characters are Base32, which means A to Z and 2 through 7.</p>
@@ -42,7 +42,7 @@
 		<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 	</div>
 
-	<?php $URL = Authentricatron_URL($Member_Name, $Secret); ?>
+	<?php $URL = Authenticatron_URL($Member_Name, $Secret); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
@@ -50,8 +50,8 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron URL</h3>
-		<p><code>Authentricatron_URL($Member_Name, $Secret);</code></p>
+		<h3>Authenticatron URL</h3>
+		<p><code>Authenticatron_URL($Member_Name, $Secret);</code></p>
 		<p><?php echo '<a href="'.$URL.'">'.$URL.'</a></p>'; ?>
 		<p>Generates the URL for launching and adding the Secret we made earlier.</p>
 		<p>This link won't do anything unless you have a Authentication program on your computer.</p>
@@ -65,8 +65,8 @@
 		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
 	</div>
 	<div class="right">
-		<h3>Authentricatron QR</h3>
-		<p><code>Authentricatron_QR($URL);</code></p>
+		<h3>Authenticatron QR</h3>
+		<p><code>Authenticatron_QR($URL);</code></p>
 		<p><strong>Try scanning this QR code with your phone.</strong></p>
 		<?php
 			if (
@@ -75,7 +75,7 @@
 				!isset($_GET['googlechart'])
 			) {
 				echo '<!-- PHPQRCode -->';
-				$QR_Base64 = Authentricatron_QR($URL);
+				$QR_Base64 = Authenticatron_QR($URL);
 				echo '<p><img src="'.$QR_Base64.'"></p>';
 			} else {
 				echo '<!-- Google Chart -->';
@@ -108,7 +108,7 @@
 		<p>It also isn't decoding, at least not in any real sense.</p>
 	</div>
 
-	<?php $Code = Authentricatron_Code($Secret); ?>
+	<?php $Code = Authenticatron_Code($Secret); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
@@ -118,13 +118,13 @@
 	</div>
 	<div class="right">
 		<h3>Current Code</h3>
-		<p><code>Authentricatron_Code($Secret);</code></p>
+		<p><code>Authenticatron_Code($Secret);</code></p>
 		<p><pre><?php echo $Code; ?></pre></p>
 		<p>This is the current authentication code.</p>
 		<p>Check the Acceptable list to see the two either side.</p>
 	</div>
 
-	<?php $Acceptable = Authentricatron_Acceptable($Secret); ?>
+	<?php $Acceptable = Authenticatron_Acceptable($Secret); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
@@ -133,7 +133,7 @@
 	</div>
 	<div class="right">
 		<h3>Acceptable Codes</h3>
-		<p><code>Authentricatron_Acceptable($Secret);</code></p>
+		<p><code>Authenticatron_Acceptable($Secret);</code></p>
 		<p><pre><?php var_dump($Acceptable); ?></pre></p>
 	</div>
 	<div class="clear"></div>
@@ -142,12 +142,12 @@
 		<img alt="Vault Icon" src="assets/google_authenticator-128.png">
 	</div>
 	<div class="right">
-		<p>This is the array <code>Authentricatron_Check</code> uses to check for valid codes.</p>
+		<p>This is the array <code>Authenticatron_Check</code> uses to check for valid codes.</p>
 		<p><strong>Your phone should produce one of these from the QR code above.</strong></p>
 		<p>These are only valid for 30 seconds, so click the Secret link to get a new list.</p>
 	</div>
 
-	<?php $Check =  Authentricatron_Check($Code, $Secret); ?>
+	<?php $Check =  Authenticatron_Check($Code, $Secret); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
@@ -157,7 +157,7 @@
 	</div>
 	<div class="right">
 		<h3>Check a Code</h3>
-		<p><code>Authentricatron_Check($Code, $Secret);</code></p>
+		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
 		<p><pre><?php var_dump($Check); ?></pre></p>
 		<p>This returns a simple boolean value to prevent data-leakage and zero-equivalent values from codes or keys.</p>
 	</div>

@@ -8,9 +8,9 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron Secret</h3>
-		<p><code>Authentricatron_Secret();</code></p>
-		<p><code>Authentricatron_Secret($Length = 16);</code></p>
+		<h3>Authenticatron Secret</h3>
+		<p><code>Authenticatron_Secret();</code></p>
+		<p><code>Authenticatron_Secret($Length = 16);</code></p>
 		<p>Returns a <code>$Length</code> long string with 32bit only Characters,
 		or <code>false</code> on failure (usually security).</p>
 		<p>For generating secrets. Usually accessed only from within the URL/QRCode functions</p>
@@ -71,9 +71,9 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron URL</h3>
-		<p><code>Authentricatron_URL($Member_Name, $Secret);</code></p>
-		<p><code>Authentricatron_URL($Member_Name, $Secret, $Issuer = DEFAULT);</code></p>
+		<h3>Authenticatron URL</h3>
+		<p><code>Authenticatron_URL($Member_Name, $Secret);</code></p>
+		<p><code>Authenticatron_URL($Member_Name, $Secret, $Issuer = DEFAULT);</code></p>
 		<p>Outputs an OTPAuth URL that gives people their Secret along with a passed Member Name and an optional Issuer.</p>
 		<p>All parameters should be strings, with the optional issuer defaulting to the configured value if not passed.</p>
 	</div>
@@ -84,11 +84,11 @@
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron QR</h3>
-		<p><code>Authentricatron_QR($URL);</code></p>
-		<p><code>Authentricatron_QR($URL, $Size = 4);</code></p>
-		<p><code>Authentricatron_QR($URL, $Size = 4, $Margin = 0);</code></p>
-		<p><code>Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M');</code></p>
+		<h3>Authenticatron QR</h3>
+		<p><code>Authenticatron_QR($URL);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0);</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M');</code></p>
 		<p><code>$URL</code> is a valid OTPAuth URL in string form.</p>
 		<p><code>$Size</code> is a non-zero integer, defaults to 4.</p>
 		<p><code>$Margin</code> is an integer, defaults to 0.</p>
@@ -143,10 +143,10 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron Code</h3>
-		<p><code>Authentricatron_Code($Secret);</code></p>
-		<p><code>Authentricatron_Code($Secret, $Timestamp = false);</code></p>
-		<p><code>Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6);</code></p>
+		<h3>Authenticatron Code</h3>
+		<p><code>Authenticatron_Code($Secret);</code></p>
+		<p><code>Authenticatron_Code($Secret, $Timestamp = false);</code></p>
+		<p><code>Authenticatron_Code($Secret, $Timestamp = false, $CodeLength = 6);</code></p>
 		<p>Outputs the calculated code for the current or provided timestamp.</p>
 		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
 		<p><code>$Timestamp</code> is a unix timestamp, defaults to false to use the current timestamp.</p>
@@ -161,9 +161,9 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron Acceptable</h3>
-		<p><code>Authentricatron_Acceptable($Secret);</code></p>
-		<p><code>Authentricatron_Acceptable($Secret, $Variance = 2));</code></p>
+		<h3>Authenticatron Acceptable</h3>
+		<p><code>Authenticatron_Acceptable($Secret);</code></p>
+		<p><code>Authenticatron_Acceptable($Secret, $Variance = 2));</code></p>
 		<pre>array(5) {
 	[-2] => string(6) "398599"
 	[-1] => string(6) "283062"
@@ -187,9 +187,9 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron Check</h3>
-		<p><code>Authentricatron_Check($Code, $Secret);</code></p>
-		<p><code>Authentricatron_Check($Code, $Secret, $Variance = false);</code></p>
+		<h3>Authenticatron Check</h3>
+		<p><code>Authenticatron_Check($Code, $Secret);</code></p>
+		<p><code>Authenticatron_Check($Code, $Secret, $Variance = false);</code></p>
 		<p>Outputs a boolean value, true or false.</p>
 		<p><code>$Code</code> is a 6 digit string, usually numeric, but not necessarily an integer.</p>
 		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
@@ -204,8 +204,8 @@
 		<p>Output</p>
 	</div>
 	<div class="right">
-		<h3>Authentricatron New</h3>
-		<p><code>Authentricatron_New($Member_Name);</code></p>
+		<h3>Authenticatron New</h3>
+		<p><code>Authenticatron_New($Member_Name);</code></p>
 		<p>Outputs an array.</p>
 		<pre>array(3) {
 	['Secret'] => string // the Secret for the member

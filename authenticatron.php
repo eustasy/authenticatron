@@ -1,6 +1,6 @@
 <?php
 
-////	Authentricatron
+////	Authenticatron
 // MIT Licensed - Property of eustasy
 // http://labs.eustasy.org/authenticatron/example.php
 
@@ -51,7 +51,7 @@ $Base32_Chars_Flipped = array(
 
 
 ////	Create a new Secret
-function Authentricatron_Secret($Length = 16) {
+function Authenticatron_Secret($Length = 16) {
 
 	global $Base32_Chars;
 
@@ -89,7 +89,7 @@ function Authentricatron_Secret($Length = 16) {
 
 
 ////	Create an OTPAuth URL
-function Authentricatron_URL($Account, $Secret, $Issuer = null) {
+function Authenticatron_URL($Account, $Secret, $Issuer = null) {
 
 	global $Sitewide_Title;
 
@@ -115,7 +115,7 @@ function Authentricatron_URL($Account, $Secret, $Issuer = null) {
 
 
 ////	Create a Base64 PNG QR Code
-function Authentricatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
+function Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 
 	// Require the PHPQRCode Library
 	global $PHPQRCode;
@@ -215,7 +215,7 @@ function Base32_Decode($Secret) {
 
 ////	Calculate the current code.
 // This function heavily based on the BSD 2 Licensed one found within https://github.com/PHPGangsta/GoogleAuthenticator
-function Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
+function Authenticatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 
 	// Set the timestamp to something sensible.
 	// You should only over-ride this if you really know why.
@@ -282,7 +282,7 @@ function Authentricatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 // and perhaps warn users on the outer bounds. Code generation is expensive,
 // so avoid generating any you don't want to check against later.
 
-function Authentricatron_Acceptable($Secret, $Variance = 2) {
+function Authenticatron_Acceptable($Secret, $Variance = 2) {
 
 	// Create an empty array to be returned.
 	$Acceptable = array();
@@ -292,7 +292,7 @@ function Authentricatron_Acceptable($Secret, $Variance = 2) {
 		// Add that amount in increments of 30 seconds.
 		$LoopTime = floor(time() / 30) + $i;
 		// Add the code to the array.
-		$Acceptable[$i] = Authentricatron_Code($Secret, $LoopTime);
+		$Acceptable[$i] = Authenticatron_Code($Secret, $LoopTime);
 	}
 
 	// Return the list of codes.
@@ -308,13 +308,13 @@ function Authentricatron_Acceptable($Secret, $Variance = 2) {
 
 
 ////	Check a given Code against a Secret
-function Authentricatron_Check($Code, $Secret, $Variance = false) {
+function Authenticatron_Check($Code, $Secret, $Variance = false) {
 
 	// Pass the Variance if it is set, allow to default if not.
 	if ( $Variance === false ) {
-		$Acceptable = Authentricatron_Acceptable($Secret);
+		$Acceptable = Authenticatron_Acceptable($Secret);
 	} else {
-		$Acceptable = Authentricatron_Acceptable($Secret, $Variance);
+		$Acceptable = Authenticatron_Acceptable($Secret, $Variance);
 	}
 
 	// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
@@ -336,12 +336,11 @@ function Authentricatron_Check($Code, $Secret, $Variance = false) {
 ////	Create a Secret and QR code for a given Member
 // TODO Example
 // Also, add a homepage with this and the wrapper for checking.
-function Authentricatron_New($Member_Name) {
-	$Return['Secret'] = Authentricatron_Secret();
-	$Return['URL'] = Authentricatron_URL($Member_Name, $Return['Secret']);
-	$Return['QR'] = Authentricatron_QR($Return['URL']);
+function Authenticatron_New($Member_Name) {
+	$Return['Secret'] = Authenticatron_Secret();
+	$Return['URL'] = Authenticatron_URL($Member_Name, $Return['Secret']);
+	$Return['QR'] = Authenticatron_QR($Return['URL']);
 	return $Return;
 }
-
 
 
