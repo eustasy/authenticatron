@@ -5,7 +5,7 @@ Heavily modified to improve security and suit our needs.
 
 The MIT License (MIT)
 
-Copyright (c) 2014 eustasy UK Ltd
+Copyright (c) 2015 eustasy UK Ltd
 eustasy.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

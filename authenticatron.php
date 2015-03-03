@@ -1,12 +1,12 @@
 <?php
 
 ////	Authenticatron
-// v0.6 - MIT Licensed - Property of eustasy
+// v0.6.1 - MIT Licensed - Property of eustasy
 // https://github.com/eustasy/authenticatron
 // http://labs.eustasy.org/authenticatron/example.php
 
-$Sitewide_Title = 'Example Site'; // This is a short name to identify your site or service.
-$Member_Name = 'John Smith'; // This could be their email, name, or username.
+$Sitewide['Title'] = 'Example Site'; // This is a short name to identify your site or service.
+$Member['Name'] = 'John Smith'; // This could be their email, name, or username.
 
 // Secret Length defaults to 16.
 // Code Length is set to 6.
@@ -92,10 +92,10 @@ function Authenticatron_Secret($Length = 16) {
 ////	Create an OTPAuth URL
 function Authenticatron_URL($Account, $Secret, $Issuer = null) {
 
-	global $Sitewide_Title;
+	global $Sitewide;
 
 	// Override the Issuer if they want
-	$Issuer = isset($Issuer) ? $Issuer : $Sitewide_Title;
+	$Issuer = isset($Issuer) ? $Issuer : $Sitewide['Title'];
 
 	// Strip any colons, they screw things up.
 	$Issuer = str_replace (':', '', $Issuer);
@@ -105,7 +105,7 @@ function Authenticatron_URL($Account, $Secret, $Issuer = null) {
 
 	// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
 	// This could cause issues with certain characters. Try to keep it alphanumeric.
-	return 'otpauth://totp/'.$Issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
+	return 'otpauth://totp/'.$Issuer.':'.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
 
 }
 
