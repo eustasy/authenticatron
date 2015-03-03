@@ -105,7 +105,7 @@ function Authenticatron_URL($Account, $Secret, $Issuer = null) {
 
 	// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
 	// This could cause issues with certain characters. Try to keep it alphanumeric.
-	return 'otpauth://totp/'.$Issuer.':'.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
+	return 'otpauth://totp/'.$Issuer.': '.$Account.'?secret='.urlencode($Secret).'&issuer='.urlencode($Issuer);
 
 }
 
