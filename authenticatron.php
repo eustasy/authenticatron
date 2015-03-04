@@ -32,20 +32,6 @@ $Base32_Chars = array(
 	'Y', 'Z', '2', '3', '4', '5', '6', '7' // 32
 );
 
-// A reference for converting from Base32
-$Base32_Chars_Flipped = array(
-	'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, // 4
-	'E' => 4, 'F' => 5, 'G' => 6, 'H' => 7, // 8
-	'I' => 8, 'J' => 9, 'K' => 10, 'L' => 11, // 12
-	'M' => 12, 'N' => 13, 'O' => 14, 'P' => 15, // 16
-	'Q' => 16, 'R' => 17, 'S' => 18, 'T' => 19, // 20
-	'U' => 20, 'V' => 21, 'W' => 22, 'X' => 23, // 24
-	'Y' => 24, 'Z' => 25, // 26
-	2 => 26, 3 => 27, // 28
-	4 => 28, 5 => 29, // 30
-	6 => 30, 7 => 31 // 32
-);
-
 
 
 
@@ -160,13 +146,15 @@ function Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 ////	Decode as Base32
 function Base32_Decode($Secret) {
 
-	global $Base32_Chars, $Base32_Chars_Flipped;
-	$String = '';
+	global $Base32_Chars;
 
 	// If there is no secret or it is too small.
 	if ( empty($Secret) || strlen($Secret) < 16 ) {
 		return false;
 	}
+
+	// A reference for converting from Base32
+	$Base32_Chars_Flipped = array_flip($Base32_Chars);
 
 	// Remove padding characters (there shouldn't be any)
 	$Secret = str_replace('=', '', $Secret);
@@ -176,9 +164,12 @@ function Base32_Decode($Secret) {
 
 	// Set an empty string.
 	$Secret_Decoded = '';
+	$Secret_Count = count($Secret);
 
 	// While $i is less than the length of $Secret, 8 bits at a time.
-	for ($i = 0; $i < count($Secret); $i = $i+8) {
+	for ($i = 0; $i < $Secret_Count; $i = $i+8) {
+
+		$String = '';
 
 		// If the letter is not a Base32 Character
 		if (!in_array($Secret[$i], $Base32_Chars)) {
@@ -187,15 +178,14 @@ function Base32_Decode($Secret) {
 
 		// Create 8 letters
 		for ($j = 0; $j < 8; $j++) {
-
 			// Convert the characters to numbers, and pad them if necessary.
 			$String .= str_pad(base_convert($Base32_Chars_Flipped[$Secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 			// Flipped and Secret both had an @ for suppression originally.
-
 		}
 
 		// Turn into an array
 		$eightBits = str_split($String, 8);
+		$eightBits_Count = count($eightBits);
 
 		// Got each bit, convert the numbers to ASCII codes.
 		for ($z = 0; $z < count($eightBits); $z++) {
