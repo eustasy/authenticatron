@@ -63,7 +63,7 @@
 		<p>This returns a simple boolean value to prevent data-leakage and zero-equivalent values from codes or keys.</p>
 	</div>
 
-	<?php $URL = Authenticatron_URL($Member_Name, $Secret); ?>
+	<?php $URL = Authenticatron_URL('Member Name', $Secret); ?>
 	<div class="break clear"></div>
 	<div class="left">
 		<h3>&nbsp;</h3>
