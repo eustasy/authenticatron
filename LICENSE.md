@@ -6,7 +6,7 @@ Heavily modified to improve security and suit our needs.
 The MIT License (MIT)
 ==================
 
-Copyright &copy; 2015 [eustasy](http://eustasy.org)
+Copyright &copy; 2016 [eustasy](http://eustasy.org)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
