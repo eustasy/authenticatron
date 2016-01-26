@@ -103,9 +103,9 @@
 		<p>Input</p>
 	</div>
 	<div class="right">
-		<p><code>$Code</code> is a 6 digit string, usually numeric, but not necessarily an integer.</p>
-		<p><code>$Secret</code> is a valid Base32 Secret in string form.</p>
-		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value. Defaults to 2, or 1 minute.</p>
+		<p><code>$Code</code> is what the user enters to authenticate. A 6 digit string, usually numeric, but not necessarily an integer.</p>
+		<p><code>$Secret</code> is the first result from <code>Authenticatron_Check</code>, that you securely stored for later.</p>
+		<p><code>$Variance</code> is an integer indicating the adjustment of codes with a 30 second value. Defaults to 2 either side, or 1 minute.</p>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
