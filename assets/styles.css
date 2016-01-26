@@ -1,12 +1,7 @@
 body {
 	margin: 0 auto;
 	padding: 0 1rem;
-	max-width: calc(100% - 2rem);
-}
-@media screen and (min-width: 1200px) {
-	body {
-		max-width: 80rem;
-	}
+	max-width: 70rem;
 }
 
 code {
