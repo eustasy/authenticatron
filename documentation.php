@@ -116,7 +116,8 @@
 		<img alt="lifefloat" src="assets/google_help-128.png">
 	</div>
 	<div class="right">
-		<h3 class="color-pomegranate">Warning: You should only need to two functions above to implement this library.</h3>
+		<h3 class="color-pomegranate">Warning: The functions below are for advanced users only.</h3>
+		<p>You should only need the two functions above this point to implement two-factor authentication.</p>
 		<p>Functions listed below this point should not need to be used in most production-ready environments.</p>
 	</div>
 
