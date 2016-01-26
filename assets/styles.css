@@ -1,6 +1,12 @@
 body {
-	margin: 0;
-	padding: 0 15rem;
+	margin: 0 auto;
+	padding: 0 1rem;
+	max-width: calc(100% - 2rem);
+}
+@media screen and (min-device-width: 1200px) {
+	body {
+		max-width: 80rem;
+	}
 }
 
 code {
@@ -40,12 +46,12 @@ p {
 	text-align: right;
 	margin-right: 3rem;
 	min-height: 1rem;
-	width: 10%;
+	width: 10rem;
 }
 .fake-left {
-	margin-left: calc(10% + 3rem);
+	margin-left: 13rem;
 }
 .right {
 	float: left;
-	max-width: calc(100% - 10% - 3rem);
+	max-width: calc(100% - 13rem);
 }
