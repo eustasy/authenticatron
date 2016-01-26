@@ -25,7 +25,8 @@ a {
 	text-decoration: none;
 }
 p {
-	margin: 0 0 1rem;
+	font: normal 1rem/1.5 'Droid Sans', sans-serif;
+	margin: 0;
 }
 
 .break {
