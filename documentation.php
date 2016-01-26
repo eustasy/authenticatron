@@ -13,19 +13,31 @@
 	if ( !$Secret ) {
 		$Secret = 'AUTHENTICATRION23';
 		?>
-			<div class="break clear"></div>
-			<div class="left"></div>
-			<div class="right">
-				<h3>No cryptographically secure random available.</h3>
-				<p>Try installing MCrypt or OpenSSL.</p>
-				<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
-			</div>
+	<div class="break clear"></div>
+	<hr>
+	<div class="break clear"></div>
+
+	<div class="left">
+		<img alt="lifefloat" src="assets/google_help-128.png">
+	</div>
+	<div class="right">
+		<h3 class="color-pomegranate">Warning: No cryptographically secure random available.</h3>
+		<p>Try installing MCrypt or OpenSSL.</p>
+		<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
+	</div>
+
+	<div class="break clear"></div>
+	<hr>
+	<div class="break clear"></div>
+		<?php
+	} else {
+		?>
+	<div class="break clear"></div>
 		<?php
 	}
 
 ?>
 
-	<div class="break clear"></div>
 
 
 
