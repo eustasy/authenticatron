@@ -1,15 +1,21 @@
 body {
-	padding: 0 15%;
+	margin: 0;
+	padding: 0 15rem;
 }
 
 code {
 	background: #eee;
-	border-radius: .3em;
-	padding: .3em .5em;
+	border-radius: .3rem;
+	padding: .3rem .5rem;
 }
 img {
 	max-width: 100%;
 	vertical-align: bottom;
+}
+hr {
+	height: 0;
+	border: 0;
+	border-top: 1px solid #ccc;
 }
 
 a {
@@ -17,11 +23,11 @@ a {
 	text-decoration: none;
 }
 p {
-	margin: 0 0 1em;
+	margin: 0 0 1rem;
 }
 
 .break {
-	padding-top: 10%;
+	padding-top: 10rem;
 	width: 100%;
 }
 .clear {
@@ -32,11 +38,14 @@ p {
 	color: #888;
 	float: left;
 	text-align: right;
-	margin-right: 3%;
-	min-height: 1em;
+	margin-right: 3rem;
+	min-height: 1rem;
 	width: 10%;
+}
+.fake-left {
+	margin-left: calc(10% + 3rem);
 }
 .right {
 	float: left;
-	max-width: 80%;
+	max-width: calc(100% - 10% - 3rem);
 }
