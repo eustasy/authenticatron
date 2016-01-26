@@ -179,8 +179,8 @@
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>Authenticatron_Secret();</code></p>
-		<p><code>Authenticatron_Secret($Length = 16);</code></p>
+		<p><code>Authenticatron_Secret()</code></p>
+		<p><code>Authenticatron_Secret($Length = 16)</code></p>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
@@ -274,10 +274,10 @@
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>Authenticatron_QR($URL);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0);</code></p>
-		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M');</code></p>
+		<p><code>Authenticatron_QR($URL)</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4)</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0)</code></p>
+		<p><code>Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M')</code></p>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
@@ -386,9 +386,9 @@
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>Authenticatron_Code($Secret);</code></p>
-		<p><code>Authenticatron_Code($Secret, $Timestamp = false);</code></p>
-		<p><code>Authenticatron_Code($Secret, $Timestamp = false, $CodeLength = 6);</code></p>
+		<p><code>Authenticatron_Code($Secret)</code></p>
+		<p><code>Authenticatron_Code($Secret, $Timestamp = false)</code></p>
+		<p><code>Authenticatron_Code($Secret, $Timestamp = false, $CodeLength = 6)</code></p>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
@@ -429,8 +429,8 @@
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>Authenticatron_Acceptable($Secret);</code></p>
-		<p><code>Authenticatron_Acceptable($Secret, $Variance = 2));</code></p>
+		<p><code>Authenticatron_Acceptable($Secret)</code></p>
+		<p><code>Authenticatron_Acceptable($Secret, $Variance = 2)</code></p>
 	</div>
 	<div class="clear"></div>
 	<div class="left">
