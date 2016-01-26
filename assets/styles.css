@@ -46,12 +46,12 @@ p {
 	text-align: right;
 	margin-right: 3rem;
 	min-height: 1rem;
-	width: 10rem;
+	width: 7rem;
 }
 .fake-left {
-	margin-left: 13rem;
+	margin-left: 10rem;
 }
 .right {
 	float: left;
-	max-width: calc(100% - 13rem);
+	max-width: calc(100% - 10rem);
 }
