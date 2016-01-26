@@ -1,12 +1,14 @@
 body {
+	font: normal 1rem/1.4 'Droid Sans', sans-serif;
 	margin: 0 auto;
-	padding: 0 1rem;
 	max-width: 70rem;
+	padding: 0 1rem;
 }
 
 code {
 	background: #eee;
-	border-radius: .3rem;
+	border-radius: .1rem;
+	font: normal 1rem/1 'Droid Sans Mono', monospace;
 	padding: .3rem .5rem;
 }
 img {
