@@ -12,6 +12,7 @@ samp {
 	border-radius: .1rem;
 	font: normal 1rem/1 'Droid Sans Mono', monospace;
 	padding: .3rem .5rem;
+	overflow-y: hidden;
 }
 hr {
 	height: 0;
@@ -43,9 +44,9 @@ p {
 .left {
 	color: #888;
 	float: left;
-	text-align: right;
 	margin-right: 3rem;
 	min-height: 1rem;
+	text-align: right;
 	width: 7rem;
 }
 .fake-left {
