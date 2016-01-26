@@ -1,29 +1,32 @@
 body {
-	font: normal 1rem/1.4 'Droid Sans', sans-serif;
+	font: normal 1rem/1 'Droid Sans', sans-serif;
 	margin: 0 auto;
 	max-width: 70rem;
 	padding: 0 1rem;
 }
-
 code {
 	background: #eee;
 	border-radius: .1rem;
 	font: normal 1rem/1 'Droid Sans Mono', monospace;
 	padding: .3rem .5rem;
 }
-img {
-	max-width: 100%;
-	vertical-align: bottom;
-}
 hr {
 	height: 0;
 	border: 0;
 	border-top: 1px solid #ccc;
 }
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
 
 a {
 	color: #2980b9;
 	text-decoration: none;
+}
+h1 {
+	font: normal 1rem/1 'Droid Serif', serif;
+}
 }
 p {
 	margin: 0 0 1rem;
