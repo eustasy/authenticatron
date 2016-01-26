@@ -4,7 +4,10 @@ body {
 	max-width: 70rem;
 	padding: 0 1rem;
 }
-code {
+code,
+kbd,
+pre,
+samp {
 	background: #eee;
 	border-radius: .1rem;
 	font: normal 1rem/1 'Droid Sans Mono', monospace;
