@@ -209,7 +209,6 @@
 		<p>Returns a <code>$Length</code> long string with 32bit only Characters, or <code>false</code> on failure (usually due to a lack of security).</p>
 		<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 		<pre><?php
-			$Secret = Authenticatron_Secret();
 			echo '<p><a href="?secret='.$Secret.'">'.$Secret.'</a></p>';
 		?></pre>
 	</div>
