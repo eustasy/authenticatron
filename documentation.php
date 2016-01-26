@@ -468,13 +468,20 @@
 		<p><strong>Your phone should produce one of these from the QR code above.</strong></p>
 		<p>These are only valid for 30 seconds, so click the Secret link to get a new list.</p>
 	</div>
+
+	<div class="break clear"></div>
+	<hr>
 	<div class="break clear"></div>
 
-	<div class="right fake-left">
+	<div class="left">
+		<img alt="lifefloat" src="assets/google_help-128.png">
+	</div>
+	<div class="right">
 		<h3>Glossary</h3>
 		<p><strong>Base32</strong> is an encoding, effectively an alphabet, that computers use made up of 32 characters.</p>
 		<p><strong>Base32 Characters</strong> are A to Z (upper-case only), and 2 to 7.</p>
 	</div>
+
 	<div class="break clear"></div>
 
 </body>
