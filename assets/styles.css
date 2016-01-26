@@ -10,8 +10,8 @@ pre,
 samp {
 	background: #eee;
 	border-radius: .1rem;
-	font: normal 1rem/1 'Droid Sans Mono', monospace;
-	padding: .3rem .5rem;
+	font: normal .9rem/1 'Droid Sans Mono', monospace;
+	padding: .2rem .3rem;
 	overflow-y: hidden;
 }
 hr {
