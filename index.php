@@ -42,12 +42,12 @@ if ( !empty($_POST['secondfactor_secret']) ) {
 			<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 			<pre><?php
 				if ( !empty($Secret) ) {
-					$SecondAuth = Authenticatron_New($Member_Name);
-					$Secret = $SecondAuth['Secret'];
-				} else {
 					$SecondAuth['Secret'] = $Secret;
 					$SecondAuth['URL'] = Authenticatron_URL($Member_Name, $Secret);
 					$SecondAuth['QR'] = Authenticatron_QR($SecondAuth['URL']);
+				} else {
+					$SecondAuth = Authenticatron_New($Member_Name);
+					$Secret = $SecondAuth['Secret'];
 				}
 				var_dump($SecondAuth);
 			?></pre>
