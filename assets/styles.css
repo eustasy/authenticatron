@@ -13,6 +13,7 @@ samp {
 	font: normal .9rem/1.5 'Droid Sans Mono', monospace;
 	padding: .2rem .3rem;
 	overflow-y: hidden;
+	tab-size: 4;
 }
 hr {
 	height: 0;
@@ -37,8 +38,23 @@ p {
 	padding-top: 10rem;
 	width: 100%;
 }
+.half .break {
+	padding-top: 5rem;
+}
 .clear {
 	clear: both;
+}
+.text-center {
+	text-align: center;
+}
+@media screen and (max-width: 70rem) {
+	.break-small {
+		padding-top: 10rem;
+		width: 100%;
+	}
+	.clear-small {
+		clear: both;
+	}
 }
 
 .left {
@@ -49,10 +65,22 @@ p {
 	text-align: right;
 	width: 7rem;
 }
+.left img {
+	margin: 0 -1rem;
+}
 .fake-left {
 	margin-left: 10rem;
 }
 .right {
 	float: left;
 	max-width: calc(100% - 10rem);
+}
+
+.half {
+	float: left;
+	max-width: 34rem;
+}
+.half-left {
+}
+.half-right {
 }

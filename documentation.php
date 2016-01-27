@@ -1,40 +1,40 @@
 <?php
 
-	include __DIR__.'/assets/header.php';
+include __DIR__.'/assets/header.php';
 
-	require_once __DIR__.'/authenticatron.php';
+require_once __DIR__.'/authenticatron.php';
 
-	if ( !empty($_GET['secret']) ) {
-		$Secret = $_GET['secret'];
-	} else {
-		$Secret = Authenticatron_Secret();
-	}
+if ( !empty($_GET['secret']) ) {
+	$Secret = $_GET['secret'];
+} else {
+	$Secret = Authenticatron_Secret();
+}
 
-	if ( !$Secret ) {
-		$Secret = 'AUTHENTICATRION23';
-		?>
-	<div class="break clear"></div>
-	<hr>
-	<div class="break clear"></div>
+if ( !$Secret ) {
+	$Secret = 'AUTHENTICATRION23';
+	?>
+<div class="break clear"></div>
+<hr>
+<div class="break clear"></div>
 
-	<div class="left">
-		<img alt="lifefloat" src="assets/google_help-128.png">
-	</div>
-	<div class="right">
-		<h3 class="color-pomegranate">Warning: No cryptographically secure random available.</h3>
-		<p>Try installing MCrypt or OpenSSL.</p>
-		<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
-	</div>
+<div class="left">
+	<img alt="lifefloat" src="assets/google_help-128.png">
+</div>
+<div class="right">
+	<h3 class="color-pomegranate">Warning: No cryptographically secure random available.</h3>
+	<p>Try installing MCrypt or OpenSSL.</p>
+	<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
+</div>
 
-	<div class="break clear"></div>
-	<hr>
-	<div class="break clear"></div>
-		<?php
-	} else {
-		?>
-	<div class="break clear"></div>
-		<?php
-	}
+<div class="break clear"></div>
+<hr>
+<div class="break clear"></div>
+	<?php
+} else {
+	?>
+<div class="break clear"></div>
+	<?php
+}
 
 ?>
 
@@ -309,7 +309,7 @@
 	<div class="clear"></div>
 	<div class="left">
 		<p>Output</p>
-		<img alt="Google Authenticator Icon" src="assets/google_images-128.png">
+		<img alt="Google Camera Icon" src="assets/google_images-128.png">
 	</div>
 	<div class="right">
 		<p>Outputs a QR Code image in 64bit data-URI form.</p>
@@ -454,7 +454,7 @@
 	<div class="clear"></div>
 	<div class="left">
 		<p>Output</p>
-		<img alt="Vault Icon" src="assets/google_authenticator-128.png">
+		<img alt="Google Authenticator Icon" src="assets/google_authenticator-128.png">
 	</div>
 	<div class="right">
 		<p>Outputs the calculated code for the current or provided timestamp.</p>
@@ -472,7 +472,7 @@
 	<hr>
 	<div class="break clear"></div>
 
-	<div class="left">
+	<div class="left" id="glossary">
 		<img alt="lifefloat" src="assets/google_help-128.png">
 	</div>
 	<div class="right">
