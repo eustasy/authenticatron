@@ -479,6 +479,11 @@
 		<h3>Glossary</h3>
 		<p><strong>Base32</strong> is an encoding, effectively an alphabet, that computers use made up of 32 characters.</p>
 		<p><strong>Base32 Characters</strong> are A to Z (upper-case only), and 2 to 7.</p>
+		<p><strong>HOTP</strong> is HMAC-based one-time password algorithm. HOTP Algorithms generate passwords from a given secret that do not expose the secret over time.</p>
+		<p><strong>OATH</strong> is the short name for the <a href="https://openauthentication.org/">Initiative for Open Authentication</a>, an organisation dedicated to keeping secure authentication free.</p>
+		<p><strong>OTP Auth</strong> stands for one-time password authentication.</p>
+		<p><strong>QR Code</strong> (Quick Response Code) is a type of 2D matrix barcodes with built in redundancy, commonly used to scan links into mobile phones through cameras.</p>
+		<p><strong>TOTP</strong> abbreviates Time-based One-time Password Algorithm. TOTP Algorithms generate passwords from a given secret that are only valid over a very specific time period.</p>
 	</div>
 
 	<div class="break clear"></div>
