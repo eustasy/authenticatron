@@ -1,5 +1,9 @@
 # Authenticatron
 
+[![Codacy Badge](https://api.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c)](https://www.codacy.com/public/eustasy/authenticatron)
+[![Code Climate](https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg)](https://codeclimate.com/github/eustasy/authenticatron)
+[![Travis CI](https://travis-ci.org/eustasy/phoenix.svg)](https://travis-ci.org/eustasy/phoenix)
+
 A simple, procedural PHP script to create Google Authenticator secrets, corresponding QR links and code verification.
 
 Based on the original BSD 2 Licensed work found at [PHPGangsta/GoogleAuthenticator](https://github.com/PHPGangsta/GoogleAuthenticator)
