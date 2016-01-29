@@ -21,7 +21,7 @@ It does this by generating a 16 character secret, or seed, that is then encoded 
 
 ### Secret Capture
 
-If you hand off the secret to a service like Google Charts as some demos show, then it would be trivial to compromise the second level of authentication from the start. To cure this, make sure you never send the secret in plain text to the user, or cache images such as the QR code. Instead, output it directly as a base64 encoded PNG, preferably served over HTTPS. [SSL certificates can be really cheap.](https://www.ssls.com/comodo-ssl-certificates/positivessl.html)
+If you hand off the secret to a service like Google Charts as some demos show, then it would be trivial to compromise the second level of authentication from the start. To cure this, make sure you never send the secret in plain text to the user, or cache images such as the QR code. Instead, output it directly as a base64 encoded PNG, preferably served over HTTPS. [letsencrypt.org](https://letsencrypt.org) gives out SSL Certificates for free.
 
 
 ### Replay Attacks
@@ -32,7 +32,7 @@ Quickly re-using an intercepted token to gain access, by taking advantage of the
 
 [Google TOTP Two-factor Authentication for PHP - idontplaydarts.com](https://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/)
 
-To fix this, log used codes and disallow them from being used.
+To fix this, log used codes and disallow them from being used a second time.
 
 
 ### Brute Force
@@ -43,13 +43,13 @@ To fix this, log used codes and disallow them from being used.
 
 [Google TOTP Two-factor Authentication for PHP - idontplaydarts.com](https://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/)
 
-Brute forcing of codes can be fixed in much the same way as brute forcing passwords, primarily with rate-limiting of some kind. Brute forcing of secrest, or seeds, can only be done with intercepted codes. Again, [HTTPS is your friend](https://www.ssls.com/comodo-ssl-certificates/positivessl.html).
+Brute forcing of codes can be fixed in much the same way as brute forcing passwords, primarily with rate-limiting of some kind. Brute forcing of secrets, or seeds, can only be done with intercepted codes. Again, HTTPS is your friend.
 
 
 
 ## Improvements over [PHPGangsta/GoogleAuthenticator](https://github.com/PHPGangsta/GoogleAuthenticator)
 
-- Procedural over Object Orientated to give faster responses and match [Simplet](https://github.com/eustasy/simplet).
+- Procedural over Object Orientated to give faster responses and match [Puff](https://github.com/eustasy/puff-core).
 - Fixes time-matching bug for better code recognition.
 - Encodes URL to work best with Google Authenticator.
 - Removes `rand` in favour of `mcrypt` or `openssl_random_pseudo_bytes` for improved security.
