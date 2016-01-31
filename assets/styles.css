@@ -16,11 +16,9 @@ samp {
 	tab-size: 4;
 }
 hr {
-	height: 0;
-	border-bottom: 0;
-	border-left: 0;
-	border-right: 0;
+	border: 0;
 	border-top: 1px solid #ccc;
+	height: 0;
 }
 img {
 	max-width: 100%;
