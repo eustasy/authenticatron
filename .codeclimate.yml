@@ -19,6 +19,9 @@ engines:
     enabled: true
   phpmd:
     enabled: true
+    checks:
+      Controversial/CamelCaseParameterName:
+        enabled: false
   rubocop:
     enabled: true
 
