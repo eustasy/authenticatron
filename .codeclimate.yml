@@ -1,38 +1,38 @@
 engines:
-	csslint:
-		enabled: true
-	duplication:
-		enabled: true
-		config:
-		languages:
-			- ruby
-			- javascript
-			- python
-			- php
-	eslint:
-		enabled: true
-	fixme:
-		enabled: true
-	gofmt:
-		enabled: true
-	golint:
-		enabled: true
-	phpmd:
-		enabled: true
-	rubocop:
-		enabled: true
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+    languages:
+      - ruby
+      - javascript
+      - python
+      - php
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  gofmt:
+    enabled: true
+  golint:
+    enabled: true
+  phpmd:
+    enabled: true
+  rubocop:
+    enabled: true
 
 ratings:
-	paths:
-		- "**.conf"
-		- "**.css"
-		- "**.js"
-		- "**.json"
-		- "**.md"
-		- "**.phar"
-		- "**.php"
-		- "**.sh"
-		- "**.xml"
+  paths:
+    - "**.conf"
+    - "**.css"
+    - "**.js"
+    - "**.json"
+    - "**.md"
+    - "**.phar"
+    - "**.php"
+    - "**.sh"
+    - "**.xml"
 
 exclude_paths:
 - "_libs/**"
