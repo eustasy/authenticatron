@@ -38,7 +38,7 @@ Quickly re-using an intercepted token to gain access, by taking advantage of the
 
 [Google TOTP Two-factor Authentication for PHP - idontplaydarts.com](https://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/)
 
-To fix this, log used codes and disallow them from being used a second time, at lest for double the variation of your codes allowance.
+To fix this, log used codes and disallow them from being used a second time, at least for double the variation of your codes allowance.
 
 
 ### Brute Force
