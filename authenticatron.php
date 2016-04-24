@@ -60,7 +60,7 @@ function Authenticatron_Secret($Length = 16) {
 			return false;
 		}
 	}
-	
+
 	// For each letter of the secret, generate a random Base32 Characters.
 	$Secret = '';
 	for ( $i = 0; $i < $Length; $i++ ) {
@@ -120,7 +120,7 @@ function Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 	}
 
 	// Otherwise proceed with PHPQRCode
-	
+
 	// We've checked the file exists, so we can require instead of include.
 	// Something has gone horribly wrong if this doesn't work.
 	require_once $PHPQRCode;
@@ -306,7 +306,7 @@ function Authenticatron_Check($Code, $Secret, $Variance = 2) {
 	if ( in_array($Code, $Acceptable) ) {
 		return true;
 	}
-	
+
 	return false;
 
 }
