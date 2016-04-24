@@ -117,25 +117,23 @@ function Authenticatron_QR($URL, $Size = 4, $Margin = 0, $Level = 'M') {
 		!is_readable($PHPQRCode)
 	) {
 		return false;
+	}
 
 	// Otherwise proceed with PHPQRCode
-	} else {
+	
+	// We've checked the file exists, so we can require instead of include.
+	// Something has gone horribly wrong if this doesn't work.
+	require_once $PHPQRCode;
 
-		// We've checked the file exists, so we can require instead of include.
-		// Something has gone horribly wrong if this doesn't work.
-		require_once $PHPQRCode;
+	// Use the object cache to capture the PNG without outputting it.
+	// Kind of hacky but the best way I can find without writing a new QR Library.
+	ob_start();
+	QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
+	$QR_Base64 = base64_encode(ob_get_contents());
+	ob_end_clean();
 
-		// Use the object cache to capture the PNG without outputting it.
-		// Kind of hacky but the best way I can find without writing a new QR Library.
-		ob_start();
-		QRCode::png($URL, null, constant('QR_ECLEVEL_'.$Level), $Size, $Margin);
-		$QR_Base64 = base64_encode(ob_get_contents());
-		ob_end_clean();
-
-		// Return it as a Base64 PNG
-		return 'data:image/png;base64,'.$QR_Base64;
-
-	}
+	// Return it as a Base64 PNG
+	return 'data:image/png;base64,'.$QR_Base64;
 
 }
 
@@ -212,11 +210,10 @@ function Authenticatron_Code($Secret, $Timestamp = false, $CodeLength = 6) {
 
 	// Set the timestamp to something sensible.
 	// You should only over-ride this if you really know why.
-	if ( !$Timestamp ) {
+	if ( empty($Timestamp) ) {
 		$Timestamp = floor(time() / 30);
-	} else {
-		$Timestamp = intval($Timestamp);
 	}
+	$Timestamp = intval($Timestamp);
 
 	// Pack the Timestamp into a binary string
 	// N = Unsigned long (always 32 bit, big endian byte order)
@@ -301,21 +298,16 @@ function Authenticatron_Acceptable($Secret, $Variance = 2) {
 
 
 ////	Check a given Code against a Secret
-function Authenticatron_Check($Code, $Secret, $Variance = false) {
+function Authenticatron_Check($Code, $Secret, $Variance = 2) {
 
-	// Pass the Variance if it is set, allow to default if not.
-	if ( $Variance === false ) {
-		$Acceptable = Authenticatron_Acceptable($Secret);
-	} else {
-		$Acceptable = Authenticatron_Acceptable($Secret, $Variance);
-	}
+	$Acceptable = Authenticatron_Acceptable($Secret, $Variance);
 
 	// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
 	if ( in_array($Code, $Acceptable) ) {
 		return true;
-	} else {
-		return false;
 	}
+	
+	return false;
 
 }
 
