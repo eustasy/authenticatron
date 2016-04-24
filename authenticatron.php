@@ -42,23 +42,25 @@ function Authenticatron_Secret($Length = 16) {
 
 	global $Base32_Chars;
 
-	// Use MCRYPT if you can.
-	if ( function_exists('mcrypt_create_iv') ) {
+	if (
+		!function_exists('mcrypt_create_iv') &&
+		!function_exists('openssl_random_pseudo_bytes')
+	) {
+		return false;
+	
+	} else if ( function_exists('mcrypt_create_iv') ) {
+		// Use MCRYPT as a secure source of random.
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
 
-	// Otherwise try to use OpenSSL
 	} else if ( function_exists('openssl_random_pseudo_bytes') ) {
+		// Otherwise try to use OpenSSL
 		$Random = openssl_random_pseudo_bytes($Length, $Strong);
 		if ( !$Strong ) {
 			// Fail if not strong.
 			return false;
 		}
-
-	// Otherwise fail.
-	} else {
-		return false;
 	}
-
+	
 	// For each letter of the secret, generate a random Base32 Characters.
 	$Secret = '';
 	for ( $i = 0; $i < $Length; $i++ ) {
