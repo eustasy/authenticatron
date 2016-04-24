@@ -47,7 +47,7 @@ function Authenticatron_Secret($Length = 16) {
 		!function_exists('openssl_random_pseudo_bytes')
 	) {
 		return false;
-	
+
 	} else if ( function_exists('mcrypt_create_iv') ) {
 		// Use MCRYPT as a secure source of random.
 		$Random = mcrypt_create_iv($Length, MCRYPT_DEV_URANDOM);
