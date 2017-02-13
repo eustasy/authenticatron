@@ -4,7 +4,7 @@
 [![Code Climate - GPA](https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg)](https://codeclimate.com/github/eustasy/authenticatron)
 [![Code Climate - Test Coverage](https://codeclimate.com/github/eustasy/authenticatron/badges/coverage.svg)](https://codeclimate.com/github/eustasy/authenticatron/coverage)
 [![Code Climate - Issue Count](https://codeclimate.com/github/eustasy/authenticatron/badges/issue_count.svg)](https://codeclimate.com/github/eustasy/authenticatron)
-[![Travis CI - Build Status](https://travis-ci.org/eustasy/phoenix.svg)](https://travis-ci.org/eustasy/phoenix)
+[![Travis CI - Build Status](https://travis-ci.org/eustasy/authenticatron.svg)](https://travis-ci.org/eustasy/authenticatron)
 
 A simple, procedural PHP script to create Google Authenticator secrets, corresponding QR links and code verification.
 
