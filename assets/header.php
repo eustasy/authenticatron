@@ -25,5 +25,5 @@
 		<a href="https://github.com/eustasy/authenticatron">source</a> &emsp;
 		<a href="https://www.codacy.com/public/eustasy/authenticatron"><img src="https://api.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c"></a> &emsp;
 		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg"></a> &emsp;
-		<a href="https://travis-ci.org/eustasy/phoenix"><img src="https://travis-ci.org/eustasy/phoenix.svg"></a></p>
+		<a href="https://travis-ci.org/eustasy/authenticatron"><img src="https://travis-ci.org/eustasy/authenticatron.svg"></a></p>
 	</div>
