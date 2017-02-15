@@ -1,5 +1,6 @@
+/* $ Block Elements */
 body {
-	font: normal 1rem/1 'Droid Sans', sans-serif;
+	font: 400 1rem/1 'Droid Sans', sans-serif;
 	margin: 0 auto;
 	max-width: 70rem;
 	padding: 0 1rem;
@@ -8,35 +9,39 @@ code,
 kbd,
 pre,
 samp {
-	background: #eee;
+	background: #eeeeee;
 	border-radius: .1rem;
-	font: normal .9rem/1.5 'Droid Sans Mono', monospace;
+	font: 400 0.9rem/1.5 'Droid Sans Mono', monospace;
 	overflow-y: hidden;
-	padding: .2rem .3rem;
+	padding: 0.2rem 0.3rem;
 	tab-size: 4;
 }
 hr {
 	border: 0;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid #cccccc;
 	height: 0;
 }
 img {
 	max-width: 100%;
 	vertical-align: middle;
 }
-
+/* $ Typography */
 a {
 	color: #2980b9;
 	text-decoration: none;
 }
 p {
-	font: normal 1rem/2 'Droid Sans', sans-serif;
+	font: 400 1rem/2 'Droid Sans', sans-serif;
 	margin: 0;
 }
-
+/* $ Classes */
 .break {
 	padding-top: 10rem;
 	width: 100%;
+}
+.half {
+	float: left;
+	max-width: 34rem;
 }
 .half .break {
 	padding-top: 5rem;
@@ -44,10 +49,7 @@ p {
 .clear {
 	clear: both;
 }
-.text-center {
-	text-align: center;
-}
-@media screen and (max-width: 70rem) {
+@media screen and ( max-width: 70rem ) {
 	.break-small {
 		padding-top: 10rem;
 		width: 100%;
@@ -56,9 +58,8 @@ p {
 		clear: both;
 	}
 }
-
 .left {
-	color: #888;
+	color: #888888;
 	float: left;
 	margin-right: 3rem;
 	min-height: 1rem;
@@ -75,8 +76,6 @@ p {
 	float: left;
 	max-width: calc(100% - 10rem);
 }
-
-.half {
-	float: left;
-	max-width: 34rem;
+.text-center {
+	text-align: center;
 }
