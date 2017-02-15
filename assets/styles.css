@@ -10,7 +10,7 @@ kbd,
 pre,
 samp {
 	background: #eeeeee;
-	border-radius: .1rem;
+	border-radius: 0.1rem;
 	font: 400 0.9rem/1.5 'Droid Sans Mono', monospace;
 	overflow-y: hidden;
 	padding: 0.2rem 0.3rem;
