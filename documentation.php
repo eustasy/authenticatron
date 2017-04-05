@@ -276,7 +276,7 @@ if ( !$Secret ) {
 			} else {
 				echo '
 					<p class="color-pomegranate">The GD functions are not loaded.</p>
-					<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
+					<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';
 			}
 		?>
 	</div>
@@ -326,7 +326,7 @@ if ( !$Secret ) {
 				echo '<!-- Google Chart -->';
 				if ( !extension_loaded('gd') || !function_exists('gd_info') ) {
 					echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
-					echo '<p>This isn\'t secure, and you should install <code>php5-gd</code> to fix it.</p>';
+					echo '<p>This isn\'t secure, and you should install <code>php[version]-gd</code> to fix it.</p>';
 				}
 				if ( isset($_GET['googlechart']) ) {
 					echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
