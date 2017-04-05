@@ -93,11 +93,11 @@ if ( $MCrypt ) {
 } else if ( $OpenSSL ) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
-		<p>This is the second best option, maybe try installing <code>php5-mcrypt</code> ?</p>';
+		<p>This is the second best option, maybe try installing <code>php[version]-mcrypt</code> ?</p>';
 } else {
 	$Security_Block .= '
 		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>
-		<p>Maybe try installing <code>php5-mcrypt</code> or <code>openssl</code> ?</p>';
+		<p>Maybe try installing <code>php[version]-mcrypt</code> or <code>openssl</code> ?</p>';
 }
 $Security_Block .= '
 	</div>';
@@ -129,7 +129,7 @@ if (
 	$GD_Block .= '
 		<p class="color-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
 		<p>The GD extension is used for generating a secure QR code.</p>
-		<p>Try installing <code>php5-gd</code> in Ubuntu.</p>';
+		<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';
 }
 $GD_Block .= '
 	</div>';
