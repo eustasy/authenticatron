@@ -14,7 +14,7 @@ $Sitewide['Title'] = 'Example Site';
 // Any other length is your own problem.
 
 // Where can we find PHPQRCode?
-$PHPQRCode = __DIR__.'/phpqrcode_2010100721_1.1.4.php';
+$PHPQRCode = __DIR__.'/_libs/phpqrcode_2010100721_1.1.4.php';
 
 ////	END CONFIGURATION
 
