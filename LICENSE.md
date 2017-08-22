@@ -1,7 +1,7 @@
 Based on the original BSD 2 Licensed work found at https://github.com/PHPGangsta/GoogleAuthenticator  
 Heavily modified to improve security and suit our needs.
 
-==========================
+---
 
 The MIT License (MIT)
 ==================
