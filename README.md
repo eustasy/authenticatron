@@ -1,5 +1,6 @@
 # Authenticatron
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e9e5834f51da4628bab9b87d52a0f519)](https://www.codacy.com/app/lewisgoddard/authenticatron?utm_source=github.com&utm_medium=referral&utm_content=eustasy/authenticatron&utm_campaign=badger)
 [![Travis CI - Build Status](https://travis-ci.org/eustasy/authenticatron.svg)](https://travis-ci.org/eustasy/authenticatron)
 [![Codacy - Rank](https://api.codacy.com/project/badge/670334725e9240d1beddb0b34f0d8c3c)](https://www.codacy.com/public/eustasy/authenticatron)
 [![Code Climate - GPA](https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg)](https://codeclimate.com/github/eustasy/authenticatron)
