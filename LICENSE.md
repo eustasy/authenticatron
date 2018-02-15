@@ -1,8 +1,3 @@
-Based on the original BSD 2 Licensed work found at https://github.com/PHPGangsta/GoogleAuthenticator  
-Heavily modified to improve security and suit our needs.
-
-----
-
 # MIT License
 
 Copyright &copy; 2018 [eustasy](http://eustasy.org)
@@ -24,3 +19,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+----
+
+Based on the original BSD 2 Licensed work found at https://github.com/PHPGangsta/GoogleAuthenticator  
+Heavily modified to improve security and suit our needs.
