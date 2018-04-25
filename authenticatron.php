@@ -43,10 +43,14 @@ function Authenticatron_Secret($Length = 16) {
 	global $Base32_Chars;
 
 	if (
+		!function_exists('random_bytes') &&
 		!function_exists('mcrypt_create_iv') &&
 		!function_exists('openssl_random_pseudo_bytes')
 	) {
 		return false;
+
+	} else if (function_exists('random_bytes')) {
+		$Random = random_bytes($Length);
 
 	} else if ( function_exists('mcrypt_create_iv') ) {
 		// Use MCRYPT as a secure source of random.
