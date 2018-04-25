@@ -2,10 +2,36 @@
 
 include __DIR__.'/assets/header.php';
 
+$RandomBytes = false;
 $MCrypt = false;
 $OpenSSL = false;
 $Secure = false;
 
+
+
+
+
+
+
+////	RandomBytes
+$RandomBytes_Block = '
+	<div class="clear"></div>
+	<div class="left">
+		<p>MCrypt</p>
+	</div>
+	<div class="right">
+		<p>MCrypt is used for secure key generation.</p>';
+if ( function_exists('$RandomBytes') ) {
+	$RandomBytes = true;
+	$Secure = true;
+	$RandomBytes_Block .= '
+		<p class="color-nephritis">Installed</p>';
+} else {
+	$RandomBytes_Block .= '
+		<p class="color-pomegranate">Not Installed</p>';
+}
+$RandomBytes_Block .= '
+	</div>';
 
 
 
@@ -80,15 +106,23 @@ $Security_Block = '
 	</div>
 	<div class="right">
 		<h3>Security</h3>';
-if ( $MCrypt ) {
+if ( $RandomBytes ) {
+	$Security_Block .= '
+		<p class="color-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
+	if ( $MCrypt ) {
+		$Security_Block .= '
+		<p>MCrypt is available as a fallback if necessary.</p>';
+	}
+	if ( $OpenSSL ) {
+		$Security_Block .= '
+		<p>OpenSSL is available as a fallback if necessary.</p>';
+	}
+} else if ( $MCrypt ) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
 	if ( $OpenSSL ) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
-	} else {
-		$Security_Block .= '
-		<p>This is the best option, but it\'s good to have a fallback.</p>';
 	}
 } else if ( $OpenSSL ) {
 	$Security_Block .= '
@@ -142,6 +176,7 @@ $GD_Block .= '
 
 
 echo $Security_Block;
+echo $RandomBytes_Block;
 echo $MCrypt_Block;
 echo $OpenSSL_Block;
 
