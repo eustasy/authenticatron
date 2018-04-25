@@ -17,10 +17,10 @@ $Secure = false;
 $RandomBytes_Block = '
 	<div class="clear"></div>
 	<div class="left">
-		<p>MCrypt</p>
+		<p>RandomBytes</p>
 	</div>
 	<div class="right">
-		<p>MCrypt is used for secure key generation.</p>';
+		<p>RandomBytes is used for secure key generation.</p>';
 if ( function_exists('$RandomBytes') ) {
 	$RandomBytes = true;
 	$Secure = true;
