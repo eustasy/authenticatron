@@ -1,7 +1,7 @@
 <?php
 
 ////	Authenticatron
-// v0.7.3 - MIT Licensed - Property of eustasy
+// v0.7.6 - MIT Licensed - Property of eustasy
 // https://github.com/eustasy/authenticatron
 // http://labs.eustasy.org/authenticatron/example
 
