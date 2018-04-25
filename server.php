@@ -25,10 +25,10 @@ if ( function_exists('$RandomBytes') ) {
 	$RandomBytes = true;
 	$Secure = true;
 	$RandomBytes_Block .= '
-		<p class="color-nephritis">Installed</p>';
+		<p class="color-nephritis">Available</p>';
 } else {
 	$RandomBytes_Block .= '
-		<p class="color-pomegranate">Not Installed</p>';
+		<p class="color-pomegranate">Not Available</p>';
 }
 $RandomBytes_Block .= '
 	</div>';
