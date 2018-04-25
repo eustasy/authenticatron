@@ -22,7 +22,7 @@ if ( !$Secret ) {
 </div>
 <div class="right">
 	<h3 class="color-pomegranate">Warning: No cryptographically secure random available.</h3>
-	<p>Try installing MCrypt or OpenSSL.</p>
+	<p>Try updating PHP or installing MCrypt or OpenSSL.</p>
 	<p>Proceeding with <code>AUTHENTICATRION23</code>.</p>
 </div>
 
