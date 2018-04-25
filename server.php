@@ -131,7 +131,7 @@ if ( $RandomBytes ) {
 } else {
 	$Security_Block .= '
 		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>
-		<p>Maybe try installing <code>php[version]-mcrypt</code> or <code>openssl</code> ?</p>';
+		<p>Maybe try updating your PHP version, or installing <code>php[version]-mcrypt</code> or <code>openssl</code> ?</p>';
 }
 $Security_Block .= '
 	</div>';
