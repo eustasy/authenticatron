@@ -5,7 +5,7 @@
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
 	<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono">
-	<link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/g/normalize,colors.css">
+	<link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/combine/gh/eustasy/Colors.css@1/colors.min.css,gh/necolas/normalize.css@8/normalize.min.css">
 	<link rel="stylesheet" media="all" href="assets/styles.css">
 </head>
 <body>
