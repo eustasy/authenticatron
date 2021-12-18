@@ -1,9 +1,7 @@
 # Authenticatron
 
-[![Travis CI - Build Status](https://travis-ci.org/eustasy/authenticatron.svg?branch=master)](https://travis-ci.org/eustasy/authenticatron)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/670334725e9240d1beddb0b34f0d8c3c)](https://www.codacy.com/app/eustasy/authenticatron?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eustasy/authenticatron&amp;utm_campaign=Badge_Grade)
+[![Travis CI - Build Status](https://app.travis-ci.com/eustasy/authenticatron.svg?branch=master)](https://app.travis-ci.com/eustasy/authenticatron)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9b7ab191d0c7f39b3471/maintainability)](https://codeclimate.com/github/eustasy/authenticatron/maintainability)
-[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=8106754)](https://www.bountysource.com/teams/eustasy/issues?tracker_ids=8106754)
 
 A simple, procedural PHP script to create Google Authenticator secrets, corresponding QR links and code verification.
 
