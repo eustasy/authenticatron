@@ -23,6 +23,6 @@
 		<a href="documentation.php#glossary">glossary</a> &emsp;
 		<a href="server.php">server</a> &emsp;
 		<a href="https://github.com/eustasy/authenticatron">source</a> &emsp;
-		<a href="https://codeclimate.com/github/eustasy/authenticatron"><img src="https://codeclimate.com/github/eustasy/authenticatron/badges/gpa.svg"></a> &emsp;
+		<a href="https://codeclimate.com/github/eustasy/authenticatron/maintainability"><img src="https://api.codeclimate.com/v1/badges/9b7ab191d0c7f39b3471/maintainability"></a> &emsp;
 		<a href="https://github.com/eustasy/authenticatron/actions/workflows/normal.yml"><img src="https://github.com/eustasy/authenticatron/actions/workflows/normal.yml/badge.svg"></a></p>
 	</div>
