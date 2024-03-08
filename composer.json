@@ -2,6 +2,7 @@
     "name": "eustasy/authenticatron",
     "description": "HOTP / TOTP secrets with corresponding QR links and code verification from a simple PHP script.",
     "homepage": "https://github.com/eustasy/authenticatron",
+    "license": "MIT",
     "keywords": [
         "security",
         "authentication",
