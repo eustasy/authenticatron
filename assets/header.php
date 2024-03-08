@@ -16,7 +16,7 @@
 	</div>
 	<div class="right">
 		<h1>Authenticatron</h1>
-		<p>A simple, procedural PHP script to create Google Authenticator secrets and corresponding QR codes,<br>
+		<p>A simple PHP script to create TOTP secrets and corresponding QR codes,<br>
 		then verify the entered response over a given time variance.<br>
 		<a href="index.php">homepage</a> &emsp;
 		<a href="documentation.php">documentation</a> &emsp;
