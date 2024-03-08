@@ -24,7 +24,7 @@
     },
     "scripts": {
         "test": [
-            "phpunit",
+            "phpunit --testdox tests",
             "@php authenticatron.php"
         ]
     }
