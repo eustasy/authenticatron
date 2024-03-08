@@ -24,7 +24,7 @@ jobs:
         #extensions: mbstring
         
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         # Version Spec of the version to use in SemVer notation.
         # It also emits such aliases as lts, latest, nightly and canary builds
