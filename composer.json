@@ -10,5 +10,10 @@
     "require-dev": {
         "phpunit/phpunit": "11"
     },
-    "test": "phpunit"
+    "scripts": {
+        "test": [
+            "phpunit",
+            "@php authenticatron.php"
+        ]
+    }
 }
