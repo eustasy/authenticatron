@@ -1,5 +1,5 @@
 {
-    "name": "Authenticatron",
+    "name": "authenticatron",
     "description": "HOTP / TOTP secrets with corresponding QR links and code verification from a simple PHP script.",
     "autoload": {
         "classmap": [
