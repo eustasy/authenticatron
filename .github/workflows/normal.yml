@@ -10,7 +10,7 @@ jobs:
   normal-tests:
     strategy:
       matrix:
-        php-version: [ "8.2", "8.1", "8.0", "7.4" ]
+        php-version: [ "8.3", "8.2", "8.1", "8.0" ]
     runs-on: ubuntu-latest
     steps:
     

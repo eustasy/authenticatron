@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__.'/assets/header.php';
+include __DIR__ . '/assets/header.php';
 
 $RandomBytes = false;
 $MCrypt = false;
@@ -21,7 +21,7 @@ $RandomBytes_Block = '
 	</div>
 	<div class="right">
 		<p>RandomBytes is used for secure key generation.</p>';
-if ( function_exists('$RandomBytes') ) {
+if (function_exists('$RandomBytes')) {
 	$RandomBytes = true;
 	$Secure = true;
 	$RandomBytes_Block .= '
@@ -45,8 +45,9 @@ $MCrypt_Block = '
 		<p>MCrypt</p>
 	</div>
 	<div class="right">
-		<p>MCrypt is used for secure key generation.</p>';
-if ( function_exists('mcrypt_create_iv') ) {
+		<p>MCrypt is used for secure key generation.</p>
+		<p>MCrypt is deprecated in PHP 7.1, removed in PHP 7.2</p>';
+if (function_exists('mcrypt_create_iv')) {
 	$MCrypt = true;
 	$Secure = true;
 	$MCrypt_Block .= '
@@ -72,9 +73,9 @@ $OpenSSL_Block = '
 	</div>
 	<div class="right">
 		<p>OpenSSL is used as a fallback for secure key generation.</p>';
-if ( function_exists('openssl_random_pseudo_bytes') ) {
+if (function_exists('openssl_random_pseudo_bytes')) {
 	openssl_random_pseudo_bytes(1, $Strong);
-	if ( $Strong ) {
+	if ($Strong) {
 		$OpenSSL = true;
 		$Secure = true;
 		$OpenSSL_Block .= '
@@ -106,25 +107,25 @@ $Security_Block = '
 	</div>
 	<div class="right">
 		<h3>Security</h3>';
-if ( $RandomBytes ) {
+if ($RandomBytes) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	if ( $MCrypt ) {
+	if ($MCrypt) {
 		$Security_Block .= '
 		<p>MCrypt is available as a fallback if necessary.</p>';
 	}
-	if ( $OpenSSL ) {
+	if ($OpenSSL) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
 	}
-} else if ( $MCrypt ) {
+} else if ($MCrypt) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
-	if ( $OpenSSL ) {
+	if ($OpenSSL) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
 	}
-} else if ( $OpenSSL ) {
+} else if ($OpenSSL) {
 	$Security_Block .= '
 		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
 		<p>This is the second best option, maybe try installing <code>php[version]-mcrypt</code> ?</p>';
