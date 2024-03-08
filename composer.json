@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "classmap": [
+            "src/",
+            "lib/",
+            "_libs/",
+            "authenticatron.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "11"
+    }
+}

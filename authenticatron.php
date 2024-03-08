@@ -11,6 +11,8 @@
 // Both of these are set with Google Authenticator in mind.
 // Any other length is your own problem.
 
+//declare(strict_types=1);
+
 class Authenticatron
 {
 	private string $issuerDefault;
