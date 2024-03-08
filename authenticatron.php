@@ -110,7 +110,7 @@ class Authenticatron
 	}
 
 	////    Decode as Base32
-	private function base32Decode(string $secret): ?string
+	protected function base32Decode(string $secret): ?string
 	{
 		// If there is no secret or it is too small.
 		if (empty($secret) || strlen($secret) < 16) {
