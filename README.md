@@ -9,6 +9,12 @@ Based on the original BSD 2 Licensed work found at [PHPGangsta/GoogleAuthenticat
 
 Heavily modified to improve security and suit our needs.
 
+## Installation
+
+```bash
+composer install authenticatron
+```
+
 ## Quick Implementation
 
 ```php
