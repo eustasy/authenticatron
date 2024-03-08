@@ -14,8 +14,6 @@
     ],
     "autoload": {
         "classmap": [
-            "src/",
-            "lib/",
             "_libs/",
             "authenticatron.php"
         ]
