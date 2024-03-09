@@ -54,7 +54,7 @@ if (function_exists('mcrypt_create_iv')) {
 		<p class="color-flatui-nephritis">Installed</p>';
 } else {
 	$MCrypt_Block .= '
-		<p class="color-flatui-pomegranate">Not Installed</p>';
+		<p>Not Installed</p>';
 }
 $MCrypt_Block .= '
 	</div>';
