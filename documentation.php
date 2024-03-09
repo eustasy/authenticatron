@@ -169,7 +169,7 @@ if (!$secret) {
 					<p class="color-flatui-nephritis">MCrypt is installed.</p>';
 	} else {
 		echo '
-					<p class="color-flatui-pomegranate">MCrypt is not installed.</p>';
+					<p>MCrypt is not installed.</p>';
 	}
 	if (function_exists('openssl_random_pseudo_bytes')) {
 		$Random = openssl_random_pseudo_bytes(1, $Strong);
