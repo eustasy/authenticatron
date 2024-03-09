@@ -25,10 +25,10 @@ if (function_exists('$RandomBytes')) {
 	$RandomBytes = true;
 	$Secure = true;
 	$RandomBytes_Block .= '
-		<p class="color-nephritis">Available</p>';
+		<p class="color-flatui-nephritis">Available</p>';
 } else {
 	$RandomBytes_Block .= '
-		<p class="color-pomegranate">Not Available</p>';
+		<p class="color-flatui-pomegranate">Not Available</p>';
 }
 $RandomBytes_Block .= '
 	</div>';
@@ -51,10 +51,10 @@ if (function_exists('mcrypt_create_iv')) {
 	$MCrypt = true;
 	$Secure = true;
 	$MCrypt_Block .= '
-		<p class="color-nephritis">Installed</p>';
+		<p class="color-flatui-nephritis">Installed</p>';
 } else {
 	$MCrypt_Block .= '
-		<p class="color-pomegranate">Not Installed</p>';
+		<p class="color-flatui-pomegranate">Not Installed</p>';
 }
 $MCrypt_Block .= '
 	</div>';
@@ -79,14 +79,14 @@ if (function_exists('openssl_random_pseudo_bytes')) {
 		$OpenSSL = true;
 		$Secure = true;
 		$OpenSSL_Block .= '
-		<p class="color-nephritis">Installed, Secure.</p>';
+		<p class="color-flatui-nephritis">Installed, Secure.</p>';
 	} else {
 		$OpenSSL_Block .= '
-		<p class="color-pomegranate">Installed, Insecure.</p>';
+		<p class="color-flatui-pomegranate">Installed, Insecure.</p>';
 	}
 } else {
 	$OpenSSL_Block .= '
-		<p class="color-pomegranate">Not Installed</p>';
+		<p class="color-flatui-pomegranate">Not Installed</p>';
 }
 $OpenSSL_Block .= '
 	</div>';
@@ -109,7 +109,7 @@ $Security_Block = '
 		<h3>Security</h3>';
 if ($RandomBytes) {
 	$Security_Block .= '
-		<p class="color-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
+		<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
 	if ($MCrypt) {
 		$Security_Block .= '
 		<p>MCrypt is available as a fallback if necessary.</p>';
@@ -120,18 +120,18 @@ if ($RandomBytes) {
 	}
 } else if ($MCrypt) {
 	$Security_Block .= '
-		<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
+		<p class="color-flatui-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
 	if ($OpenSSL) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
 	}
 } else if ($OpenSSL) {
 	$Security_Block .= '
-		<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
+		<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
 		<p>This is the second best option, maybe try installing <code>php[version]-mcrypt</code> ?</p>';
 } else {
 	$Security_Block .= '
-		<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>
+		<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>
 		<p>Maybe try updating your PHP version, or installing <code>php[version]-mcrypt</code> or <code>openssl</code> ?</p>';
 }
 $Security_Block .= '
@@ -158,11 +158,11 @@ if (
 	function_exists('gd_info')
 ) {
 	$GD_Block .= '
-		<p class="color-nephritis">The GD functions are loaded. You can create QR Codes.</p>
+		<p class="color-flatui-nephritis">The GD functions are loaded. You can create QR Codes.</p>
 		<p>The GD extension is used for generating a secure QR code.</p>';
 } else {
 	$GD_Block .= '
-		<p class="color-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
+		<p class="color-flatui-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
 		<p>The GD extension is used for generating a secure QR code.</p>
 		<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';
 }
