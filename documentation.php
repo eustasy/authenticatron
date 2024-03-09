@@ -22,7 +22,7 @@ if (!$secret) {
 		<img alt="lifefloat" src="assets/google_help-128.png">
 	</div>
 	<div class="right">
-		<h3 class="color-pomegranate">Warning: No cryptographically secure random available.</h3>
+		<h3 class="color-flatui-pomegranate">Warning: No cryptographically secure random available.</h3>
 		<p>Try updating PHP or installing MCrypt or OpenSSL.</p>
 		<p>Proceeding with <code>AUTHENTICATRON23</code>.</p>
 	</div>
@@ -130,7 +130,7 @@ if (!$secret) {
 	<img alt="lifefloat" src="assets/google_help-128.png">
 </div>
 <div class="right">
-	<h3 class="color-pomegranate">Warning: The functions below are for advanced users only.</h3>
+	<h3 class="color-flatui-pomegranate">Warning: The functions below are for advanced users only.</h3>
 	<p>You should only need the two functions above this point to implement two-factor authentication.</p>
 	<p>Functions listed below this point should not need to be used in most production-ready environments.</p>
 </div>
@@ -158,45 +158,45 @@ if (!$secret) {
 	if (function_exists('$RandomBytes')) {
 		$RandomBytes = true;
 		echo '
-					<p class="color-nephritis">RandomBytes is available.</p>';
+					<p class="color-flatui-nephritis">RandomBytes is available.</p>';
 	} else {
 		echo '
-					<p class="color-pomegranate">RandomBytes is not available.</p>';
+					<p class="color-flatui-pomegranate">RandomBytes is not available.</p>';
 	}
 	if (function_exists('mcrypt_create_iv')) {
 		$MCrypt = true;
 		echo '
-					<p class="color-nephritis">MCrypt is installed.</p>';
+					<p class="color-flatui-nephritis">MCrypt is installed.</p>';
 	} else {
 		echo '
-					<p class="color-pomegranate">MCrypt is not installed.</p>';
+					<p class="color-flatui-pomegranate">MCrypt is not installed.</p>';
 	}
 	if (function_exists('openssl_random_pseudo_bytes')) {
 		$Random = openssl_random_pseudo_bytes(1, $Strong);
 		if ($Strong) {
 			$OpenSSL = true;
 			echo '
-						<p class="color-nephritis">OpenSSL is installed, and secure.</p>';
+						<p class="color-flatui-nephritis">OpenSSL is installed, and secure.</p>';
 		} else {
 			echo '
-						<p class="color-pomegranate">OpenSSL is installed, but not secure.</p>';
+						<p class="color-flatui-pomegranate">OpenSSL is installed, but not secure.</p>';
 		}
 	} else {
 		echo '
-					<p class="color-pomegranate">OpenSSL is not installed.</p>';
+					<p class="color-flatui-pomegranate">OpenSSL is not installed.</p>';
 	}
 	if ($RandomBytes) {
 		echo '
-					<p class="color-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
+					<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
 	} else if ($MCrypt) {
 		echo '
-					<p class="color-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
+					<p class="color-flatui-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
 	} else if ($OpenSSL) {
 		echo '
-					<p class="color-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
+					<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
 	} else {
 		echo '
-					<p class="color-pomegranate"><strong>Your installation will not work.</strong></p>';
+					<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>';
 	}
 	?>
 </div>
@@ -284,10 +284,10 @@ if (!$secret) {
 		function_exists('gd_info')
 	) {
 		echo '
-					<p class="color-nephritis">The GD functions are loaded.</p>';
+					<p class="color-flatui-nephritis">The GD functions are loaded.</p>';
 	} else {
 		echo '
-					<p class="color-pomegranate">The GD functions are not loaded.</p>
+					<p class="color-flatui-pomegranate">The GD functions are not loaded.</p>
 					<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';
 	}
 	?>
