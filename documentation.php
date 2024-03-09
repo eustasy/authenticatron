@@ -8,7 +8,7 @@ $auth = new Authenticatron('Authenticatron Documentation Page');
 if (!empty($_GET['secret'])) {
 	$secret = $_GET['secret'];
 } else {
-	$secret = $Authenticatron->makeSecret();
+	$secret = $auth->makeSecret();
 }
 
 if (!$secret) {
