@@ -21,7 +21,7 @@ $RandomBytes_Block = '
 	</div>
 	<div class="right">
 		<p>RandomBytes is used for secure key generation.</p>';
-if (function_exists('$RandomBytes')) {
+if (function_exists('random_bytes')) {
 	$RandomBytes = true;
 	$Secure = true;
 	$RandomBytes_Block .= '
