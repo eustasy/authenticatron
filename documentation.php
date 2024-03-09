@@ -329,6 +329,7 @@ if (!$secret) {
 		!isset($_GET['googlechart'])
 	) {
 		echo '<!-- PHPQRCode -->';
+		$URL = $auth->getUrl('John Smith', $secret);
 		$QR_Base64 = $auth->generateQrCode($URL);
 		echo '<p><img src="' . $QR_Base64 . '"></p>';
 	} else {
