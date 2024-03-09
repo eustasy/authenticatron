@@ -141,12 +141,12 @@ if (
 				ctype_alnum($_POST['secondfactor_code'])
 			) {
 				if ($auth->checkCode($_POST['secondfactor_code'], $secret)) {
-					echo '<p class="color-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
+					echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
 				} else {
-					echo '<p class="color-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
+					echo '<p class="color-flatui-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
 				}
 			} else {
-				echo '<p class="color-pomegranate">Invalid Entry: The code you entered was not 6 characters long, and alphanumeric.</p>';
+				echo '<p class="color-flatui-pomegranate">Invalid Entry: The code you entered was not 6 characters long, and alphanumeric.</p>';
 			}
 			echo '<div class="break clear"></div>';
 		}
@@ -169,7 +169,7 @@ if (
 	<img alt="lifefloat" src="assets/google_help-128.png">
 </div>
 <div class="right">
-	<h3 class="color-pomegranate">Further Reading</h3>
+	<h3 class="color-flatui-pomegranate">Further Reading</h3>
 	<p>Visit our <a href="documentation.php">documentation</a> for a more thorough description of the options and functions available to you.</p>
 	<p>Take a look at the <a href="documentation.php#glossary">glossary</a> if there are any terms you don't understand.</p>
 	<p>The <a href="server.php">server</a> page can be used if this script is installed on your server to check for requirements.</p>
