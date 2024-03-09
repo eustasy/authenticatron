@@ -155,7 +155,7 @@ if (!$secret) {
 	$RandomBytes = false;
 	$MCrypt = false;
 	$OpenSSL = false;
-	if (function_exists('$RandomBytes')) {
+	if (function_exists('random_bytes')) {
 		$RandomBytes = true;
 		echo '
 					<p class="color-flatui-nephritis">RandomBytes is available.</p>';
