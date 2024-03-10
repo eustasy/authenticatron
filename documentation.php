@@ -43,6 +43,39 @@ if (!$secret) {
 
 
 <div class="right fake-left">
+	<h3>Initialize Authenticatron</h3>
+</div>
+<div class="clear"></div>
+<div class="left">
+	<p>Information</p>
+</div>
+<div class="right">
+	<p>Get ready to use Authenticatron.</p>
+</div>
+<div class="clear"></div>
+<div class="left">
+	<p>Code</p>
+</div>
+<div class="right">
+	<p><pre>$auth = Authenticatron(
+		string $issuerDefault = 'Example Site',
+		string $phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php'
+	): class</pre></p>
+</div>
+<div class="clear"></div>
+<div class="left">
+	<p>Input</p>
+</div>
+<div class="right">
+	<p><code>$issuerDefault</code> is a string containing the default name you with to use to identify your app.</p>
+	<p><code>$phpQrCode</code> is an <span class="color-flatui-belize-hole">optional</span> string containing the location of the PHP QR Code Library, if diferent from the default.</p>
+</div>
+<div class="break clear"></div>
+
+
+
+
+<div class="right fake-left">
 	<h3>Authenticatron New</h3>
 </div>
 <div class="clear"></div>
