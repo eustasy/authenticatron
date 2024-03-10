@@ -18,7 +18,7 @@ class Authenticatron
 	private string $issuerDefault;
 	private string $phpQrCode;
 	// A reference for Base32 valid characters.
-	private const array $base32Chars = array(
+	private array $base32Chars = array(
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 8
 		'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 16
 		'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 24
