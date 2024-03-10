@@ -3,7 +3,6 @@
 include __DIR__ . '/assets/header.php';
 
 $RandomBytes = false;
-$MCrypt = false;
 $OpenSSL = false;
 $Secure = false;
 
@@ -31,32 +30,6 @@ if (function_exists('random_bytes')) {
 		<p class="color-flatui-pomegranate">Not Available</p>';
 }
 $RandomBytes_Block .= '
-	</div>';
-
-
-
-
-
-
-////	MCrypt
-$MCrypt_Block = '
-	<div class="clear"></div>
-	<div class="left">
-		<p>MCrypt</p>
-	</div>
-	<div class="right">
-		<p>MCrypt is used for secure key generation.</p>
-		<p>MCrypt is deprecated in PHP 7.1, removed in PHP 7.2</p>';
-if (function_exists('mcrypt_create_iv')) {
-	$MCrypt = true;
-	$Secure = true;
-	$MCrypt_Block .= '
-		<p class="color-flatui-nephritis">Installed</p>';
-} else {
-	$MCrypt_Block .= '
-		<p>Not Installed</p>';
-}
-$MCrypt_Block .= '
 	</div>';
 
 
@@ -118,13 +91,6 @@ if ($RandomBytes) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
 	}
-} else if ($MCrypt) {
-	$Security_Block .= '
-		<p class="color-flatui-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
-	if ($OpenSSL) {
-		$Security_Block .= '
-		<p>OpenSSL is available as a fallback if necessary.</p>';
-	}
 } else if ($OpenSSL) {
 	$Security_Block .= '
 		<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
@@ -178,7 +144,6 @@ $GD_Block .= '
 
 echo $Security_Block;
 echo $RandomBytes_Block;
-echo $MCrypt_Block;
 echo $OpenSSL_Block;
 
 echo $GD_Block;
