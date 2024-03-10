@@ -101,7 +101,7 @@ class Authenticatron
 		// Use the object cache to capture the PNG without outputting it.
 		// Kind of hacky but the best way I can find without writing a new QR Library.
 		ob_start();
-		QRCode::png($URL, null, constant('QR_ECLEVEL_' . $Level), $Size, $Margin);
+		\QRCode::png($URL, null, constant('QR_ECLEVEL_' . $Level), $Size, $Margin);
 		$QR_Base64 = base64_encode(ob_get_contents());
 		ob_end_clean();
 
