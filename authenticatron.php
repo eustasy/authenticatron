@@ -132,7 +132,6 @@ class Authenticatron
 
 		// While $i is less than the length of $secret, 8 bits at a time.
 		for ($i = 0; $i < $secretCount; $i = $i + 8) {
-
 			$string = '';
 
 			// If the letter is not a Base32 Character
