@@ -34,7 +34,7 @@ final class AuthTest extends TestCase
     public function testUrlChars(): void
     {
         $result = Authenticatron::getUrl('accountName', 'secret', 'issuer');
-        $this->assertEquals('otpauth://totp/Example Site: test?secret=test&issuer=Example+Site', $result);
+        $this->assertEquals('otpauth://totp/issuer: accountName?secret=secret&issuer=issuer', $result);
     }
 
     // Test that the qrCode is a string
