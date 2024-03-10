@@ -12,7 +12,7 @@
 // Any other length is your own problem.
 
 //declare(strict_types=1);
-
+namespace eustasy;
 class Authenticatron
 {
 	private string $issuerDefault;
