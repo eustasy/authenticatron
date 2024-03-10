@@ -44,16 +44,16 @@ $auth->new($accountName)</pre>
 	<div class="right">
 		<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 		<pre><?php
-				if (!empty($secret)) {
-					$secondAuth['Secret'] = $secret;
-					$secondAuth['URL'] = $auth->getUrl($accountName, $secret);
-					$secondAuth['QR'] = $auth->generateQrCode($secondAuth['URL']);
-				} else {
-					$secondAuth = $auth->new($accountName);
-					$secret = $secondAuth['Secret'];
-				}
-				var_dump($secondAuth);
-				?></pre>
+		if (!empty($secret)) {
+			$secondAuth['Secret'] = $secret;
+			$secondAuth['URL'] = $auth->getUrl($accountName, $secret);
+			$secondAuth['QR'] = $auth->generateQrCode($secondAuth['URL']);
+		} else {
+			$secondAuth = $auth->new($accountName);
+			$secret = $secondAuth['Secret'];
+		}
+		var_dump($secondAuth);
+		?></pre>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
