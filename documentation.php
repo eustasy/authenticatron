@@ -23,7 +23,7 @@ if (!$secret) {
 	</div>
 	<div class="right">
 		<h3 class="color-flatui-pomegranate">Warning: No cryptographically secure random available.</h3>
-		<p>Try updating PHP or installing MCrypt or OpenSSL.</p>
+		<p>Try upgrading PHP or installing OpenSSL.</p>
 		<p>Proceeding with <code>AUTHENTICATRON23</code>.</p>
 	</div>
 
@@ -150,10 +150,9 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
-	<p>Generated using RandomBytes if it is available, falling back to MCrypt or OpenSSL if it is secure.</p>
+	<p>Generated using RandomBytes if it is available, falling back to OpenSSL if it is secure.</p>
 	<?php
 	$RandomBytes = false;
-	$MCrypt = false;
 	$OpenSSL = false;
 	if (function_exists('random_bytes')) {
 		$RandomBytes = true;
@@ -162,14 +161,6 @@ if (!$secret) {
 	} else {
 		echo '
 					<p class="color-flatui-pomegranate">RandomBytes is not available.</p>';
-	}
-	if (function_exists('mcrypt_create_iv')) {
-		$MCrypt = true;
-		echo '
-					<p class="color-flatui-nephritis">MCrypt is installed.</p>';
-	} else {
-		echo '
-					<p>MCrypt is not installed.</p>';
 	}
 	if (function_exists('openssl_random_pseudo_bytes')) {
 		$Random = openssl_random_pseudo_bytes(1, $Strong);
@@ -188,9 +179,6 @@ if (!$secret) {
 	if ($RandomBytes) {
 		echo '
 					<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	} else if ($MCrypt) {
-		echo '
-					<p class="color-flatui-nephritis"><strong>Your installation will use MCrypt.</strong></p>';
 	} else if ($OpenSSL) {
 		echo '
 					<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
