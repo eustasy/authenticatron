@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../authenticatron.php';
-use eustasy\Authenticator;
+use eustasy\Authenticatron;
 
 use PHPUnit\Framework\TestCase;
 
