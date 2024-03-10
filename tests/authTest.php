@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-namespace eustasy;
 require_once __DIR__ . '/../authenticatron.php';
 
 use PHPUnit\Framework\TestCase;
