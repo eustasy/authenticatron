@@ -25,7 +25,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><pre>$auth = new Authenticatron('Application Name')
+		<p><pre>$auth = new Authenticatron()
 $auth->new($accountName)</pre></p>
 	</div>
 	<div class="break clear"></div>
