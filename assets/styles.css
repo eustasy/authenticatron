@@ -1,5 +1,6 @@
 /* $ Block Elements */
 body {
+	background: #ffffff;
 	font: 400 1rem/1 'Droid Sans', sans-serif;
 	margin: 0 auto;
 	max-width: 70rem;
