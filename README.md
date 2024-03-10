@@ -27,6 +27,7 @@ composer install authenticatron
 // Set $issuerDefault to avoid setting it every time we make a new user or QR code.
 // Set phpQrCode to change where the library is.
 // Both are technically optional.
+use eustasy\Authenticatron;
 $auth = new Authenticatron('Example App Name', __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php');
 
 ////    Create a new account
