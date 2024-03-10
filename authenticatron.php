@@ -255,6 +255,7 @@ class Authenticatron
 		// TODO Handle makeSecret returning null.
 		$return['URL'] = $this->getUrl($accountName, $return['Secret']);
 		$return['QR'] = $this->generateQrCode($return['URL']);
+		// WARNING QR returns null if not available 
 		return $return;
 	}
 }
