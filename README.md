@@ -9,6 +9,11 @@ Based on the original BSD 2 Licensed work found at [PHPGangsta/GoogleAuthenticat
 
 Heavily modified to improve security and suit our needs.
 
+## Requirements
+
+- A [supported version](https://www.php.net/supported-versions.php) of PHP.
+- PHP GD extensions like `php8.x-gd` for QR Code generation.
+
 ## Installation
 
 ```bash
