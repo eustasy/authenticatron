@@ -69,6 +69,8 @@ plugins:
 
 exclude_patterns:
   - "_libs/**"
+  - "libs/**"
+  - "tests/**"
   - "**.min.css"
   - "**.custom.css"
   - "**.min.js"
