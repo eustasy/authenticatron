@@ -67,6 +67,7 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p><code>$accountName</code> is a string containing the data your member will identify with.</p>
+	<p><code>$issuer</code> is a string containing the name of your app or site.</p>
 </div>
 <div class="clear"></div>
 <div class="left">
