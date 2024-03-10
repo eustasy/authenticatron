@@ -57,10 +57,12 @@ if (!$secret) {
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><pre>$auth = Authenticatron(
+	<p>
+	<pre>$auth = Authenticatron(
 		string $issuerDefault = 'Example Site',
 		string $phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php'
-	): class</pre></p>
+	): class</pre>
+	</p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -212,7 +214,7 @@ if (!$secret) {
 	if ($RandomBytes) {
 		echo '
 					<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	} else if ($OpenSSL) {
+	} elseif ($OpenSSL) {
 		echo '
 					<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
 	} else {

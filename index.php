@@ -7,7 +7,7 @@ $auth = new Authenticatron('Authenticatron Example Page');
 $accountName = 'John Smith';
 if (!empty($_POST['secondfactor_secret'])) {
 	$secret = $_POST['secondfactor_secret'];
-} else if (!empty($_GET['secret'])) {
+} elseif (!empty($_GET['secret'])) {
 	$secret = $_GET['secret'];
 }
 
@@ -25,8 +25,10 @@ if (!empty($_POST['secondfactor_secret'])) {
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><pre>$auth = new Authenticatron()
-$auth->new($accountName)</pre></p>
+		<p>
+		<pre>$auth = new Authenticatron()
+$auth->new($accountName)</pre>
+		</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">

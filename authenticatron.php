@@ -41,9 +41,9 @@ class Authenticatron
 			!function_exists('openssl_random_pseudo_bytes') // Requires OpenSSL
 		) {
 			return null;
-		} else if (function_exists('random_bytes')) {
+		} elseif (function_exists('random_bytes')) {
 			$random = random_bytes($length);
-		} else if (function_exists('openssl_random_pseudo_bytes')) {
+		} elseif (function_exists('openssl_random_pseudo_bytes')) {
 			// Otherwise try to use OpenSSL
 			$random = openssl_random_pseudo_bytes($length, $strong);
 			if (!$strong) {

@@ -91,7 +91,7 @@ if ($RandomBytes) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
 	}
-} else if ($OpenSSL) {
+} elseif ($OpenSSL) {
 	$Security_Block .= '
 		<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
 		<p>This is the second best option, maybe try upgrading to PHP 8.x or installing <code>php[version]-mcrypt</code> ?</p>';
