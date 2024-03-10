@@ -23,16 +23,12 @@ composer install authenticatron
 ## Quick Implementation
 
 ```php
-////    Create a new Authenticatron instance
-// Set $issuerDefault to avoid setting it every time we make a new user or QR code.
-// Set phpQrCode to change where the library is.
-// Both are technically optional.
+////    Import eustasy\Authenticatron
 use eustasy\Authenticatron;
-$auth = new Authenticatron('Example App Name', __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php');
 
 ////    Create a new account
 // Returns a secret (to be stored) a URL (to be clicked on) and a QR Code (to be scanned)
-$auth->new($accountName);
+Authenticatron::new($accountName, $issuer);
 //  array(3) {
 //    ["Secret"]=>
 //    string(16) "6MZYWOOFVAKL7LQB"
@@ -44,7 +40,7 @@ $auth->new($accountName);
 
 ////    Check a code
 // When a code is entered, just retrieve the secret and check them both.
-$auth->checkCode($code, $secret)
+Authenticatron::checkCode($code, $secret)
 //  bool(true) - successful auth
 //  bool(false) - failed auth
 ```

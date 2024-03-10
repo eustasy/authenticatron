@@ -3,13 +3,14 @@
 include __DIR__ . '/assets/header.php';
 
 require_once __DIR__ . '/authenticatron.php';
-use eustasy\Authenticatron;
-$auth = new Authenticatron('Authenticatron Documentation Page');
 
+use eustasy\Authenticatron;
+
+$issuer = 'Documentation Example';
 if (!empty($_GET['secret'])) {
 	$secret = $_GET['secret'];
 } else {
-	$secret = $auth->makeSecret();
+	$secret = Authenticatron::makeSecret();
 }
 
 if (!$secret) {
@@ -44,42 +45,6 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Initialize Authenticatron</h3>
-</div>
-<div class="clear"></div>
-<div class="left">
-	<p>Information</p>
-</div>
-<div class="right">
-	<p>Get ready to use Authenticatron.</p>
-</div>
-<div class="clear"></div>
-<div class="left">
-	<p>Code</p>
-</div>
-<div class="right">
-	<p>
-	<pre>use eustasy\Authenticatron;
-$auth = Authenticatron(
-	string $issuerDefault = 'Example Site',
-	string $phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php'
-): class</pre>
-	</p>
-</div>
-<div class="clear"></div>
-<div class="left">
-	<p>Input</p>
-</div>
-<div class="right">
-	<p><code>$issuerDefault</code> is a string containing the default name you with to use to identify your app.</p>
-	<p><code>$phpQrCode</code> is an <span class="color-flatui-belize-hole">optional</span> string containing the location of the PHP QR Code Library, if diferent from the default.</p>
-</div>
-<div class="break clear"></div>
-
-
-
-
-<div class="right fake-left">
 	<h3>Authenticatron New</h3>
 </div>
 <div class="clear"></div>
@@ -94,7 +59,7 @@ $auth = Authenticatron(
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>$auth->new(string $accountName): array</code></p>
+	<p><code>Authenticatron::new(string $accountName, string $issuer): array</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -110,7 +75,7 @@ $auth = Authenticatron(
 <div class="right">
 	<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 	<pre><?php
-			$new = $auth->new('Member Name');
+			$new = Authenticatron::new('Member Name', $issuer);
 			var_dump($new);
 			?></pre>
 </div>
@@ -133,7 +98,7 @@ $auth = Authenticatron(
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>$auth->checkCode(string $code, string $secret, int $variance = 2): bool</code></p>
+	<p><code>Authenticatron::checkCode(string $code, string $secret, int $variance = 2): bool</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -151,8 +116,8 @@ $auth = Authenticatron(
 <div class="right">
 	<p>Outputs a boolean value, true or false.</p>
 	<pre><?php
-			$code = $auth->getCode($secret);
-			$check = $auth->checkCode($code, $secret);
+			$code = Authenticatron::getCode($secret);
+			$check = Authenticatron::checkCode($code, $secret);
 			var_dump($check);
 			?></pre>
 </div>
@@ -230,7 +195,7 @@ $auth = Authenticatron(
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>$auth->makeSecret(int $length = 16): ?string</code></p>
+	<p><code>Authenticatron::makeSecret(int $length = 16): ?string</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -270,14 +235,14 @@ $auth = Authenticatron(
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>$auth->getUrl(string $accountName, string $secret, string $issuer = null): string</code></p>
+	<p><code>Authenticatron::getUrl(string $accountName, string $secret, string $issuer): string</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
 	<p>Input</p>
 </div>
 <div class="right">
-	<p>All parameters should be strings, with the optional issuer defaulting to the configured value if not passed.</p>
+	<p>All parameters should be strings.</p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -286,7 +251,7 @@ $auth = Authenticatron(
 <div class="right">
 	<p>Outputs an OTPAuth URL that gives people their Secret along with a passed Member Name and an optional Issuer.</p>
 	<pre><?php
-			$url = $auth->getUrl('Member Name', $secret);
+			$url = Authenticatron::getUrl('Member Name', $secret, $issuer);
 			echo '<a href="' . $url . '">' . $url . '</a>';
 			?></pre>
 </div>
@@ -354,8 +319,8 @@ $auth = Authenticatron(
 		!isset($_GET['googlechart'])
 	) {
 		echo '<!-- PHPQRCode -->';
-		$URL = $auth->getUrl('John Smith', $secret);
-		$QR_Base64 = $auth->generateQrCode($URL);
+		$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
+		$QR_Base64 = Authenticatron::generateQrCode($URL);
 		echo '<p><img src="' . $QR_Base64 . '"></p>';
 	} else {
 		echo '<!-- Google Chart -->';
@@ -410,7 +375,7 @@ $auth = Authenticatron(
 <div class="right">
 	<p>Outputs the calculated code for the current or provided timestamp.</p>
 	<pre><?php
-			$code = $auth->getCode($secret);
+			$code = Authenticatron::getCode($secret);
 			var_dump($code);
 			?></pre>
 </div>
@@ -433,7 +398,7 @@ $auth = Authenticatron(
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>$auth->getCodesInRange(string $secret, int $variance = 2): array</code></p>
+	<p><code>Authenticatron::getCodesInRange(string $secret, int $variance = 2): array</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -453,7 +418,7 @@ $auth = Authenticatron(
 	<p>Note the indexes, which can be used to determine the time difference, and perhaps warn users on the outer bounds.</p>
 	<p>Code generation is expensive, so avoid generating any you don't want to check against later.</p>
 	<pre><?php
-			$codes = $auth->getCodesInRange($secret);
+			$codes = Authenticatron::getCodesInRange($secret);
 			var_dump($codes);
 			?></pre>
 	<p><strong>Your phone should produce one of these from the QR code above.</strong></p>

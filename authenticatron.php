@@ -1,7 +1,7 @@
 <?php
 
 ////    Authenticatron
-// v0.8.0-alpha - MIT Licensed - Property of eustasy
+// v0.8.1-alpha - MIT Licensed - Property of eustasy
 // https://github.com/eustasy/authenticatron
 // http://labs.eustasy.org/authenticatron/example
 
@@ -13,28 +13,16 @@
 
 //declare(strict_types=1);
 namespace eustasy;
-class Authenticatron
+
+abstract class Authenticatron
 {
-	private string $issuerDefault;
 	private string $phpQrCode;
 	// A reference for Base32 valid characters.
-	private array $base32Chars = array(
-		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 8
-		'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 16
-		'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 24
-		'Y', 'Z', '2', '3', '4', '5', '6', '7'  // 32
-	);
-
-	public function __construct(
-		string $issuerDefault = 'Example Site',
-		string $phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php'
-	) {
-		$this->issuerDefault = $issuerDefault;
-		$this->phpQrCode = $phpQrCode;
-	}
+	const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+	const phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php';
 
 	////    Create a new Secret
-	public function makeSecret(int $length = 16): ?string
+	public static function makeSecret(int $length = 16): ?string
 	{
 		if (
 			!function_exists('random_bytes') && // Requires PHP 7
@@ -55,24 +43,21 @@ class Authenticatron
 		// For each letter of the secret, generate a random Base32 Characters.
 		$secret = '';
 		for ($i = 0; $i < $length; $i++) {
-			$secret .= $this->base32Chars[ord($random[$i]) & 31];
+			$secret .= self::base32Chars[ord($random[$i]) & 31];
 		}
 
 		return $secret;
 	}
 
 	////    Create an OTPAuth URL
-	public function getUrl(string $accountName, string $secret, string $issuer = null): string
+	public static function getUrl(string $accountName, string $secret, string $issuer): string
 	{
-		if ($issuer === null) {
-			$issuer = $this->issuerDefault;
-		}
 
 		// Strip any colons, they screw things up.
-		$issuer = str_replace(':', '', $issuer);
-		$accountName = str_replace(':', '', $accountName);
-		// TODO It might also be a good idea to strip special characters,
-		// like ? as it might break the rest.
+		$toStrip = array(':', '?', '&', '=', '+', '@', '/', '\\', '#');
+		// TODO It might also be a good idea to other strip special characters
+		$issuer = str_replace($toStrip, '', $issuer);
+		$accountName = str_replace($toStrip, '', $accountName);
 
 		// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
 		// This could cause issues with certain characters. Try to keep it alphanumeric.
@@ -80,14 +65,14 @@ class Authenticatron
 	}
 
 	////    Create a Base64 PNG QR Code
-	public function generateQrCode(string $URL, int $Size = 4, int $Margin = 0, string $Level = 'M'): ?string
+	public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 0, string $Level = 'M'): ?string
 	{
 		// If the required functions are not loaded, fail.
 		// If the file we are about to require doesn't exist or isn't readable, fail.
 		if (
 			!extension_loaded('gd') ||
 			!function_exists('gd_info') ||
-			!is_readable($this->phpQrCode)
+			!is_readable(self::phpQrCode)
 		) {
 			return null;
 		}
@@ -96,7 +81,7 @@ class Authenticatron
 
 		// We've checked the file exists, so we can require instead of include.
 		// Something has gone horribly wrong if this doesn't work.
-		require_once $this->phpQrCode;
+		require_once self::phpQrCode;
 
 		// Use the object cache to capture the PNG without outputting it.
 		// Kind of hacky but the best way I can find without writing a new QR Library.
@@ -110,7 +95,7 @@ class Authenticatron
 	}
 
 	////    Decode as Base32
-	protected function base32Decode(string $secret): ?string
+	protected static function base32Decode(string $secret): ?string
 	{
 		// If there is no secret or it is too small.
 		if (empty($secret) || strlen($secret) < 16) {
@@ -118,7 +103,8 @@ class Authenticatron
 		}
 
 		// A reference for converting from Base32
-		$base32CharsFlipped = array_flip($this->base32Chars);
+		$base32CharsArray = str_split(self::base32Chars);
+		$base32CharsFlipped = array_flip($base32CharsArray);
 
 		// Remove padding characters (there shouldn't be any)
 		$secret = str_replace('=', '', $secret);
@@ -135,7 +121,7 @@ class Authenticatron
 			$string = '';
 
 			// If the letter is not a Base32 Character
-			if (!in_array($secret[$i], $this->base32Chars)) {
+			if (!in_array($secret[$i], $base32CharsArray)) {
 				return null;
 			}
 
@@ -160,7 +146,7 @@ class Authenticatron
 	}
 
 	////    Calculate the current code.
-	public function getCode(string $secret, int $timestamp = null, int $codeLength = 6): string
+	public static function getCode(string $secret, int $timestamp = null, int $codeLength = 6): string
 	{
 		// Set the timestamp to something sensible.
 		// You should only over-ride this if you really know why.
@@ -173,7 +159,7 @@ class Authenticatron
 		$timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timestamp);
 
 		// Decode (?) the Secret
-		$secretDecoded = $this->base32Decode($secret);
+		$secretDecoded = self::base32Decode($secret);
 
 		// Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
 		$hmac = hash_hmac('SHA1', $timestampPacked, $secretDecoded, true);
@@ -203,7 +189,7 @@ class Authenticatron
 	}
 
 	////    Create an array of all codes within an acceptable range.
-	public function getCodesInRange(string $secret, int $variance = 2): array
+	public static function getCodesInRange(string $secret, int $variance = 2): array
 	{
 		// The output will look like this.
 		//
@@ -227,7 +213,7 @@ class Authenticatron
 			// Add that amount in increments of 30 seconds.
 			$loopTime = floor(time() / 30) + $i;
 			// Add the code to the array.
-			$acceptable[$i] = $this->getCode($secret, $loopTime);
+			$acceptable[$i] = self::getCode($secret, $loopTime);
 		}
 
 		// Return the list of codes.
@@ -235,9 +221,9 @@ class Authenticatron
 	}
 
 	////    Check a given Code against a Secret
-	public function checkCode(string $code, string $secret, int $variance = 2): bool
+	public static function checkCode(string $code, string $secret, int $variance = 2): bool
 	{
-		$acceptable = $this->getCodesInRange($secret, $variance);
+		$acceptable = self::getCodesInRange($secret, $variance);
 
 		// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
 		if (in_array($code, $acceptable)) {
@@ -248,13 +234,13 @@ class Authenticatron
 	}
 
 	////    Create a Secret and QR code for a given Member
-	public function new(string $accountName): array
+	public static function new(string $accountName, string $issuer): array
 	{
 		$return = array();
-		$return['Secret'] = $this->makeSecret();
+		$return['Secret'] = self::makeSecret();
 		// TODO Handle makeSecret returning null.
-		$return['URL'] = $this->getUrl($accountName, $return['Secret']);
-		$return['QR'] = $this->generateQrCode($return['URL']);
+		$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
+		$return['QR'] = self::generateQrCode($return['URL']);
 		// WARNING QR returns null if not available 
 		return $return;
 	}

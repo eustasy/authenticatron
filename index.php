@@ -3,9 +3,11 @@
 include __DIR__ . '/assets/header.php';
 
 require_once __DIR__ . '/authenticatron.php';
+
 use eustasy\Authenticatron;
-$auth = new Authenticatron('Authenticatron Example Page');
+
 $accountName = 'John Smith';
+$issuer = 'Authenticatron Example Page';
 if (!empty($_POST['secondfactor_secret'])) {
 	$secret = $_POST['secondfactor_secret'];
 } elseif (!empty($_GET['secret'])) {
@@ -19,7 +21,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 <div class="half half-left">
 	<div class="right fake-left">
 		<h2 class="text-center">Step 1.</h2>
-		<p class="subtitle">Initialize an instance and then <code>$auth->new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
+		<p class="subtitle"><code>Authenticatron::new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -28,8 +30,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 	<div class="right">
 		<p>
 		<pre>use eustasy\Authenticatron;
-$auth = new Authenticatron()
-$auth->new($accountName)</pre>
+Authenticatron::new($accountName, $issuer)</pre>
 		</p>
 	</div>
 	<div class="break clear"></div>
@@ -38,6 +39,7 @@ $auth->new($accountName)</pre>
 	</div>
 	<div class="right">
 		<p><code>$accountName</code> is a string containing your members username or nice-name, perferably something unique and quickly identifiable.</p>
+		<p><code>$issuer</code> is a string containing the name of your app or site.</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -46,16 +48,16 @@ $auth->new($accountName)</pre>
 	<div class="right">
 		<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 		<pre><?php
-		if (!empty($secret)) {
-			$secondAuth['Secret'] = $secret;
-			$secondAuth['URL'] = $auth->getUrl($accountName, $secret);
-			$secondAuth['QR'] = $auth->generateQrCode($secondAuth['URL']);
-		} else {
-			$secondAuth = $auth->new($accountName);
-			$secret = $secondAuth['Secret'];
-		}
-		var_dump($secondAuth);
-		?></pre>
+				if (!empty($secret)) {
+					$secondAuth['Secret'] = $secret;
+					$secondAuth['URL'] = Authenticatron::getUrl($accountName, $secret, $issuer);
+					$secondAuth['QR'] = Authenticatron::generateQrCode($secondAuth['URL']);
+				} else {
+					$secondAuth = Authenticatron::new($accountName, $issuer);
+					$secret = $secondAuth['Secret'];
+				}
+				var_dump($secondAuth);
+				?></pre>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -83,14 +85,14 @@ $auth->new($accountName)</pre>
 <div class="half half-right">
 	<div class="right fake-left">
 		<h2 class="text-center">Step 2.</h2>
-		<p class="subtitle">Use <code>$auth->checkCode</code> to confirm the setup and check time-unique codes at every login.</p>
+		<p class="subtitle">Use <code>Authenticatron::checkCode</code> to confirm the setup and check time-unique codes at every login.</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>$auth->checkCode($Code, $secret)</code></p>
+		<p><code>Authenticatron::checkCode($Code, $secret)</code></p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -108,8 +110,8 @@ $auth->new($accountName)</pre>
 	<div class="right">
 		<p>Outputs a boolean value, <code>true</code> if the entered code is within allowed range, <code>false</code> if not.</p>
 		<pre><?php
-				$code = $auth->getCode($secret);
-				$check = $auth->checkCode($code, $secret);
+				$code = Authenticatron::getCode($secret);
+				$check = Authenticatron::checkCode($code, $secret);
 				var_dump($check);
 				?></pre>
 	</div>
@@ -124,7 +126,7 @@ if (
 	strlen($_POST['secondfactor_code']) == 6 &&
 	ctype_alnum($_POST['secondfactor_code'])
 ) {
-	if ( $auth->checkCode($_POST['secondfactor_code'], $secret) ) {
+	if ( Authenticatron::checkCode($_POST['secondfactor_code'], $secret) ) {
 		// Authenticated, log in...
 	} else {
 		// Incorrect code
@@ -145,7 +147,7 @@ if (
 				strlen($_POST['secondfactor_code']) == 6 &&
 				ctype_alnum($_POST['secondfactor_code'])
 			) {
-				if ($auth->checkCode($_POST['secondfactor_code'], $secret)) {
+				if (Authenticatron::checkCode($_POST['secondfactor_code'], $secret)) {
 					echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
 				} else {
 					echo '<p class="color-flatui-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
