@@ -18,14 +18,15 @@ if (!empty($_POST['secondfactor_secret'])) {
 <div class="half half-left">
 	<div class="right fake-left">
 		<h2 class="text-center">Step 1.</h2>
-		<p class="subtitle">Use <code>$auth->new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
+		<p class="subtitle">Use <code>$auth = new Authenticatron('Application Name')</code> to initialize an instance and <code>$auth->new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>$auth->new($accountName)</code></p>
+		<p><code>$auth = new Authenticatron('Application Name')
+$auth->new($accountName)</code></p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
