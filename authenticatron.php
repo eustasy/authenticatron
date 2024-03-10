@@ -251,6 +251,7 @@ class Authenticatron
 	////    Create a Secret and QR code for a given Member
 	public function new(string $accountName): array
 	{
+		$return = array();
 		$return['Secret'] = $this->makeSecret();
 		// TODO Handle makeSecret returning null.
 		$return['URL'] = $this->getUrl($accountName, $return['Secret']);
