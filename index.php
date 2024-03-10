@@ -3,6 +3,7 @@
 include __DIR__ . '/assets/header.php';
 
 require_once __DIR__ . '/authenticatron.php';
+use eustasy\Authenticatron;
 $auth = new Authenticatron('Authenticatron Example Page');
 $accountName = 'John Smith';
 if (!empty($_POST['secondfactor_secret'])) {
