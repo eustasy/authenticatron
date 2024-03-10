@@ -79,3 +79,8 @@ p {
 .text-center {
 	text-align: center;
 }
+@media ( prefers-color-scheme: dark ) {
+	html {
+		filter: invert(1);
+	}
+}
