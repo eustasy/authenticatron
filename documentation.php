@@ -59,7 +59,8 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p>
-	<pre>$auth = Authenticatron(
+	<pre>use eustasy\Authenticatron;
+	$auth = Authenticatron(
 		string $issuerDefault = 'Example Site',
 		string $phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php'
 	): class</pre>
