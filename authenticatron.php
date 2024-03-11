@@ -16,7 +16,6 @@ namespace eustasy;
 
 abstract class Authenticatron
 {
-	private string $phpQrCode;
 	// A reference for Base32 valid characters.
 	const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 	const phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php';
