@@ -13,12 +13,14 @@
 
 //declare(strict_types=1);
 namespace eustasy;
+require_once __DIR__ . '/vendor/autoload.php';
+use QRcode\QRcode;
+use QRcode\QRstr;
 
 abstract class Authenticatron
 {
 	// A reference for Base32 valid characters.
 	const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-	const phpQrCode = __DIR__ . '/_libs/phpqrcode_2010100721_1.1.4.php';
 
 	////    Create a new Secret
 	public static function makeSecret(int $length = 16): ?string
@@ -64,33 +66,14 @@ abstract class Authenticatron
 	}
 
 	////    Create a Base64 PNG QR Code
-	public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 0, string $Level = 'M'): ?string
+	public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string
 	{
-		// If the required functions are not loaded, fail.
-		// If the file we are about to require doesn't exist or isn't readable, fail.
-		if (
-			!extension_loaded('gd') ||
-			!function_exists('gd_info') ||
-			!is_readable(self::phpQrCode)
-		) {
+		try {
+			$base64_data = QRcode :: base64_png ($URL, QRstr :: QR_ECLEVEL_L, $Size, $Margin);
+			return $base64_data;
+		} catch (\Exception $e) {
 			return null;
 		}
-
-		// Otherwise proceed with PHPQRCode
-
-		// We've checked the file exists, so we can require instead of include.
-		// Something has gone horribly wrong if this doesn't work.
-		require_once self::phpQrCode;
-
-		// Use the object cache to capture the PNG without outputting it.
-		// Kind of hacky but the best way I can find without writing a new QR Library.
-		ob_start();
-		\QRCode::png($URL, null, constant('QR_ECLEVEL_' . $Level), $Size, $Margin);
-		$QR_Base64 = base64_encode(ob_get_contents());
-		ob_end_clean();
-
-		// Return it as a Base64 PNG
-		return 'data:image/png;base64,' . $QR_Base64;
 	}
 
 	////    Decode as Base32

@@ -15,7 +15,6 @@
     ],
     "autoload": {
         "classmap": [
-            "_libs/",
             "authenticatron.php"
         ]
     },
@@ -27,5 +26,8 @@
             "phpunit --testdox tests",
             "@php authenticatron.php"
         ]
+    },
+    "require": {
+        "jysperu/php-qr-code": "^2.0"
     }
 }

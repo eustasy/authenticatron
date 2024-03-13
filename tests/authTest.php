@@ -41,7 +41,7 @@ final class AuthTest extends TestCase
     public function testQrCodeType(): void
     {
         $url = Authenticatron::getUrl('accountName', 'secret', 'issuer');
-        $result = Authenticatron::generateQrCode('url');
+        $result = Authenticatron::generateQrCode($url);
         $this->assertIsString($result);
     }
 

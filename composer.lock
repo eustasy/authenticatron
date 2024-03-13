@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fbcaf3417ceb1b1387fda4943c4c825",
-    "packages": [],
+    "content-hash": "3d668d689f6c4dec856d027c2a66662d",
+    "packages": [
+        {
+            "name": "jysperu/php-qr-code",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jysperu/php-qr-code.git",
+                "reference": "de3fb6e42d1df8cc50355180eb8b1ab36bb66c93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jysperu/php-qr-code/zipball/de3fb6e42d1df8cc50355180eb8b1ab36bb66c93",
+                "reference": "de3fb6e42d1df8cc50355180eb8b1ab36bb66c93",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "QRcode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Based in http://phpqrcode.sourceforge.net/",
+            "keywords": [
+                "PHP QR",
+                "qr",
+                "qr-code",
+                "qr-code-generator",
+                "qr-generator",
+                "qrcode",
+                "qrcode-generator"
+            ],
+            "support": {
+                "source": "https://github.com/jysperu/php-qr-code/tree/2.0.2"
+            },
+            "time": "2022-03-09T03:42:59+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "myclabs/deep-copy",
@@ -244,16 +287,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "11.0.1",
+            "version": "11.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "89702be0ad026873ef3a1605fe8726254eef4e2c"
+                "reference": "7e35a2cbcabac0e6865fd373742ea432a3c34f92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/89702be0ad026873ef3a1605fe8726254eef4e2c",
-                "reference": "89702be0ad026873ef3a1605fe8726254eef4e2c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/7e35a2cbcabac0e6865fd373742ea432a3c34f92",
+                "reference": "7e35a2cbcabac0e6865fd373742ea432a3c34f92",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +353,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.1"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.3"
             },
             "funding": [
                 {
@@ -318,7 +361,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-02T07:34:25+00:00"
+            "time": "2024-03-12T15:35:40+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

@@ -288,7 +288,7 @@ if (!$secret) {
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>generateQrCode(string $URL, int $Size = 4, int $Margin = 0, string $Level = 'M'): ?string</code></p>
+	<p><code>generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -297,14 +297,7 @@ if (!$secret) {
 <div class="right">
 	<p><code>$URL</code> is a valid OTPAuth URL in string form.</p>
 	<p><code>$Size</code> is a non-zero integer, defaults to 4.</p>
-	<p><code>$Margin</code> is an integer, defaults to 0.</p>
-	<p><code>$Level</code> is a string, defaults to 'M'. It defines the error correction level.</p>
-	<ul>
-		<li>Level L (Low) &mdash; 7% of codewords can be restored.</li>
-		<li>Level M (Medium) &mdash; 15% of codewords can be restored.</li>
-		<li>Level Q (Quartile) &mdash; 25% of codewords can be restored.</li>
-		<li>Level H (High) &mdash; 30% of codewords can be restored.</li>
-	</ul>
+	<p><code>$Margin</code> is an integer, defaults to 2.</p>
 </div>
 <div class="clear"></div>
 <div class="left">
