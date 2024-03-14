@@ -44,7 +44,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron New</h3>
+	<h3>Authenticatron::new</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -84,7 +84,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron Check</h3>
+	<h3>Authenticatron::checkCode</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -106,7 +106,7 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p><code>$code</code> is what the user enters to authenticate. A 6 digit string, usually numeric, but not necessarily an integer.</p>
-	<p><code>$secret</code> is the first result from <code>Authenticatron_Check</code>, that you securely stored for later.</p>
+	<p><code>$secret</code> is the first result from <code>new</code>, that you securely stored for later.</p>
 	<p><code>$variance</code> is an integer indicating the adjustment of codes with a 30 second value. Defaults to 2 either side, or 1 minute.</p>
 </div>
 <div class="clear"></div>
@@ -144,7 +144,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron Secret</h3>
+	<h3>Authenticatron::makeSecret</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -220,7 +220,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron URL</h3>
+	<h3>Authenticatron::getUrl</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -260,7 +260,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron QR</h3>
+	<h3>Authenticatron::generateQrCode</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -335,7 +335,7 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron Code</h3>
+	<h3>Authenticatron::getCode</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -377,14 +377,14 @@ if (!$secret) {
 
 
 <div class="right fake-left">
-	<h3>Authenticatron Acceptable</h3>
+	<h3>Authenticatron::getCodesInRange</h3>
 </div>
 <div class="clear"></div>
 <div class="left">
 	<p>Information</p>
 </div>
 <div class="right">
-	<p>This is the array <code>Authenticatron_Check</code> uses to check for valid codes.</p>
+	<p>This is the array <code>checkCode</code> uses to check for valid codes.</p>
 </div>
 <div class="clear"></div>
 <div class="left">
