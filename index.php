@@ -27,7 +27,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><pre>Authenticatron::new($accountName, $issuer)</pre></p>
+		<p><code>Authenticatron::new($accountName, $issuer)</code></p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
