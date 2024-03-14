@@ -13,6 +13,7 @@
         "two-factor-authentication",
         "2fa webauthn"
     ],
+    "type": "library",
     "autoload": {
         "classmap": [
             "authenticatron.php"
