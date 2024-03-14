@@ -16,16 +16,35 @@ Heavily modified to improve security and suit our needs.
 
 ## Installation
 
+### Install with Composer
+
 ```bash
 composer install authenticatron
+```
+
+Require the class in your PHP code:
+
+```php
+////    Import eustasy\Authenticatron with Composer
+require_once __DIR__ . '/vendor/autoload.php';
+use eustasy\Authenticatron;
+```
+
+### Install Manually
+
+Copy [`src/authenticatron.php`](https://github.com/eustasy/authenticatron/blob/main/src/authenticatron.php) into your application folder structure.
+
+Require the class in your PHP code:
+
+```php
+////    Import eustasy\Authenticatron with Composer
+require_once __DIR__ . '/libs/authenticatron.php';
+use eustasy\Authenticatron;
 ```
 
 ## Quick Implementation
 
 ```php
-////    Import eustasy\Authenticatron
-use eustasy\Authenticatron;
-
 ////    Create a new account
 // Returns a secret (to be stored) a URL (to be clicked on) and a QR Code (to be scanned)
 Authenticatron::new($accountName, $issuer);
@@ -37,7 +56,9 @@ Authenticatron::new($accountName, $issuer);
 //    ["QR"]=>
 //    string(630) "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQMAAABP8pKXAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABZklEQVRIia2WUY7DQAhDuQH3vyU3YP1MN+p33EnVJC9ShgGbSVVV66iZ1W/rM16z3u1pjdWobXDEyvc6MUl7vpRpFv2Pjv0N003pUBJy5nid0lYKnry8ZZTkazx1e8sojYKdGiaiUhOxZvmKWuGWNEQWIqYx3LB8zaPrjA36Lr97WAFpiBiyRpaFiKzMiGEYHkF0LusgYT281AK/CUNGBkjlWN7OScIkH5YPx4vSecYkG6RNd5i5gmXMvRBrY2p8nbGiQdBcB+NQ8IxhExLb7j5oIGN0RAKn5aDOj6dfs7Vf3GAdsXUZMN4odZNMp7M7ZGuIa/DzukcEzD0VFTWTrGNOGBsx5rMc6badMVd4bO6yOEO2t+7d6z63LwSMy/NLnx5dqPeMt6LvfR5m7PbQ67Ff2+hrZp9Qa9qO++xkzDUaWo/101sxOzFeydB4yrx9OtTJGd+Yrrc3gfsGCdiJ3NvKv6sT9gdy9gHcop2cdQAAAABJRU5ErkJggg=="
 //  }
+```
 
+```php
 ////    Check a code
 // When a code is entered, just retrieve the secret and check them both.
 Authenticatron::checkCode($code, $secret)
