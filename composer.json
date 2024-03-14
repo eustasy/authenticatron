@@ -33,7 +33,7 @@
     "scripts": {
         "test": [
             "phpunit --testdox tests",
-            "@php authenticatron.php"
+            "@php src/authenticatron.php"
         ]
     }
 }
