@@ -1,10 +1,9 @@
 <?php
 
-include __DIR__ . '/assets/header.php';
-
-require_once __DIR__ . '/authenticatron.php';
-
+require_once __DIR__ . '/vendor/autoload.php';
 use eustasy\Authenticatron;
+
+include __DIR__ . '/assets/header.php';
 
 $issuer = 'Documentation Example';
 if (!empty($_GET['secret'])) {

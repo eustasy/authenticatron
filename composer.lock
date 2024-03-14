@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d848ecc712cecb21824bb56a826fea2",
+    "content-hash": "b2f31a3d728e045c4bc181c072420828",
     "packages": [
         {
             "name": "jysperu/php-qr-code",
@@ -1688,7 +1688,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "ext-gd": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

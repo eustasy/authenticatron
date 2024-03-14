@@ -1,7 +1,7 @@
 <?php
 
 ////    Authenticatron
-// v0.8.1-alpha - MIT Licensed - Property of eustasy
+// v0.8.2-beta - MIT Licensed - Property of eustasy
 // https://github.com/eustasy/authenticatron
 // http://labs.eustasy.org/authenticatron/example
 
@@ -13,7 +13,6 @@
 
 //declare(strict_types=1);
 namespace eustasy;
-require_once __DIR__ . '/vendor/autoload.php';
 use QRcode\QRcode;
 use QRcode\QRstr;
 
