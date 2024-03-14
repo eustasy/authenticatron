@@ -21,7 +21,7 @@ Heavily modified to improve security and suit our needs.
 If you already use Composer then the [eustasy/Authenticatron](https://packagist.org/packages/eustasy/authenticatron) package can be easily installed.
 
 ```bash
-composer install eustasy/authenticatron
+composer require eustasy/authenticatron
 ```
 
 Require the class in your PHP code:
