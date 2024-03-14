@@ -28,8 +28,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 	</div>
 	<div class="right">
 		<p>
-		<pre>use eustasy\Authenticatron;
-Authenticatron::new($accountName, $issuer)</pre>
+		<pre>Authenticatron::new($accountName, $issuer)</pre>
 		</p>
 	</div>
 	<div class="break clear"></div>
@@ -91,16 +90,16 @@ Authenticatron::new($accountName, $issuer)</pre>
 		<p>Code</p>
 	</div>
 	<div class="right">
-		<p><code>Authenticatron::checkCode($Code, $secret)</code></p>
+		<p><code>Authenticatron::checkCode($code, $secret)</code></p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
 		<p>Input</p>
 	</div>
 	<div class="right">
-		<p><code>$Code</code> is the user input, the code that is generated on their device for authentication. Should be numeric-only in most cases, alpha-numeric if you change some settings.</p>
+		<p><code>$code</code> is the user input, the code that is generated on their device for authentication. Should be numeric-only in most cases, alpha-numeric if you change some settings.</p>
 		<p><code>$secret</code> is the secret the member scanned that you securely stored for later.</p>
-		<p><code>$Variance</code> is an optional integer indicating the adjustment of codes with a 30 second value. Defaults to 2 either side, or 1 minute.</p>
+		<p><code>$variance</code> is an optional integer indicating the adjustment of codes with a 30 second value. Defaults to 2 either side, or 1 minute.</p>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
