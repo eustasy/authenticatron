@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../authenticatron.php';
+require_once __DIR__ . '/vendor/autoload.php';
 use eustasy\Authenticatron;
 
 use PHPUnit\Framework\TestCase;
