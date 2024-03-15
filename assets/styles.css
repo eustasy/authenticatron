@@ -38,7 +38,7 @@ p {
 /* $ Classes */
 .break {
 	padding-top: 10rem;
-	width: 100%;
+	width: width: calc(100vw - 2rem);
 }
 .half {
 	float: left;
@@ -75,7 +75,7 @@ p {
 }
 .right {
 	float: left;
-	max-width: calc(100% - 10rem);
+	max-width: calc(100vw - 14rem);
 }
 .text-center {
 	text-align: center;
