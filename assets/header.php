@@ -1,7 +1,8 @@
 <!DocType html>
 <html>
 <head>
-	<meta charset="ASCII">
+	<meta charset="UTF-8">
+	<meta name="viewport">
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
 	<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono">
