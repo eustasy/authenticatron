@@ -72,7 +72,7 @@ if (!empty($_POST['secondfactor_secret'])) {
 	</div>
 	<div class="right">
 		<p>Try scanning this into an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>. You should see a code and a countdown clock until it changes.</p>
-		<img src="<?php echo $secondAuth['QR']; ?>" alt="Second Factor Authentication Code">
+		<img alt="QR Code for 2nd factor authentication" src="<?php echo $secondAuth['QR']; ?>">
 	</div>
 </div>
 
@@ -134,7 +134,7 @@ if (
 	<div class="break clear"></div>
 	<div class="left" id="example">
 		<p>Example</p>
-		<img alt="Google Authenticator Icon" src="assets/google_authenticator-128.png">
+		<img alt="Google Authenticator Icon" src="assets/google_authenticator_v3_480s.png">
 	</div>
 	<div class="right">
 		<?php
