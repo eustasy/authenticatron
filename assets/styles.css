@@ -50,15 +50,6 @@ p {
 .clear {
 	clear: both;
 }
-@media screen and ( max-width: 70rem ) {
-	.break-small {
-		padding-top: 10rem;
-		width: 100%;
-	}
-	.clear-small {
-		clear: both;
-	}
-}
 .left {
 	color: #888888;
 	float: left;
@@ -79,6 +70,31 @@ p {
 }
 .text-center {
 	text-align: center;
+}
+@media screen and ( max-width: 70rem ) {
+	.break-small {
+		padding-top: 10rem;
+		width: 100%;
+	}
+	.clear-small {
+		clear: both;
+	}
+	.left {
+		float: none;
+		max-width: calc(100vw - 4rem);
+		text-align: left;
+	}
+	.right {
+		float: none;
+		max-width: calc(100vw - 4rem);
+	}
+	.right.fake-left {
+		margin-left: 0;
+		max-width: calc(100vw - 4rem);
+	}
+	.left img {
+		margin: 0;
+	}
 }
 @media ( prefers-color-scheme: dark ) {
 	html {
