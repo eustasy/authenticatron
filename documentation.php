@@ -436,8 +436,7 @@ if (!$secret) {
 	<p><strong>TOTP</strong> abbreviates Time-based One-time Password Algorithm. TOTP Algorithms generate passwords from a given secret that are only valid over a very specific time period.</p>
 </div>
 
-<div class="break clear"></div>
 
-</body>
+<?php
 
-</html>
+include __DIR__ . '/assets/footer.php';
