@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
 	<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono">
