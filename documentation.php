@@ -20,7 +20,7 @@ if (!$secret) {
 	<div class="break clear"></div>
 
 	<div class="left">
-		<img alt="lifefloat" src="assets/google_help-128.png">
+		<img alt="Google Help Lifeboat Ring Icon" src="assets/google_help-128.png">
 	</div>
 	<div class="right">
 		<h3 class="color-flatui-pomegranate">Warning: No cryptographically secure random available.</h3>
@@ -129,7 +129,7 @@ if (!$secret) {
 <div class="break clear"></div>
 
 <div class="left">
-	<img alt="lifefloat" src="assets/google_help-128.png">
+	<img alt="Google Help Lifeboat Ring Icon" src="assets/google_help-128.png">
 </div>
 <div class="right">
 	<h3 class="color-flatui-pomegranate">Warning: The functions below are for advanced users only.</h3>
@@ -314,7 +314,7 @@ if (!$secret) {
 		echo '<!-- PHPQRCode -->';
 		$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
 		$QR_Base64 = Authenticatron::generateQrCode($URL);
-		echo '<p><img src="' . $QR_Base64 . '"></p>';
+		echo '<p><img alt="QR Code for 2nd factor authentication" src="' . $QR_Base64 . '"></p>';
 	} else {
 		echo '<!-- Google Chart -->';
 		if (!extension_loaded('gd') || !function_exists('gd_info')) {
@@ -324,11 +324,11 @@ if (!$secret) {
 		if (isset($_GET['googlechart'])) {
 			echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
 		}
-		echo '<p><img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($URL) . '"></p>';
+		echo '<p><img alt="QR Code for 2nd factor authentication" src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($URL) . '"></p>';
 	}
 	?>
 	<p><strong>Try scanning this QR code with your phone.</strong></p>
-	<p>This should open an app like <a href="https://m.google.com/authenticator">Google Authenticator</a>.</p>
+	<p>This should open an app like <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a>.</p>
 </div>
 <div class="break clear"></div>
 
@@ -404,7 +404,7 @@ if (!$secret) {
 <div class="clear"></div>
 <div class="left">
 	<p>Output</p>
-	<img alt="Google Authenticator Icon" src="assets/google_authenticator-128.png">
+	<img alt="Google Authenticator Icon" src="assets/google_authenticator_v3_480s.png">
 </div>
 <div class="right">
 	<p>Outputs the calculated code for the current or provided timestamp.</p>
@@ -423,7 +423,7 @@ if (!$secret) {
 <div class="break clear"></div>
 
 <div class="left" id="glossary">
-	<img alt="lifefloat" src="assets/google_help-128.png">
+	<img alt="Google Help Lifeboat Ring Icon" src="assets/google_help-128.png">
 </div>
 <div class="right">
 	<h3>Glossary</h3>
