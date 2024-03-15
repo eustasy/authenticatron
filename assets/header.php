@@ -6,7 +6,7 @@
 	<meta name="description" content="A simple PHP script to create HOTP / TOTP / Google Authenticator secrets, corresponding QR links and code verification.">
 	<title>Authenticatron</title>
 	<link rel="icon" href="assets/favicon.ico">
-	<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono">
+	<link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Sans+Mono&display=swap">
 	<link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/combine/gh/eustasy/Colors.css@1/colors.min.css,gh/necolas/normalize.css@8/normalize.min.css">
 	<link rel="stylesheet" media="all" href="assets/styles.css">
 </head>
