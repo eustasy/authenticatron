@@ -148,7 +148,4 @@ echo $OpenSSL_Block;
 
 echo $GD_Block;
 
-echo '
-	<div class="clear break"></div>
-</body>
-</html>';
+include __DIR__ . '/assets/footer.php';
