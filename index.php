@@ -158,7 +158,8 @@ if (
 		<form action="#example" method="POST">
 			<!-- WARNING: You should never reveal real secrets like this. -->
 			<input name="secondfactor_secret" type="hidden" value="<?php echo $secret; ?>">
-			<input name="secondfactor_code" type="text" maxlength="6">
+			<label for="secondfactor_code">2fa Code</label>
+			<input name="secondfactor_code" id="secondfactor_code" type="text" maxlength="6">
 			<input type="submit" value="Check">
 		</form>
 	</div>
