@@ -16,6 +16,7 @@ samp {
 	overflow-y: hidden;
 	padding: 0.2rem 0.3rem;
 	tab-size: 4;
+	max-width: 70rem;
 }
 hr {
 	border: 0;
