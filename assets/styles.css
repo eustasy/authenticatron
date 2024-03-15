@@ -67,7 +67,7 @@ p {
 }
 .right {
 	float: left;
-	max-width: calc(100vw - 14rem);
+	max-width: 24rem;
 }
 .text-center {
 	text-align: center;
