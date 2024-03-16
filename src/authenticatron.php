@@ -3,7 +3,6 @@
 ////    Authenticatron
 // MIT Licensed - Property of eustasy
 // https://github.com/eustasy/authenticatron
-// http://labs.eustasy.org/authenticatron/example
 
 // A few quick notes:
 // Secret Length defaults to 16.
