@@ -69,7 +69,7 @@ abstract class Authenticatron
 	public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string
 	{
 		try {
-			$base64_data = QRcode :: base64_png ($URL, QRstr :: QR_ECLEVEL_L, $Size, $Margin);
+			$base64_data = QRcode::base64_png($URL, QRstr :: QR_ECLEVEL_L, $Size, $Margin);
 			return $base64_data;
 		} catch (\Exception $e) {
 			return null;
