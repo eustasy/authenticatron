@@ -23,11 +23,12 @@
         ]
     },
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ext-gd": "*",
         "jysperu/php-qr-code": "^2.0"
     },
     "require-dev": {
+        "php": ">=8.3",
         "phpunit/phpunit": "11"
     },
     "scripts": {
