@@ -39,7 +39,7 @@ p {
 /* $ Classes */
 .break {
 	padding-top: 10rem;
-	width: width: calc(100vw - 2rem);
+	width: calc(100vw - 2rem);
 }
 .half {
 	float: left;
