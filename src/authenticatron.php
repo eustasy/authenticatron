@@ -13,6 +13,7 @@
 
 //declare(strict_types=1);
 namespace eustasy;
+
 use QRcode\QRcode;
 use QRcode\QRstr;
 
