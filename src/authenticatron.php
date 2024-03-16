@@ -19,7 +19,7 @@ use QRcode\QRstr;
 abstract class Authenticatron
 {
 	// A reference for Base32 valid characters.
-	const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+	const BASE32CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
 	////    Create a new Secret
 	public static function makeSecret(int $length = 16): ?string
@@ -43,7 +43,7 @@ abstract class Authenticatron
 		// For each letter of the secret, generate a random Base32 Characters.
 		$secret = '';
 		for ($i = 0; $i < $length; $i++) {
-			$secret .= self::base32Chars[ord($random[$i]) & 31];
+			$secret .= self::BASE32CHARS[ord($random[$i]) & 31];
 		}
 
 		return $secret;
@@ -84,7 +84,7 @@ abstract class Authenticatron
 		}
 
 		// A reference for converting from Base32
-		$base32CharsArray = str_split(self::base32Chars);
+		$base32CharsArray = str_split(self::BASE32CHARS);
 		$base32CharsFlipped = array_flip($base32CharsArray);
 
 		// Remove padding characters (there shouldn't be any)
