@@ -223,7 +223,7 @@ abstract class Authenticatron
 		// TODO Handle makeSecret returning null.
 		$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
 		$return['QR'] = self::generateQrCode($return['URL']);
-		// WARNING QR returns null if not available 
+		// WARNING QR returns null if not available
 		return $return;
 	}
 }
