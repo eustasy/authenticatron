@@ -54,8 +54,7 @@ abstract class Authenticatron
 	{
 
 		// Strip any colons, they screw things up.
-		$toStrip = array(':', '?', '&', '=', '+', '@', '/', '\\', '#');
-		// TODO It might also be a good idea to other strip special characters
+		$toStrip = array(':', ';', '?', '&', '=', '+', '@', '/', '\\', '#', '<', '>', '"', '%', '|', '^', '~', '`', '{', '}', '[', ']');
 		$issuer = str_replace($toStrip, '', $issuer);
 		$accountName = str_replace($toStrip, '', $accountName);
 
