@@ -58,6 +58,8 @@ plugins:
     checks:
       CleanCode/BooleanArgumentFlag:
         enabled: false
+      CleanCode/StaticAccess:
+        enabled: false
       Controversial/CamelCaseParameterName:
         enabled: false
       Controversial/CamelCaseVariableName:
