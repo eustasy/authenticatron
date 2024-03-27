@@ -218,10 +218,13 @@ abstract class Authenticatron
 	{
 		$return = array();
 		$return['Secret'] = self::makeSecret();
-		// TODO Handle makeSecret returning null.
-		$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
-		$return['QR'] = self::generateQrCode($return['URL']);
-		// WARNING QR returns null if not available
+		if (is_null($return['Secret'])) {
+			$return['Error'] = 'No secure random source found.';
+		} else {
+			$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
+			$return['QR'] = self::generateQrCode($return['URL']);
+			// WARNING QR returns null if not available
+		}
 		return $return;
 	}
 }
