@@ -17,6 +17,18 @@ if (!empty($_POST['secondfactor_secret'])) {
 
 <div class="break clear"></div>
 
+<div class="right fake-left">
+	<h1>Installation</h1>
+	<p>If you already use Composer then the eustasy/Authenticatron package can be easily installed.</p>
+	<p><code>composer require eustasy/authenticatron</code></p>
+	<p>Require the class in your PHP code:</p>
+	<pre>////    Import eustasy\Authenticatron with Composer
+require_once __DIR__ . '/vendor/autoload.php';
+use eustasy\Authenticatron;</pre>
+</div>
+
+<div class="break clear"></div>
+
 <div class="half half-left">
 	<div class="right fake-left">
 		<h2 class="text-center">Step 1.</h2>
