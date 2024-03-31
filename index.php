@@ -39,8 +39,12 @@ use eustasy\Authenticatron;</pre>
 
 <div class="break clear"></div>
 
-<div class="half half-left">
+<div class="right fake-left">
 	<h1>Quick Implementation</h1>
+</div>
+<div class="clear"></div>
+
+<div class="half half-left">
 	<div class="right fake-left">
 		<h2>Step 1.</h2>
 		<p class="subtitle"><code>Authenticatron::new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
