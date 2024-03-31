@@ -163,8 +163,7 @@ if (
 		<p>Example</p>
 		<img alt="Google Authenticator Icon" src="assets/google_authenticator_v3_480s.png">
 	</div>
-	<div class="right">
-		<?php
+	<div class="right"><?php
 		if (!empty($_POST['secondfactor_code'])) {
 			if (
 				strlen($_POST['secondfactor_code']) == 6 &&
@@ -180,7 +179,7 @@ if (
 			}
 			echo '<div class="break clear"></div>';
 		}
-		?>
+?>
 		<p>Enter the code that your device generates after scanning the image to from Step 1.</p>
 		<form action="#example" method="POST">
 			<!-- WARNING: You should never reveal real secrets like this. -->
