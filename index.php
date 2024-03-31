@@ -30,8 +30,9 @@ use eustasy\Authenticatron;</pre>
 <div class="break clear"></div>
 
 <div class="half half-left">
+	<h1>Quick Implementation</h1>
 	<div class="right fake-left">
-		<h2 class="text-center">Step 1.</h2>
+		<h2>Step 1.</h2>
 		<p class="subtitle"><code>Authenticatron::new</code> to create a new secret for a member, and fetch a secure image for scanning.</p>
 	</div>
 	<div class="break clear"></div>
@@ -92,7 +93,7 @@ use eustasy\Authenticatron;</pre>
 
 <div class="half half-right">
 	<div class="right fake-left">
-		<h2 class="text-center">Step 2.</h2>
+		<h2>Step 2.</h2>
 		<p class="subtitle">Use <code>Authenticatron::checkCode</code> to confirm the setup and check time-unique codes at every login.</p>
 	</div>
 	<div class="break clear"></div>
