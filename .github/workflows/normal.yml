@@ -52,7 +52,7 @@ jobs:
       run: ./.normal/check-php.sh
       
     - name: .Normal - Check SQL
-      uses: Bidaya0/sql-lint-in-action@v0.0.2
+      uses: Bidaya0/sql-lint-in-action@v0.0.3
       
     - name: .Normal - Check JSON
       run: php .normal/check-json.php
