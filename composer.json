@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "ext-xml": "*",
-        "phpunit/phpunit": "11"
+        "phpunit/phpunit": "11.5.50"
     },
     "scripts": {
         "test": [
