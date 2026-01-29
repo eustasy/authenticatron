@@ -13,7 +13,7 @@ jobs:
   normal-tests:
     strategy:
       matrix:
-        php-version: [ "8.3", "8.2", "8.1" ]
+        php-version: [ "8.3", "8.2", "8.1", ]
     runs-on: ubuntu-latest
     steps:
     
@@ -43,7 +43,7 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       
     - name: .Normal - Setup
-      run: git clone https://github.com/eustasy/.normal.git && cd .normal && git checkout af240a6c8960177bcb1d07815732df7eb15970c1 && cd ../ && npm install --silent -g npm && npm install --silent -g acorn
+      run: git clone https://github.com/eustasy/.normal.git && cd .normal && git checkout af240a6c8960177bcb1d07815732df7eb15970c1 && cd ../ && npm install --silent -g npm && npm install --silent -g acorn sql-lint
       
     - name: .Normal - Check JavaScript
       run: ./.normal/check-javascript.sh
@@ -52,7 +52,7 @@ jobs:
       run: ./.normal/check-php.sh
       
     - name: .Normal - Check SQL
-      uses: Bidaya0/sql-lint-in-action@v0.0.3
+      run: sql-lint .
       
     - name: .Normal - Check JSON
       run: php .normal/check-json.php
