@@ -61,7 +61,7 @@ use eustasy\Authenticatron;</pre>
 		<p>Input</p>
 	</div>
 	<div class="right">
-		<p><code>$accountName</code> is a string containing your members username or nice-name, perferably something unique and quickly identifiable.</p>
+		<p><code>$accountName</code> is a string containing your member's username or nice-name, preferably something unique and quickly identifiable.</p>
 		<p><code>$issuer</code> is a string containing the name of your app or site.</p>
 	</div>
 	<div class="break clear"></div>
@@ -143,7 +143,7 @@ use eustasy\Authenticatron;</pre>
 		<p>Handling</p>
 	</div>
 	<div class="right">
-		<p>You only need to check an input is alpha-numeric, and maybe 6 characters long before checking it against a retreieved secret.</p>
+		<p>You only need to check an input is alpha-numeric, and maybe 6 characters long before checking it against a retrieved secret.</p>
 		<pre>$secret = ...;
 if (
 	strlen($_POST['secondfactor_code']) == 6 &&
@@ -180,7 +180,7 @@ if (
 			echo '<div class="break clear"></div>';
 		}
 ?>
-		<p>Enter the code that your device generates after scanning the image to from Step 1.</p>
+		<p>Enter the code that your device generates after scanning the image from Step 1.</p>
 		<form action="#example" method="POST">
 			<!-- WARNING: You should never reveal real secrets like this. -->
 			<input name="secondfactor_secret" type="hidden" value="<?php echo $secret; ?>">
