@@ -1,8 +1,5 @@
 # Authenticatron
 
-[![Normal](https://github.com/eustasy/authenticatron/actions/workflows/normal.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/normal.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9b7ab191d0c7f39b3471/maintainability)](https://codeclimate.com/github/eustasy/authenticatron/maintainability)
-
 A simple PHP script to create HOTP / TOTP / Google Authenticator secrets, corresponding QR links and code verification.
 
 Based on the original BSD 2 Licensed work found at [PHPGangsta/GoogleAuthenticator](https://github.com/PHPGangsta/GoogleAuthenticator)
