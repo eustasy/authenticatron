@@ -22,7 +22,7 @@ final class AuthTest extends TestCase
         $this->assertIsString($result);
     }
 
-    // Test that the secret is a string
+    // Test that the secret contains only valid Base32 characters
     public function testSecretChars(): void
     {
         $result = Authenticatron::makeSecret();
