@@ -11,8 +11,9 @@ Heavily modified to improve security and suit our needs.
 
 ## Requirements
 
-- A [supported version](https://www.php.net/supported-versions.php) of PHP.
-- PHP GD extensions like `php8.x-gd` for QR Code generation.
+- PHP >= 8.2
+- `ext-gd` (e.g. `php8.x-gd`) for QR Code generation.
+- [`jysperu/php-qr-code`](https://packagist.org/packages/jysperu/php-qr-code) — installed automatically via Composer.
 
 ## Installation
 
@@ -90,7 +91,7 @@ Brute forcing of codes can be fixed in much the same way as brute forcing passwo
 
 - Fixes time-matching bug for better code recognition.
 - Encodes URL to work best with Google Authenticator.
-- Removes `rand` in favour of `random_bytes` or `openssl_random_pseudo_bytes` for improved security.
+- Removes `rand` in favour of `random_bytes` for improved security.
 - Returns base64 PNG rather than Google Chart to better obscure secret from snoopers.
 
 With thanks to [RebThrees bug report](https://github.com/PHPGangsta/GoogleAuthenticator/issues/11).

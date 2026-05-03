@@ -14,32 +14,8 @@ if (!empty($_GET['secret'])) {
 
 if (!$secret) {
 	$secret = 'AUTHENTICATRON23';
-?>
-	<div class="break clear"></div>
-	<hr>
-	<div class="break clear"></div>
-
-	<div class="left">
-		<img alt="Google Help Lifeboat Ring Icon" src="assets/google_help-128.png">
-	</div>
-	<div class="right">
-		<h3 class="color-flatui-pomegranate">Warning: No cryptographically secure random available.</h3>
-		<p>Try upgrading PHP or installing OpenSSL.</p>
-		<p>Proceeding with <code>AUTHENTICATRON23</code>.</p>
-	</div>
-
-	<div class="break clear"></div>
-	<hr>
-	<div class="break clear"></div>
-<?php
-} else {
-?>
-	<div class="break clear"></div>
-<?php
 }
-
 ?>
-
 
 
 
@@ -151,42 +127,15 @@ if (!$secret) {
 	<p>Information</p>
 </div>
 <div class="right">
-	<p>Generates a 16-digit secret, never to be shared with anyone except via internal non-cachable QR code.</p>
-	<p>Generated using RandomBytes if it is available, falling back to OpenSSL if it is secure.</p>
+	<p>Generates a 16-character secret, never to be shared with anyone except via an internal non-cacheable QR code.</p>
+	<p>Generated using <code>random_bytes</code>, which requires PHP &gt;= 8.2.</p>
 	<?php
-	$RandomBytes = false;
-	$OpenSSL = false;
 	if (function_exists('random_bytes')) {
-		$RandomBytes = true;
-		echo '
-					<p class="color-flatui-nephritis">RandomBytes is available.</p>';
+		echo '<p class="color-flatui-nephritis">RandomBytes is available.</p>';
+		echo '<p class="color-flatui-nephritis"><strong>Your installation is ready.</strong></p>';
 	} else {
-		echo '
-					<p class="color-flatui-pomegranate">RandomBytes is not available.</p>';
-	}
-	if (function_exists('openssl_random_pseudo_bytes')) {
-		$Random = openssl_random_pseudo_bytes(1, $Strong);
-		if ($Strong) {
-			$OpenSSL = true;
-			echo '
-						<p class="color-flatui-nephritis">OpenSSL is installed, and secure.</p>';
-		} else {
-			echo '
-						<p class="color-flatui-pomegranate">OpenSSL is installed, but not secure.</p>';
-		}
-	} else {
-		echo '
-					<p class="color-flatui-pomegranate">OpenSSL is not installed.</p>';
-	}
-	if ($RandomBytes) {
-		echo '
-					<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	} elseif ($OpenSSL) {
-		echo '
-					<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>';
-	} else {
-		echo '
-					<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>';
+		echo '<p class="color-flatui-pomegranate">RandomBytes is not available. PHP &gt;= 8.2 is required.</p>';
+		echo '<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>';
 	}
 	?>
 </div>
@@ -195,7 +144,7 @@ if (!$secret) {
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>Authenticatron::makeSecret(int $length = 16): ?string</code></p>
+	<p><code>Authenticatron::makeSecret(int $length = 16): string</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -209,7 +158,7 @@ if (!$secret) {
 	<p>Output</p>
 </div>
 <div class="right">
-	<p>Returns a <code>$length</code> long string with 32bit only Characters, or <code>null</code> on failure (usually due to a lack of security).</p>
+	<p>Returns a <code>$length</code> long string of Base32 characters.</p>
 	<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 	<pre><?php
 			echo '<p><a href="?secret=' . $secret . '">' . $secret . '</a></p>';
@@ -350,7 +299,7 @@ if (!$secret) {
 	<p>Code</p>
 </div>
 <div class="right">
-	<p><code>getCode(string $secret, int $timestamp = null, int $codeLength = 6): string</code></p>
+	<p><code>getCode(string $secret, ?int $timestamp = null, int $codeLength = 6): string</code></p>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -358,7 +307,7 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p><code>$secret</code> is a valid Base32 Secret in string form.</p>
-	<p><code>$timestamp</code> is a unix timestamp, defaults to false to use the current timestamp.</p>
+	<p><code>$timestamp</code> is a unix timestamp divided by 30, defaults to null to use the current time.</p>
 	<p><code>$codeLength</code> is a non-zero integer, the desired length of the generated code. Defaults to 6.</p>
 </div>
 <div class="clear"></div>

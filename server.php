@@ -3,8 +3,6 @@
 include __DIR__ . '/assets/header.php';
 
 $RandomBytes = false;
-$OpenSSL = false;
-$Secure = false;
 
 
 
@@ -38,38 +36,6 @@ $RandomBytes_Block .= '
 
 
 
-////	OpenSSL
-$OpenSSL_Block = '
-	<div class="clear"></div>
-	<div class="left">
-		<p>OpenSSL</p>
-	</div>
-	<div class="right">
-		<p>OpenSSL is used as a fallback for secure key generation.</p>';
-if (function_exists('openssl_random_pseudo_bytes')) {
-	openssl_random_pseudo_bytes(1, $Strong);
-	if ($Strong) {
-		$OpenSSL = true;
-		$Secure = true;
-		$OpenSSL_Block .= '
-		<p class="color-flatui-nephritis">Installed, Secure.</p>';
-	} else {
-		$OpenSSL_Block .= '
-		<p class="color-flatui-pomegranate">Installed, Insecure.</p>';
-	}
-} else {
-	$OpenSSL_Block .= '
-		<p class="color-flatui-pomegranate">Not Installed</p>';
-}
-$OpenSSL_Block .= '
-	</div>';
-
-
-
-
-
-
-
 ////	Security
 $Security_Block = '
 	<div class="clear break"></div>
@@ -82,19 +48,10 @@ $Security_Block = '
 		<h3>Security</h3>';
 if ($RandomBytes) {
 	$Security_Block .= '
-		<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	if ($OpenSSL) {
-		$Security_Block .= '
-		<p>OpenSSL is available as a fallback if necessary.</p>';
-	}
-} elseif ($OpenSSL) {
-	$Security_Block .= '
-		<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
-		<p>This is the second best option; consider upgrading to PHP 8.x.</p>';
+		<p class="color-flatui-nephritis"><strong>Your installation uses RandomBytes.</strong></p>';
 } else {
 	$Security_Block .= '
-		<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>
-		<p>Try upgrading your PHP version, or installing <code>openssl</code>.</p>';
+		<p class="color-flatui-pomegranate"><strong>Your installation will not work. PHP &gt;= 8.2 is required.</strong></p>';
 }
 $Security_Block .= '
 	</div>';
@@ -137,11 +94,8 @@ $GD_Block .= '
 
 
 
-
 echo $Security_Block;
 echo $RandomBytes_Block;
-echo $OpenSSL_Block;
-
 echo $GD_Block;
 
 include __DIR__ . '/assets/footer.php';

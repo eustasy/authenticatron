@@ -15,9 +15,6 @@
     ],
     "type": "library",
     "autoload": {
-        "psr-4": {
-            "Eustasy\\Authenticatron\\": "src/"
-        },
         "classmap": [
             "src/authenticatron.php"
         ]

@@ -22,23 +22,9 @@ abstract class Authenticatron
 	const BASE32CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
 	////    Create a new Secret
-	public static function makeSecret(int $length = 16): ?string
+	public static function makeSecret(int $length = 16): string
 	{
-		if (
-			!function_exists('random_bytes') && // Requires PHP 7
-			!function_exists('openssl_random_pseudo_bytes') // Requires OpenSSL
-		) {
-			return null;
-		} elseif (function_exists('random_bytes')) {
-			$random = random_bytes($length);
-		} elseif (function_exists('openssl_random_pseudo_bytes')) {
-			// Otherwise try to use OpenSSL
-			$random = openssl_random_pseudo_bytes($length, $strong);
-			if (!$strong) {
-				// Fail if not strong.
-				return null;
-			}
-		}
+		$random = random_bytes($length);
 
 		// For each letter of the secret, generate a random Base32 Characters.
 		$secret = '';
@@ -126,7 +112,7 @@ abstract class Authenticatron
 	}
 
 	////    Calculate the current code.
-	public static function getCode(string $secret, int $timestamp = null, int $codeLength = 6): string
+	public static function getCode(string $secret, ?int $timestamp = null, int $codeLength = 6): string
 	{
 		// Set the timestamp to something sensible.
 		// You should only over-ride this if you really know why.
@@ -218,13 +204,9 @@ abstract class Authenticatron
 	{
 		$return = array();
 		$return['Secret'] = self::makeSecret();
-		if (is_null($return['Secret'])) {
-			$return['Error'] = 'No secure random source found.';
-		} else {
-			$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
-			$return['QR'] = self::generateQrCode($return['URL']);
-			// WARNING QR returns null if not available
-		}
+		$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
+		$return['QR'] = self::generateQrCode($return['URL']);
+		// WARNING QR returns null if GD is not available
 		return $return;
 	}
 }
