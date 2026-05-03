@@ -56,7 +56,7 @@ Authenticatron::checkCode($code, $secret)
 
 ## How it Works
 
-Rather than rely on expensive SMS (text messages) that lack global deliverability, Google Authenticator does not even require a network connection to generate it's codes. Instead, simply scan the generated QR code with your camera, and receive a new, 6 digit second factor of authentication from your phone every 30 seconds.
+Rather than rely on expensive SMS (text messages) that lack global deliverability, Google Authenticator does not even require a network connection to generate its codes. Instead, simply scan the generated QR code with your camera, and receive a new, 6-digit second factor of authentication from your phone every 30 seconds.
 
 It does this by generating a 16 character secret, or seed, that is then encoded as a special URL, along with some identifying information, and outputted as a QR code. The phone reads the codes, and the Google Authenticator app runs the secret through a code generation process to output a time-restricted code. The website follows the same process to produce matching codes without actually having to communicate further.
 
