@@ -83,10 +83,6 @@ $Security_Block = '
 if ($RandomBytes) {
 	$Security_Block .= '
 		<p class="color-flatui-nephritis"><strong>Your installation will use RandomBytes.</strong></p>';
-	if ($MCrypt) {
-		$Security_Block .= '
-		<p>MCrypt is available as a fallback if necessary.</p>';
-	}
 	if ($OpenSSL) {
 		$Security_Block .= '
 		<p>OpenSSL is available as a fallback if necessary.</p>';
