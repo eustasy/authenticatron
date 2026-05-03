@@ -90,11 +90,11 @@ if ($RandomBytes) {
 } elseif ($OpenSSL) {
 	$Security_Block .= '
 		<p class="color-flatui-nephritis"><strong>Your installation will use OpenSSL.</strong></p>
-		<p>This is the second best option, maybe try upgrading to PHP 8.x or installing <code>php[version]-mcrypt</code> ?</p>';
+		<p>This is the second best option; consider upgrading to PHP 8.x.</p>';
 } else {
 	$Security_Block .= '
 		<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>
-		<p>Maybe try upgrading your PHP version, or installing <code>php[version]-mcrypt</code> or <code>openssl</code> ?</p>';
+		<p>Try upgrading your PHP version, or installing <code>openssl</code>.</p>';
 }
 $Security_Block .= '
 	</div>';
