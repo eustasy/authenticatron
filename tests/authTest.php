@@ -95,7 +95,7 @@ final class AuthTest extends TestCase
     public function testCodeDeterminism(): void
     {
         $secret = Authenticatron::makeSecret();
-        $timestamp = (int) floor(time() / 30);
+        $timestamp = time();
         $this->assertEquals(
             Authenticatron::getCode($secret, $timestamp),
             Authenticatron::getCode($secret, $timestamp)
@@ -144,8 +144,8 @@ final class AuthTest extends TestCase
     public function testCheckCodeInvalid(): void
     {
         $secret = Authenticatron::makeSecret();
-        // Timestamp 1 = 30 seconds after Unix epoch, will never be within variance of now
-        $oldCode = Authenticatron::getCode($secret, 1);
+        // Unix timestamp 30 = 30 seconds after epoch, will never be within variance of now
+        $oldCode = Authenticatron::getCode($secret, 30);
         $this->assertFalse(Authenticatron::checkCode($oldCode, $secret));
     }
 

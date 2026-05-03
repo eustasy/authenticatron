@@ -307,7 +307,7 @@ if (!$secret) {
 </div>
 <div class="right">
 	<p><code>$secret</code> is a valid Base32 Secret in string form.</p>
-	<p><code>$timestamp</code> is a unix timestamp divided by 30, defaults to null to use the current time.</p>
+	<p><code>$timestamp</code> is a unix timestamp override, defaults to null to use the current time.</p>
 	<p><code>$codeLength</code> is a non-zero integer, the desired length of the generated code. Defaults to 6.</p>
 </div>
 <div class="clear"></div>

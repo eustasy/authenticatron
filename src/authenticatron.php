@@ -117,12 +117,15 @@ abstract class Authenticatron
 		// Set the timestamp to something sensible.
 		// You should only over-ride this if you really know why.
 		if ($timestamp === null) {
-			$timestamp = (int) floor(time() / 30);
+			$timestamp = time();
 		}
 
-		// Pack the Timestamp into a binary string
+		// Convert unix timestamp to a 30-second time step
+		$timeStep = (int) floor($timestamp / 30);
+
+		// Pack the time step into a binary string
 		// N = Unsigned long (always 32 bit, big endian byte order)
-		$timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timestamp);
+		$timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timeStep);
 
 		// Decode (?) the Secret
 		$secretDecoded = self::base32Decode($secret);
@@ -177,7 +180,7 @@ abstract class Authenticatron
 		// From the negative of the variance to the positive equivalent.
 		for ($i = -$variance; $i <= $variance; $i++) {
 			// Add that amount in increments of 30 seconds.
-			$loopTime = floor(time() / 30) + $i;
+			$loopTime = time() + ($i * 30);
 			// Add the code to the array.
 			$acceptable[$i] = self::getCode($secret, $loopTime);
 		}
