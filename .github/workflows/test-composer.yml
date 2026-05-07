@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
+      with:
+        persist-credentials: false
     
     - name: Install PHP ${{ matrix.php-version }}
       uses: shivammathur/setup-php@v2
