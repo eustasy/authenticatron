@@ -21,7 +21,7 @@ jobs:
         persist-credentials: false
     
     - name: Install PHP ${{ matrix.php-version }}
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # v2.37.0
       with:
         php-version: ${{ matrix.php-version }}
         #extensions: mbstring
