@@ -5,3 +5,7 @@ vendor/
 .qlty/plugin_cachedir
 .qlty/out
 .qlty/logs
+.phpunit.cache/*
+.phpunit.result.cache
+coverage/*
+composer.lock

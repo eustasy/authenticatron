@@ -148,6 +148,7 @@ file_patterns = [
   "**/*.yml",         # yamllint / actionlint / zizmor (covers dependabot + workflows)
   "**/*.yaml",        # yamllint / actionlint / zizmor
   "**/composer.json", # owned by composer (inside prettier's JSON domain)
+  "**/composer.lock", # composer-generated lockfile; prettier infers no parser for .lock
 ]
 
 # 3. actionlint + zizmor already lint workflows with GitHub-aware rules, so
