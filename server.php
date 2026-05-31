@@ -6,10 +6,6 @@ $RandomBytes = false;
 
 
 
-
-
-
-
 ////	RandomBytes
 $RandomBytes_Block = '
 	<div class="clear"></div>
@@ -32,10 +28,6 @@ $RandomBytes_Block .= '
 
 
 
-
-
-
-
 ////	Security
 $Security_Block = '
 	<div class="clear break"></div>
@@ -55,10 +47,6 @@ if ($RandomBytes) {
 }
 $Security_Block .= '
 	</div>';
-
-
-
-
 
 
 
@@ -87,10 +75,6 @@ if (
 }
 $GD_Block .= '
 	</div>';
-
-
-
-
 
 
 
