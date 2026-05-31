@@ -255,13 +255,13 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs a QR Code image in 64bit data-URI form.</p>
 	<?php
+	$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
 	if (
 		extension_loaded('gd') &&
 		function_exists('gd_info') &&
 		!isset($_GET['googlechart'])
 	) {
 		echo '<!-- PHPQRCode -->';
-		$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
 		$QR_Base64 = Authenticatron::generateQrCode($URL);
 		echo '<p><img alt="QR Code for 2nd factor authentication" src="' . $QR_Base64 . '"></p>';
 	} else {

@@ -24,7 +24,7 @@ abstract class Authenticatron
 	////    Create a new Secret
 	public static function makeSecret(int $length = 16): string
 	{
-		$random = random_bytes($length);
+		$random = random_bytes(max(1, $length));
 
 		// For each letter of the secret, generate a random Base32 Characters.
 		$secret = '';
@@ -94,7 +94,7 @@ abstract class Authenticatron
 			// Create 8 letters
 			for ($j = 0; $j < 8; $j++) {
 				// Convert the characters to numbers, and pad them if necessary.
-				$string .= str_pad(base_convert($base32CharsFlipped[$secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+				$string .= str_pad(base_convert((string) $base32CharsFlipped[$secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
 				// Flipped and Secret both had an @ for suppression originally.
 			}
 
@@ -104,7 +104,7 @@ abstract class Authenticatron
 
 			// Got each bit, convert the numbers to ASCII codes.
 			for ($z = 0; $z < $eightBitsCount; $z++) {
-				$secretDecoded .= (($convert = chr(base_convert($eightBits[$z], 2, 10))) || ord($convert) == 48) ? $convert : '';
+				$secretDecoded .= (($convert = chr((int) base_convert($eightBits[$z], 2, 10))) || ord($convert) == 48) ? $convert : '';
 			}
 		}
 
@@ -131,7 +131,7 @@ abstract class Authenticatron
 		$secretDecoded = self::base32Decode($secret);
 
 		// Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
-		$hmac = hash_hmac('SHA1', $timestampPacked, $secretDecoded, true);
+		$hmac = hash_hmac('SHA1', $timestampPacked, (string) $secretDecoded, true);
 
 		// Use last nibble of result as index/offset
 		$offset = ord(substr($hmac, -1)) & 0x0F;
@@ -142,6 +142,9 @@ abstract class Authenticatron
 
 		// Unpack the binary value
 		$value = unpack('N', $part);
+		if ($value === false) {
+			throw new \RuntimeException('Unable to unpack the HMAC value.');
+		}
 		$value = $value[1];
 
 		// Make it a 32bit signed value.
@@ -154,10 +157,13 @@ abstract class Authenticatron
 
 		// This function adds leading zeros (the third parameter) to the left-hand side (the fourth)
 		// to the remainder of our unpacked hash-part divided by 10 to the power of the required code length.
-		return str_pad($value % $denominator, $codeLength, '0', STR_PAD_LEFT);
+		return str_pad((string) ($value % $denominator), $codeLength, '0', STR_PAD_LEFT);
 	}
 
 	////    Create an array of all codes within an acceptable range.
+	/**
+	 * @return array<int, string>
+	 */
 	public static function getCodesInRange(string $secret, int $variance = 2): array
 	{
 		// The output will look like this.
@@ -203,6 +209,9 @@ abstract class Authenticatron
 	}
 
 	////    Create a Secret and QR code for a given Member
+	/**
+	 * @return array{Secret: string, URL: string, QR: string|null}
+	 */
 	public static function new(string $accountName, string $issuer): array
 	{
 		$return = array();

@@ -71,6 +71,9 @@ final class AuthTest extends TestCase
     {
         $url = Authenticatron::getUrl('accountName', 'secret', 'issuer');
         $result = Authenticatron::generateQrCode($url);
+        if (!is_string($result)) {
+            $this->fail('Expected generateQrCode() to return a data URI string.');
+        }
         $this->assertStringStartsWith('data:image/png;base64,', $result);
     }
 
