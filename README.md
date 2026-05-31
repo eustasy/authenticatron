@@ -1,7 +1,6 @@
 # Authenticatron
 
 [![Normal (PHP)](https://github.com/eustasy/authenticatron/actions/workflows/php.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/php.yml)
-[![Normal (Markdown)](https://github.com/eustasy/authenticatron/actions/workflows/md.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/md.yml)
 [![Normal (Security)](https://github.com/eustasy/authenticatron/actions/workflows/security.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/security.yml)
 [![Test (PHP)](https://github.com/eustasy/authenticatron/actions/workflows/test-php.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/test-php.yml)
 [![Maintainability](https://qlty.sh/gh/eustasy/projects/authenticatron/maintainability.svg)](https://qlty.sh/gh/eustasy/projects/authenticatron)
