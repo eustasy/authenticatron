@@ -7,10 +7,10 @@ include __DIR__ . '/assets/header.php';
 
 $accountName = 'John Smith';
 $issuer = 'Authenticatron Example Page';
-if (!empty($_POST['secondfactor_secret'])) {
-	$secret = $_POST['secondfactor_secret'];
-} elseif (!empty($_GET['secret'])) {
-	$secret = $_GET['secret'];
+if (! empty($_POST['secondfactor_secret'])) {
+    $secret = $_POST['secondfactor_secret'];
+} elseif (! empty($_GET['secret'])) {
+    $secret = $_GET['secret'];
 }
 
 ?>
@@ -71,16 +71,16 @@ use eustasy\Authenticatron;</pre>
 	<div class="right">
 		<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 		<pre><?php
-		if (!empty($secret)) {
-			$secondAuth['Secret'] = $secret;
-			$secondAuth['URL'] = Authenticatron::getUrl($accountName, $secret, $issuer);
-			$secondAuth['QR'] = Authenticatron::generateQrCode($secondAuth['URL']);
-		} else {
-			$secondAuth = Authenticatron::new($accountName, $issuer);
-			$secret = $secondAuth['Secret'];
-		}
-		var_dump($secondAuth);
-		?></pre>
+        if (! empty($secret)) {
+            $secondAuth['Secret'] = $secret;
+            $secondAuth['URL'] = Authenticatron::getUrl($accountName, $secret, $issuer);
+            $secondAuth['QR'] = Authenticatron::generateQrCode($secondAuth['URL']);
+        } else {
+            $secondAuth = Authenticatron::new($accountName, $issuer);
+            $secret = $secondAuth['Secret'];
+        }
+var_dump($secondAuth);
+?></pre>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -133,10 +133,10 @@ use eustasy\Authenticatron;</pre>
 	<div class="right">
 		<p>Outputs a boolean value, <code>true</code> if the entered code is within allowed range, <code>false</code> if not.</p>
 		<pre><?php
-				$code = Authenticatron::getCode($secret);
-				$check = Authenticatron::checkCode($code, $secret);
-				var_dump($check);
-				?></pre>
+        $code = Authenticatron::getCode($secret);
+$check = Authenticatron::checkCode($code, $secret);
+var_dump($check);
+?></pre>
 	</div>
 	<div class="break clear"></div>
 	<div class="left">
@@ -164,21 +164,21 @@ if (
 		<img alt="Google Authenticator Icon" src="assets/google_authenticator_v3_480s.png">
 	</div>
 	<div class="right"><?php
-		if (!empty($_POST['secondfactor_code'])) {
-			if (
-				strlen($_POST['secondfactor_code']) == 6 &&
-				ctype_alnum($_POST['secondfactor_code'])
-			) {
-				if (Authenticatron::checkCode($_POST['secondfactor_code'], $secret)) {
-					echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
-				} else {
-					echo '<p class="color-flatui-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
-				}
-			} else {
-				echo '<p class="color-flatui-pomegranate">Invalid Entry: The code you entered was not 6 characters long, and alphanumeric.</p>';
-			}
-			echo '<div class="break clear"></div>';
-		}
+        if (! empty($_POST['secondfactor_code'])) {
+            if (
+                strlen($_POST['secondfactor_code']) == 6 &&
+                ctype_alnum($_POST['secondfactor_code'])
+            ) {
+                if (Authenticatron::checkCode($_POST['secondfactor_code'], $secret)) {
+                    echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
+                } else {
+                    echo '<p class="color-flatui-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
+                }
+            } else {
+                echo '<p class="color-flatui-pomegranate">Invalid Entry: The code you entered was not 6 characters long, and alphanumeric.</p>';
+            }
+            echo '<div class="break clear"></div>';
+        }
 ?>
 		<p>Enter the code that your device generates after scanning the image from Step 1.</p>
 		<form action="#example" method="POST">

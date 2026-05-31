@@ -11,6 +11,7 @@
 // Any other length is your own problem.
 
 //declare(strict_types=1);
+
 namespace eustasy;
 
 use QRcode\QRcode;
@@ -18,207 +19,209 @@ use QRcode\QRstr;
 
 abstract class Authenticatron
 {
-	// A reference for Base32 valid characters.
-	const BASE32CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    // A reference for Base32 valid characters.
+    public const BASE32CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
-	////    Create a new Secret
-	public static function makeSecret(int $length = 16): string
-	{
-		$random = random_bytes(max(1, $length));
+    ////    Create a new Secret
+    public static function makeSecret(int $length = 16): string
+    {
+        $random = random_bytes(max(1, $length));
 
-		// For each letter of the secret, generate a random Base32 Characters.
-		$secret = '';
-		for ($i = 0; $i < $length; $i++) {
-			$secret .= self::BASE32CHARS[ord($random[$i]) & 31];
-		}
+        // For each letter of the secret, generate a random Base32 Characters.
+        $secret = '';
+        for ($i = 0; $i < $length; $i++) {
+            $secret .= self::BASE32CHARS[ord($random[$i]) & 31];
+        }
 
-		return $secret;
-	}
+        return $secret;
+    }
 
-	////    Create an OTPAuth URL
-	public static function getUrl(string $accountName, string $secret, string $issuer): string
-	{
+    ////    Create an OTPAuth URL
+    public static function getUrl(string $accountName, string $secret, string $issuer): string
+    {
 
-		// Strip any colons, they screw things up.
-		$toStrip = array(':', ';', '?', '&', '=', '+', '@', '/', '\\', '#', '<', '>', '"', '%', '|', '^', '~', '`', '{', '}', '[', ']');
-		$issuer = str_replace($toStrip, '', $issuer);
-		$accountName = str_replace($toStrip, '', $accountName);
+        // Strip any colons, they screw things up.
+        $toStrip = [':', ';', '?', '&', '=', '+', '@', '/', '\\', '#', '<', '>', '"', '%', '|', '^', '~', '`', '{', '}', '[', ']'];
+        $issuer = str_replace($toStrip, '', $issuer);
+        $accountName = str_replace($toStrip, '', $accountName);
 
-		// The Issuer and Account are not encoded as part of the path, but are when they are parameters.
-		// This could cause issues with certain characters. Try to keep it alphanumeric.
-		return 'otpauth://totp/' . $issuer . ': ' . $accountName . '?secret=' . urlencode($secret) . '&issuer=' . urlencode($issuer);
-	}
+        // The Issuer and Account are not encoded as part of the path, but are when they are parameters.
+        // This could cause issues with certain characters. Try to keep it alphanumeric.
+        return 'otpauth://totp/' . $issuer . ': ' . $accountName . '?secret=' . urlencode($secret) . '&issuer=' . urlencode($issuer);
+    }
 
-	////    Create a Base64 PNG QR Code
-	public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string
-	{
-		try {
-			$base64_data = QRcode::base64_png($URL, QRstr :: QR_ECLEVEL_L, $Size, $Margin);
-			return $base64_data;
-		} catch (\Exception $e) {
-			return null;
-		}
-	}
+    ////    Create a Base64 PNG QR Code
+    public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string
+    {
+        try {
+            $base64_data = QRcode::base64_png($URL, QRstr::QR_ECLEVEL_L, $Size, $Margin);
 
-	////    Decode as Base32
-	protected static function base32Decode(string $secret): ?string
-	{
-		// If there is no secret or it is too small.
-		if (empty($secret) || strlen($secret) < 16) {
-			return null;
-		}
+            return $base64_data;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 
-		// A reference for converting from Base32
-		$base32CharsArray = str_split(self::BASE32CHARS);
-		$base32CharsFlipped = array_flip($base32CharsArray);
+    ////    Decode as Base32
+    protected static function base32Decode(string $secret): ?string
+    {
+        // If there is no secret or it is too small.
+        if (empty($secret) || strlen($secret) < 16) {
+            return null;
+        }
 
-		// Remove padding characters (there shouldn't be any)
-		$secret = str_replace('=', '', $secret);
+        // A reference for converting from Base32
+        $base32CharsArray = str_split(self::BASE32CHARS);
+        $base32CharsFlipped = array_flip($base32CharsArray);
 
-		// Split into an array
-		$secret = str_split($secret);
+        // Remove padding characters (there shouldn't be any)
+        $secret = str_replace('=', '', $secret);
 
-		// Set an empty string.
-		$secretDecoded = '';
-		$secretCount = count($secret);
+        // Split into an array
+        $secret = str_split($secret);
 
-		// While $i is less than the length of $secret, 8 bits at a time.
-		for ($i = 0; $i < $secretCount; $i = $i + 8) {
-			$string = '';
+        // Set an empty string.
+        $secretDecoded = '';
+        $secretCount = count($secret);
 
-			// If the letter is not a Base32 Character
-			if (!in_array($secret[$i], $base32CharsArray)) {
-				return null;
-			}
+        // While $i is less than the length of $secret, 8 bits at a time.
+        for ($i = 0; $i < $secretCount; $i = $i + 8) {
+            $string = '';
 
-			// Create 8 letters
-			for ($j = 0; $j < 8; $j++) {
-				// Convert the characters to numbers, and pad them if necessary.
-				$string .= str_pad(base_convert((string) $base32CharsFlipped[$secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
-				// Flipped and Secret both had an @ for suppression originally.
-			}
+            // If the letter is not a Base32 Character
+            if (! in_array($secret[$i], $base32CharsArray)) {
+                return null;
+            }
 
-			// Turn into an array
-			$eightBits = str_split($string, 8);
-			$eightBitsCount = count($eightBits);
+            // Create 8 letters
+            for ($j = 0; $j < 8; $j++) {
+                // Convert the characters to numbers, and pad them if necessary.
+                $string .= str_pad(base_convert((string) $base32CharsFlipped[$secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
+                // Flipped and Secret both had an @ for suppression originally.
+            }
 
-			// Got each bit, convert the numbers to ASCII codes.
-			for ($z = 0; $z < $eightBitsCount; $z++) {
-				$secretDecoded .= (($convert = chr((int) base_convert($eightBits[$z], 2, 10))) || ord($convert) == 48) ? $convert : '';
-			}
-		}
+            // Turn into an array
+            $eightBits = str_split($string, 8);
+            $eightBitsCount = count($eightBits);
 
-		return $secretDecoded;
-	}
+            // Got each bit, convert the numbers to ASCII codes.
+            for ($z = 0; $z < $eightBitsCount; $z++) {
+                $secretDecoded .= (($convert = chr((int) base_convert($eightBits[$z], 2, 10))) || ord($convert) == 48) ? $convert : '';
+            }
+        }
 
-	////    Calculate the current code.
-	public static function getCode(string $secret, ?int $timestamp = null, int $codeLength = 6): string
-	{
-		// Set the timestamp to something sensible.
-		// You should only over-ride this if you really know why.
-		if ($timestamp === null) {
-			$timestamp = time();
-		}
+        return $secretDecoded;
+    }
 
-		// Convert unix timestamp to a 30-second time step
-		$timeStep = (int) floor($timestamp / 30);
+    ////    Calculate the current code.
+    public static function getCode(string $secret, ?int $timestamp = null, int $codeLength = 6): string
+    {
+        // Set the timestamp to something sensible.
+        // You should only over-ride this if you really know why.
+        if ($timestamp === null) {
+            $timestamp = time();
+        }
 
-		// Pack the time step into a binary string
-		// N = Unsigned long (always 32 bit, big endian byte order)
-		$timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timeStep);
+        // Convert unix timestamp to a 30-second time step
+        $timeStep = (int) floor($timestamp / 30);
 
-		// Decode (?) the Secret
-		$secretDecoded = self::base32Decode($secret);
+        // Pack the time step into a binary string
+        // N = Unsigned long (always 32 bit, big endian byte order)
+        $timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timeStep);
 
-		// Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
-		$hmac = hash_hmac('SHA1', $timestampPacked, (string) $secretDecoded, true);
+        // Decode (?) the Secret
+        $secretDecoded = self::base32Decode($secret);
 
-		// Use last nibble of result as index/offset
-		$offset = ord(substr($hmac, -1)) & 0x0F;
-		// Gives a generated number that varies.
+        // Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
+        $hmac = hash_hmac('SHA1', $timestampPacked, (string) $secretDecoded, true);
 
-		// Take 4 bytes of the result from the Offset
-		$part = substr($hmac, $offset, 4);
+        // Use last nibble of result as index/offset
+        $offset = ord(substr($hmac, -1)) & 0x0F;
+        // Gives a generated number that varies.
 
-		// Unpack the binary value
-		$value = unpack('N', $part);
-		if ($value === false) {
-			throw new \RuntimeException('Unable to unpack the HMAC value.');
-		}
-		$value = $value[1];
+        // Take 4 bytes of the result from the Offset
+        $part = substr($hmac, $offset, 4);
 
-		// Make it a 32bit signed value.
-		$value = $value & 0x7FFFFFFF;
+        // Unpack the binary value
+        $value = unpack('N', $part);
+        if ($value === false) {
+            throw new \RuntimeException('Unable to unpack the HMAC value.');
+        }
+        $value = $value[1];
 
-		// Make a Modulo
-		// When the $CodeLength is 6, it is
-		// equivalent to 10**6, 10^6, or 1,000,000
-		$denominator = pow(10, $codeLength);
+        // Make it a 32bit signed value.
+        $value = $value & 0x7FFFFFFF;
 
-		// This function adds leading zeros (the third parameter) to the left-hand side (the fourth)
-		// to the remainder of our unpacked hash-part divided by 10 to the power of the required code length.
-		return str_pad((string) ($value % $denominator), $codeLength, '0', STR_PAD_LEFT);
-	}
+        // Make a Modulo
+        // When the $CodeLength is 6, it is
+        // equivalent to 10**6, 10^6, or 1,000,000
+        $denominator = pow(10, $codeLength);
 
-	////    Create an array of all codes within an acceptable range.
-	/**
-	 * @return array<int, string>
-	 */
-	public static function getCodesInRange(string $secret, int $variance = 2): array
-	{
-		// The output will look like this.
-		//
-		//    array(5) {
-		//        [-2] => string(6) "398599"
-		//        [-1] => string(6) "283062"
-		//        [0] => string(6) "809226"
-		//        [1] => string(6) "541727"
-		//        [2] => string(6) "667780"
-		//    }
-		//
-		// Note the indexes, which can be used to determine the time difference,
-		// and perhaps warn users on the outer bounds. Code generation is expensive,
-		// so avoid generating any you don't want to check against later.
+        // This function adds leading zeros (the third parameter) to the left-hand side (the fourth)
+        // to the remainder of our unpacked hash-part divided by 10 to the power of the required code length.
+        return str_pad((string) ($value % $denominator), $codeLength, '0', STR_PAD_LEFT);
+    }
 
-		// Create an empty array to be returned.
-		$acceptable = array();
+    ////    Create an array of all codes within an acceptable range.
+    /**
+     * @return array<int, string>
+     */
+    public static function getCodesInRange(string $secret, int $variance = 2): array
+    {
+        // The output will look like this.
+        //
+        //    array(5) {
+        //        [-2] => string(6) "398599"
+        //        [-1] => string(6) "283062"
+        //        [0] => string(6) "809226"
+        //        [1] => string(6) "541727"
+        //        [2] => string(6) "667780"
+        //    }
+        //
+        // Note the indexes, which can be used to determine the time difference,
+        // and perhaps warn users on the outer bounds. Code generation is expensive,
+        // so avoid generating any you don't want to check against later.
 
-		// From the negative of the variance to the positive equivalent.
-		for ($i = -$variance; $i <= $variance; $i++) {
-			// Add that amount in increments of 30 seconds.
-			$loopTime = time() + ($i * 30);
-			// Add the code to the array.
-			$acceptable[$i] = self::getCode($secret, $loopTime);
-		}
+        // Create an empty array to be returned.
+        $acceptable = [];
 
-		// Return the list of codes.
-		return $acceptable;
-	}
+        // From the negative of the variance to the positive equivalent.
+        for ($i = -$variance; $i <= $variance; $i++) {
+            // Add that amount in increments of 30 seconds.
+            $loopTime = time() + ($i * 30);
+            // Add the code to the array.
+            $acceptable[$i] = self::getCode($secret, $loopTime);
+        }
 
-	////    Check a given Code against a Secret
-	public static function checkCode(string $code, string $secret, int $variance = 2): bool
-	{
-		$acceptable = self::getCodesInRange($secret, $variance);
+        // Return the list of codes.
+        return $acceptable;
+    }
 
-		// Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
-		if (in_array($code, $acceptable)) {
-			return true;
-		}
+    ////    Check a given Code against a Secret
+    public static function checkCode(string $code, string $secret, int $variance = 2): bool
+    {
+        $acceptable = self::getCodesInRange($secret, $variance);
 
-		return false;
-	}
+        // Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
+        if (in_array($code, $acceptable)) {
+            return true;
+        }
 
-	////    Create a Secret and QR code for a given Member
-	/**
-	 * @return array{Secret: string, URL: string, QR: string|null}
-	 */
-	public static function new(string $accountName, string $issuer): array
-	{
-		$return = array();
-		$return['Secret'] = self::makeSecret();
-		$return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
-		$return['QR'] = self::generateQrCode($return['URL']);
-		// WARNING QR returns null if GD is not available
-		return $return;
-	}
+        return false;
+    }
+
+    ////    Create a Secret and QR code for a given Member
+    /**
+     * @return array{Secret: string, URL: string, QR: string|null}
+     */
+    public static function new(string $accountName, string $issuer): array
+    {
+        $return = [];
+        $return['Secret'] = self::makeSecret();
+        $return['URL'] = self::getUrl($accountName, $return['Secret'], $issuer);
+        $return['QR'] = self::generateQrCode($return['URL']);
+
+        // WARNING QR returns null if GD is not available
+        return $return;
+    }
 }

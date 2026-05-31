@@ -19,12 +19,12 @@ $RandomBytes_Block = '
 	<div class="right">
 		<p>RandomBytes is used for secure key generation.</p>';
 if (function_exists('random_bytes')) {
-	$RandomBytes = true;
-	$Secure = true;
-	$RandomBytes_Block .= '
+    $RandomBytes = true;
+    $Secure = true;
+    $RandomBytes_Block .= '
 		<p class="color-flatui-nephritis">Available</p>';
 } else {
-	$RandomBytes_Block .= '
+    $RandomBytes_Block .= '
 		<p class="color-flatui-pomegranate">Not Available</p>';
 }
 $RandomBytes_Block .= '
@@ -47,10 +47,10 @@ $Security_Block = '
 	<div class="right">
 		<h3>Security</h3>';
 if ($RandomBytes) {
-	$Security_Block .= '
+    $Security_Block .= '
 		<p class="color-flatui-nephritis"><strong>Your installation uses RandomBytes.</strong></p>';
 } else {
-	$Security_Block .= '
+    $Security_Block .= '
 		<p class="color-flatui-pomegranate"><strong>Your installation will not work. PHP &gt;= 8.2 is required.</strong></p>';
 }
 $Security_Block .= '
@@ -73,14 +73,14 @@ $GD_Block = '
 	<div class="right">
 		<h3>GD</h3>';
 if (
-	extension_loaded('gd') &&
-	function_exists('gd_info')
+    extension_loaded('gd') &&
+    function_exists('gd_info')
 ) {
-	$GD_Block .= '
+    $GD_Block .= '
 		<p class="color-flatui-nephritis">The GD functions are loaded. You can create QR Codes.</p>
 		<p>The GD extension is used for generating a secure QR code.</p>';
 } else {
-	$GD_Block .= '
+    $GD_Block .= '
 		<p class="color-flatui-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
 		<p>The GD extension is used for generating a secure QR code.</p>
 		<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';

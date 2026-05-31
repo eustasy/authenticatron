@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 use eustasy\Authenticatron;
-
 use PHPUnit\Framework\TestCase;
 
 final class AuthTest extends TestCase
@@ -71,7 +71,7 @@ final class AuthTest extends TestCase
     {
         $url = Authenticatron::getUrl('accountName', 'secret', 'issuer');
         $result = Authenticatron::generateQrCode($url);
-        if (!is_string($result)) {
+        if (! is_string($result)) {
             $this->fail('Expected generateQrCode() to return a data URI string.');
         }
         $this->assertStringStartsWith('data:image/png;base64,', $result);
@@ -101,7 +101,7 @@ final class AuthTest extends TestCase
         $timestamp = time();
         $this->assertEquals(
             Authenticatron::getCode($secret, $timestamp),
-            Authenticatron::getCode($secret, $timestamp)
+            Authenticatron::getCode($secret, $timestamp),
         );
     }
 

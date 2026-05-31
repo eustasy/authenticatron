@@ -6,14 +6,14 @@ use eustasy\Authenticatron;
 include __DIR__ . '/assets/header.php';
 
 $issuer = 'Documentation Example';
-if (!empty($_GET['secret'])) {
-	$secret = $_GET['secret'];
+if (! empty($_GET['secret'])) {
+    $secret = $_GET['secret'];
 } else {
-	$secret = Authenticatron::makeSecret();
+    $secret = Authenticatron::makeSecret();
 }
 
-if (!$secret) {
-	$secret = 'AUTHENTICATRON23';
+if (! $secret) {
+    $secret = 'AUTHENTICATRON23';
 }
 ?>
 
@@ -51,9 +51,9 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 	<pre><?php
-			$new = Authenticatron::new('Member Name', $issuer);
-			var_dump($new);
-			?></pre>
+            $new = Authenticatron::new('Member Name', $issuer);
+var_dump($new);
+?></pre>
 </div>
 <div class="break clear"></div>
 
@@ -92,10 +92,10 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs a boolean value, true or false.</p>
 	<pre><?php
-			$code = Authenticatron::getCode($secret);
-			$check = Authenticatron::checkCode($code, $secret);
-			var_dump($check);
-			?></pre>
+$code = Authenticatron::getCode($secret);
+$check = Authenticatron::checkCode($code, $secret);
+var_dump($check);
+?></pre>
 </div>
 
 
@@ -130,14 +130,14 @@ if (!$secret) {
 	<p>Generates a 16-character secret, never to be shared with anyone except via an internal non-cacheable QR code.</p>
 	<p>Generated using <code>random_bytes</code>, which requires PHP &gt;= 8.2.</p>
 	<?php
-	if (function_exists('random_bytes')) {
-		echo '<p class="color-flatui-nephritis">RandomBytes is available.</p>';
-		echo '<p class="color-flatui-nephritis"><strong>Your installation is ready.</strong></p>';
-	} else {
-		echo '<p class="color-flatui-pomegranate">RandomBytes is not available. PHP &gt;= 8.2 is required.</p>';
-		echo '<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>';
-	}
-	?>
+    if (function_exists('random_bytes')) {
+        echo '<p class="color-flatui-nephritis">RandomBytes is available.</p>';
+        echo '<p class="color-flatui-nephritis"><strong>Your installation is ready.</strong></p>';
+    } else {
+        echo '<p class="color-flatui-pomegranate">RandomBytes is not available. PHP &gt;= 8.2 is required.</p>';
+        echo '<p class="color-flatui-pomegranate"><strong>Your installation will not work.</strong></p>';
+    }
+?>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -161,8 +161,8 @@ if (!$secret) {
 	<p>Returns a <code>$length</code> long string of Base32 characters.</p>
 	<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 	<pre><?php
-			echo '<p><a href="?secret=' . $secret . '">' . $secret . '</a></p>';
-			?></pre>
+        echo '<p><a href="?secret=' . $secret . '">' . $secret . '</a></p>';
+?></pre>
 </div>
 <div class="break clear"></div>
 
@@ -200,9 +200,9 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs an OTPAuth URL that gives people their Secret along with a passed Member Name and an optional Issuer.</p>
 	<pre><?php
-			$url = Authenticatron::getUrl('Member Name', $secret, $issuer);
-			echo '<a href="' . $url . '">' . $url . '</a>';
-			?></pre>
+$url = Authenticatron::getUrl('Member Name', $secret, $issuer);
+echo '<a href="' . $url . '">' . $url . '</a>';
+?></pre>
 </div>
 <div class="break clear"></div>
 
@@ -218,18 +218,18 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs a QR Code in Data64 for direct embedding from a given URL.</p>
 	<?php
-	if (
-		extension_loaded('gd') &&
-		function_exists('gd_info')
-	) {
-		echo '
+    if (
+        extension_loaded('gd') &&
+        function_exists('gd_info')
+    ) {
+        echo '
 					<p class="color-flatui-nephritis">The GD functions are loaded.</p>';
-	} else {
-		echo '
+    } else {
+        echo '
 					<p class="color-flatui-pomegranate">The GD functions are not loaded.</p>
 					<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>';
-	}
-	?>
+    }
+?>
 </div>
 <div class="clear"></div>
 <div class="left">
@@ -255,27 +255,27 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs a QR Code image in 64bit data-URI form.</p>
 	<?php
-	$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
-	if (
-		extension_loaded('gd') &&
-		function_exists('gd_info') &&
-		!isset($_GET['googlechart'])
-	) {
-		echo '<!-- PHPQRCode -->';
-		$QR_Base64 = Authenticatron::generateQrCode($URL);
-		echo '<p><img alt="QR Code for 2nd factor authentication" src="' . $QR_Base64 . '"></p>';
-	} else {
-		echo '<!-- Google Chart -->';
-		if (!extension_loaded('gd') || !function_exists('gd_info')) {
-			echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
-			echo '<p>This isn\'t secure, and you should install <code>php[version]-gd</code> to fix it.</p>';
-		}
-		if (isset($_GET['googlechart'])) {
-			echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
-		}
-		echo '<p><img alt="QR Code for 2nd factor authentication" src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($URL) . '"></p>';
-	}
-	?>
+$URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
+if (
+    extension_loaded('gd') &&
+    function_exists('gd_info') &&
+    ! isset($_GET['googlechart'])
+) {
+    echo '<!-- PHPQRCode -->';
+    $QR_Base64 = Authenticatron::generateQrCode($URL);
+    echo '<p><img alt="QR Code for 2nd factor authentication" src="' . $QR_Base64 . '"></p>';
+} else {
+    echo '<!-- Google Chart -->';
+    if (! extension_loaded('gd') || ! function_exists('gd_info')) {
+        echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
+        echo '<p>This isn\'t secure, and you should install <code>php[version]-gd</code> to fix it.</p>';
+    }
+    if (isset($_GET['googlechart'])) {
+        echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
+    }
+    echo '<p><img alt="QR Code for 2nd factor authentication" src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($URL) . '"></p>';
+}
+?>
 	<p><strong>Try scanning this QR code with your phone.</strong></p>
 	<p>This should open an app like <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a>.</p>
 </div>
@@ -317,9 +317,9 @@ if (!$secret) {
 <div class="right">
 	<p>Outputs the calculated code for the current or provided timestamp.</p>
 	<pre><?php
-			$code = Authenticatron::getCode($secret);
-			var_dump($code);
-			?></pre>
+        $code = Authenticatron::getCode($secret);
+var_dump($code);
+?></pre>
 </div>
 <div class="break clear"></div>
 
@@ -360,9 +360,9 @@ if (!$secret) {
 	<p>Note the indexes, which can be used to determine the time difference, and perhaps warn users on the outer bounds.</p>
 	<p>Code generation is expensive, so avoid generating any you don't want to check against later.</p>
 	<pre><?php
-			$codes = Authenticatron::getCodesInRange($secret);
-			var_dump($codes);
-			?></pre>
+$codes = Authenticatron::getCodesInRange($secret);
+var_dump($codes);
+?></pre>
 	<p><strong>Your phone should produce one of these from the QR code above.</strong></p>
 	<p>These are only valid for 30 seconds, so click the Secret link to get a new list.</p>
 </div>
