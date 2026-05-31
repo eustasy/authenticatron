@@ -15,8 +15,6 @@ permissions:
 
 jobs:
   test-php:
-    # Remove the `if: false` below to activate this workflow.
-    if: false
     name: PHPUnit + coverage
     runs-on: ubuntu-latest
     strategy:
