@@ -1,5 +1,12 @@
 # Authenticatron
 
+[![Normal (PHP)](https://github.com/eustasy/authenticatron/actions/workflows/php.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/php.yml)
+[![Normal (Markdown)](https://github.com/eustasy/authenticatron/actions/workflows/md.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/md.yml)
+[![Normal (Security)](https://github.com/eustasy/authenticatron/actions/workflows/security.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/security.yml)
+[![Test (PHP)](https://github.com/eustasy/authenticatron/actions/workflows/test-php.yml/badge.svg)](https://github.com/eustasy/authenticatron/actions/workflows/test-php.yml)
+[![Maintainability](https://qlty.sh/gh/eustasy/projects/authenticatron/maintainability.svg)](https://qlty.sh/gh/eustasy/projects/authenticatron)
+[![Code Coverage](https://qlty.sh/gh/eustasy/projects/authenticatron/coverage.svg)](https://qlty.sh/gh/eustasy/projects/authenticatron)
+
 A simple PHP script to create HOTP / TOTP / Google Authenticator secrets, corresponding QR links and code verification.
 
 Based on the original BSD 2 Licensed work found at [PHPGangsta/GoogleAuthenticator](https://github.com/PHPGangsta/GoogleAuthenticator)
