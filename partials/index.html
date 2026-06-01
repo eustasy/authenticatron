@@ -154,7 +154,7 @@ if (
                 ctype_alnum($_POST['secondfactor_code'])
             ) {
                 if (Authenticatron::checkCode($_POST['secondfactor_code'], $secret)) {
-                    echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</h3>';
+                    echo '<p class="color-flatui-nephritis">Correct Code: The code you entered was correct, congratulations!</p>';
                 } else {
                     echo '<p class="color-flatui-pomegranate">Incorrect Code: The code you entered was not valid at this time. Codes are valid for 30 seconds.</p>';
                 }
