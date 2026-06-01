@@ -130,7 +130,7 @@ var_dump($check);
 		<p>You only need to check an input is alpha-numeric, and maybe 6 characters long before checking it against a retrieved secret.</p>
 		<pre>$secret = ...;
 if (
-	strlen($_POST['secondfactor_code']) == 6 &&
+	strlen($_POST['secondfactor_code']) == 6 &amp;&amp;
 	ctype_alnum($_POST['secondfactor_code'])
 ) {
 	if ( Authenticatron::checkCode($_POST['secondfactor_code'], $secret) ) {
@@ -170,7 +170,7 @@ if (
 			<input name="secondfactor_secret" type="hidden" value="<?php echo $secret; ?>">
 			<label for="secondfactor_code">2fa Code</label>
 			<input name="secondfactor_code" id="secondfactor_code" type="text" maxlength="6">
-			<input type="submit" value="Check">
+			<button type="submit">Check</button>
 		</form>
 	</div>
 </div>
