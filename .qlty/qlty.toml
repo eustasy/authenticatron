@@ -27,6 +27,9 @@ exclude_patterns = [
   "**/__pycache__/**",
   "**/.pytest_cache/**",
   "**/*.pyc",
+
+  # Python virtual environments
+  "**/.venv/**",
 ]
 
 # ── Smells ──────────────────────────────────────────────────────────────────

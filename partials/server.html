@@ -1,0 +1,45 @@
+<div class="clear break"></div>
+<div class="left">
+	<h3>&nbsp;</h3>
+	<p>Status</p>
+	<p>Information</p>
+</div>
+<div class="right">
+	<h3>Security</h3>
+	<?php if ($RandomBytes) { ?>
+	<p class="color-flatui-nephritis"><strong>Your installation uses RandomBytes.</strong></p>
+	<?php } else { ?>
+	<p class="color-flatui-pomegranate"><strong>Your installation will not work. PHP &gt;= 8.2 is required.</strong></p>
+	<?php } ?>
+</div>
+
+<div class="clear"></div>
+<div class="left">
+	<p>RandomBytes</p>
+</div>
+<div class="right">
+	<p>RandomBytes is used for secure key generation.</p>
+	<?php if ($RandomBytes) { ?>
+	<p class="color-flatui-nephritis">Available</p>
+	<?php } else { ?>
+	<p class="color-flatui-pomegranate">Not Available</p>
+	<?php } ?>
+</div>
+
+<div class="clear break"></div>
+<div class="left">
+	<h3>&nbsp;</h3>
+	<p>Status</p>
+	<p>Information</p>
+</div>
+<div class="right">
+	<h3>GD</h3>
+	<?php if ($GD) { ?>
+	<p class="color-flatui-nephritis">The GD functions are loaded. You can create QR Codes.</p>
+	<p>The GD extension is used for generating a secure QR code.</p>
+	<?php } else { ?>
+	<p class="color-flatui-pomegranate">The GD functions are not loaded. You cannot create QR Codes.</p>
+	<p>The GD extension is used for generating a secure QR code.</p>
+	<p>Try installing <code>php[version]-gd</code> in Ubuntu.</p>
+	<?php } ?>
+</div>
