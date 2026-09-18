@@ -14,9 +14,9 @@ Heavily modified to improve security and suit our needs.
 
 ## Requirements
 
-* PHP >= 8.2
-* `ext-gd` (e.g. `php8.x-gd`) for QR Code generation.
-* [`jysperu/php-qr-code`](https://packagist.org/packages/jysperu/php-qr-code) — installed automatically via Composer.
+- PHP >= 8.2
+- `ext-gd` (e.g. `php8.x-gd`) for QR Code generation.
+- [`jysperu/php-qr-code`](https://packagist.org/packages/jysperu/php-qr-code) — installed automatically via Composer.
 
 ## Installation
 
@@ -92,10 +92,10 @@ Brute forcing of codes can be fixed in much the same way as brute forcing passwo
 
 ## Improvements over [PHPGangsta/GoogleAuthenticator](https://github.com/PHPGangsta/GoogleAuthenticator)
 
-* Fixes time-matching bug for better code recognition.
-* Encodes URL to work best with Google Authenticator.
-* Removes `rand` in favour of `random_bytes` for improved security.
-* Returns base64 PNG rather than Google Chart to better obscure secret from snoopers.
+- Fixes time-matching bug for better code recognition.
+- Encodes URL to work best with Google Authenticator.
+- Removes `rand` in favour of `random_bytes` for improved security.
+- Returns base64 PNG rather than Google Chart to better obscure secret from snoopers.
 
 With thanks to [RebThrees bug report](https://github.com/PHPGangsta/GoogleAuthenticator/issues/11).
 
@@ -107,8 +107,8 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 
 ## References
 
-* [About 2-Step Verification - Google](https://support.google.com/accounts/answer/180744)
-* [Install Google Authenticator - Google](https://support.google.com/accounts/answer/1066447)
-* [Install on Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
-* [Install on iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605)
-* [Install on Blackberry](https://m.google.com/authenticator)
+- [About 2-Step Verification - Google](https://support.google.com/accounts/answer/180744)
+- [Install Google Authenticator - Google](https://support.google.com/accounts/answer/1066447)
+- [Install on Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+- [Install on iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605)
+- [Install on Blackberry](https://m.google.com/authenticator)
