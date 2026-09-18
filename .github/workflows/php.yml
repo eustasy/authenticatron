@@ -1,14 +1,19 @@
-# eustasy/.Normal 4.0beta8
-name: Normal (PHP)
-
+# eustasy/.Normal 4.0beta13
+name: "Normal: PHP"
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["**.php"]
+    paths:
+      - "**.php"
+      - ".github/workflows/php.yml"
+      - ".qlty/qlty.toml"
   pull_request:
     branches: [main]
-    paths: ["**.php"]
+    paths:
+      - "**.php"
+      - ".github/workflows/php.yml"
+      - ".qlty/qlty.toml"
 
 permissions:
   contents: read
@@ -26,18 +31,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2.37.2
+      - uses: eustasy/.normal/php@v4
         with:
           php-version: ${{ matrix.php-version }}
-          coverage: none
-
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist
-
-      - uses: qltysh/qlty-action/install@08a0a862c159eae9b9003081da6663d96efef637 # v2.3.0
-
-      - name: Lint (phpstan)
-        run: qlty check --all --no-formatters --filter=phpstan
-
-      - name: Format check (php-cs-fixer)
-        run: qlty check --all --filter=php-cs-fixer
