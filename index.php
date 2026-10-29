@@ -4,9 +4,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $accountName = 'John Smith';
 $issuer = 'Authenticatron Example Page';
-if (! empty($_POST['secondfactor_secret'])) {
+// Only accept strings, so secret[]= can't cause a TypeError.
+if (! empty($_POST['secondfactor_secret']) && is_string($_POST['secondfactor_secret'])) {
     $secret = $_POST['secondfactor_secret'];
-} elseif (! empty($_GET['secret'])) {
+} elseif (! empty($_GET['secret']) && is_string($_GET['secret'])) {
     $secret = $_GET['secret'];
 }
 

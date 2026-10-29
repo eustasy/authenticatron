@@ -33,8 +33,21 @@
 <div class="right">
 	<p>Outputs an array, where <code>Secret</code> is the Secret for the member, <code>URL</code> is an OTPAuth URL, and <code>QR</code> is the Data64 URI for the QR code.</p>
 	<pre><?php
-            $new = Authenticatron::new('Member Name', $issuer);
+// With ?secret, show what new() returns for that secret, so the whole page uses it.
+if ($secretFromQuery) {
+    $new = [
+        'Secret' => $secret,
+        'URL' => Authenticatron::getUrl('Member Name', $secret, $issuer),
+        'QR' => Authenticatron::generateQrCode(Authenticatron::getUrl('Member Name', $secret, $issuer)),
+    ];
+} else {
+    $new = Authenticatron::new('Member Name', $issuer);
+    $secret = $new['Secret'];
+}
+// The secret can come from the query string, so escape the dump.
+ob_start();
 var_dump($new);
+echo htmlspecialchars(ob_get_clean(), ENT_QUOTES);
 ?></pre>
 </div>
 <div class="break clear"></div>
@@ -73,9 +86,11 @@ var_dump($new);
 </div>
 <div class="right">
 	<p>Outputs a boolean value, true or false.</p>
+	<p>Here, the current code for the secret above is checked against that secret.</p>
 	<pre><?php
 $code = Authenticatron::getCode($secret);
 $check = Authenticatron::checkCode($code, $secret);
+echo htmlspecialchars('checkCode(\'' . $code . '\', \'' . $secret . '\')', ENT_QUOTES) . "\n";
 var_dump($check);
 ?></pre>
 </div>

@@ -1,3 +1,13 @@
+<?php
+// Carry the secret between the example pages, so it stays the same while you look around.
+$navSecret = '';
+if (isset($_GET['secret']) && is_string($_GET['secret'])) {
+    $navSecret = $_GET['secret'];
+} elseif (isset($_POST['secondfactor_secret']) && is_string($_POST['secondfactor_secret'])) {
+    $navSecret = $_POST['secondfactor_secret'];
+}
+$navQuery = $navSecret === '' ? '' : htmlspecialchars('?secret=' . urlencode($navSecret), ENT_QUOTES);
+?>
 <div class="break clear"></div>
 <div class="left">
 	<h1><img alt="Padlock Icon" src="assets/Flat-Icons-Inspired-by-Google-vol3_padlock.png"></h1>
@@ -6,9 +16,9 @@
 	<h1>Authenticatron</h1>
 	<p>A simple PHP script to create TOTP secrets and corresponding QR codes,<br>
 	then verify the entered response over a given time variance.<br>
-	<a href="index.php">homepage</a> &emsp;
-	<a href="documentation.php">documentation</a> &emsp;
-	<a href="documentation.php#glossary">glossary</a> &emsp;
-	<a href="server.php">server</a> &emsp;
+	<a href="index.php<?php echo $navQuery; ?>">homepage</a> &emsp;
+	<a href="documentation.php<?php echo $navQuery; ?>">documentation</a> &emsp;
+	<a href="documentation.php<?php echo $navQuery; ?>#glossary">glossary</a> &emsp;
+	<a href="server.php<?php echo $navQuery; ?>">server</a> &emsp;
 	<a href="https://github.com/eustasy/authenticatron">source</a></p>
 </div>

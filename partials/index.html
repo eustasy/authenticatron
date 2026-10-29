@@ -153,6 +153,7 @@ if (
 	<div class="right"><?php
         if (! empty($_POST['secondfactor_code'])) {
             if (
+                is_string($_POST['secondfactor_code']) &&
                 strlen($_POST['secondfactor_code']) == 6 &&
                 ctype_alnum($_POST['secondfactor_code'])
             ) {

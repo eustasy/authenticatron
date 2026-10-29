@@ -4,7 +4,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use eustasy\Authenticatron;
 
 $issuer = 'Documentation Example';
-if (! empty($_GET['secret'])) {
+// Only accept a string, so ?secret[]= can't cause a TypeError.
+$secretFromQuery = ! empty($_GET['secret']) && is_string($_GET['secret']);
+if ($secretFromQuery) {
     $secret = $_GET['secret'];
 } else {
     $secret = Authenticatron::makeSecret();
