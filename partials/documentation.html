@@ -143,7 +143,7 @@ var_dump($check);
 	<p>Returns a <code>$length</code> long string of Base32 characters.</p>
 	<p><strong>Click the link to keep the secret the same when you refresh the page.</strong></p>
 	<pre><?php
-        echo '<p><a href="?secret=' . $secret . '">' . $secret . '</a></p>';
+        echo '<p><a href="?secret=' . urlencode($secret) . '">' . htmlspecialchars($secret, ENT_QUOTES) . '</a></p>';
 ?></pre>
 </div>
 <div class="break clear"></div>
@@ -238,24 +238,12 @@ echo '<a href="' . $url . '">' . $url . '</a>';
 	<p>Outputs a QR Code image in 64bit data-URI form.</p>
 	<?php
 $URL = Authenticatron::getUrl('Member Name', $secret, $issuer);
-if (
-    extension_loaded('gd') &&
-    function_exists('gd_info') &&
-    ! isset($_GET['googlechart'])
-) {
-    echo '<!-- PHPQRCode -->';
+if (extension_loaded('gd') && function_exists('gd_info')) {
     $QR_Base64 = Authenticatron::generateQrCode($URL);
     echo '<p><img alt="QR Code for 2nd factor authentication" src="' . $QR_Base64 . '"></p>';
 } else {
-    echo '<!-- Google Chart -->';
-    if (! extension_loaded('gd') || ! function_exists('gd_info')) {
-        echo '<p>The required image functions don\'t seem to exist, so we\'re falling back to Google Charts.</p>';
-        echo '<p>This isn\'t secure, and you should install <code>php[version]-gd</code> to fix it.</p>';
-    }
-    if (isset($_GET['googlechart'])) {
-        echo '<p>You asked for a Google Chart instead. This isn\'t secure, but here you go.</p>';
-    }
-    echo '<p><img alt="QR Code for 2nd factor authentication" src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($URL) . '"></p>';
+    echo '<p>The required image functions don\'t seem to exist, so no QR code can be generated.</p>';
+    echo '<p>Install <code>php[version]-gd</code> to fix it.</p>';
 }
 ?>
 	<p><strong>Try scanning this QR code with your phone.</strong></p>
