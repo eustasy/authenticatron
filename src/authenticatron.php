@@ -14,8 +14,10 @@
 
 namespace eustasy;
 
-use QRcode\QRcode;
-use QRcode\QRstr;
+use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Output\QRGdImagePNG;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 
 abstract class Authenticatron
 {
@@ -51,12 +53,23 @@ abstract class Authenticatron
     }
 
     ////    Create a Base64 PNG QR Code
+    // $Size is pixels per module, $Margin is the quiet zone in modules.
+    // Returns null if the QR code can't be rendered, such as without ext-gd.
     public static function generateQrCode(string $URL, int $Size = 4, int $Margin = 2): ?string
     {
         try {
-            $base64_data = QRcode::base64_png($URL, QRstr::QR_ECLEVEL_L, $Size, $Margin);
+            $options = new QROptions([
+                'outputInterface' => QRGdImagePNG::class,
+                'outputBase64' => true,
+                'eccLevel' => EccLevel::L,
+                'scale' => $Size,
+                'addQuietzone' => $Margin > 0,
+                'quietzoneSize' => $Margin,
+            ]);
 
-            return $base64_data;
+            $base64_data = (new QRCode($options))->render($URL);
+
+            return is_string($base64_data) ? $base64_data : null;
         } catch (\Exception $e) {
             return null;
         }

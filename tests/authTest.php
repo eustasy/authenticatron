@@ -77,6 +77,42 @@ final class AuthTest extends TestCase
         $this->assertStringStartsWith('data:image/png;base64,', $result);
     }
 
+    // Test that the QR code scans back to the exact URL it was made from
+    public function testQrCodeDecodesToUrl(): void
+    {
+        $url = Authenticatron::getUrl('Member Name', Authenticatron::makeSecret(), 'Example Site');
+        $result = Authenticatron::generateQrCode($url);
+        if (! is_string($result)) {
+            $this->fail('Expected generateQrCode() to return a data URI string.');
+        }
+        $png = base64_decode(substr($result, strlen('data:image/png;base64,')), true);
+        if (! is_string($png)) {
+            $this->fail('Expected the data URI to hold valid base64.');
+        }
+        $decoded = (new \chillerlan\QRCode\QRCode())->readFromBlob($png);
+        $this->assertSame($url, $decoded->data);
+    }
+
+    // Test that $Size and $Margin change the image as before: pixels per module, and modules of margin
+    public function testQrCodeSizeAndMargin(): void
+    {
+        $url = Authenticatron::getUrl('accountName', 'secret', 'issuer');
+        $small = Authenticatron::generateQrCode($url, 2, 0);
+        $large = Authenticatron::generateQrCode($url, 4, 2);
+        if (! is_string($small) || ! is_string($large)) {
+            $this->fail('Expected generateQrCode() to return data URI strings.');
+        }
+        $smallSize = getimagesizefromstring((string) base64_decode(substr($small, 22)));
+        $largeSize = getimagesizefromstring((string) base64_decode(substr($large, 22)));
+        if ($smallSize === false || $largeSize === false) {
+            $this->fail('Expected both data URIs to hold readable PNGs.');
+        }
+        // Without margin, the width is modules * 2. Doubling the scale and adding
+        // 2 modules of margin on each side gives (modules + 4) * 4.
+        $modules = intdiv($smallSize[0], 2);
+        $this->assertSame(($modules + 4) * 4, $largeSize[0]);
+    }
+
 
     // Test that the current code is 6 characters long
     public function testCurrentCodeLength(): void
