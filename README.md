@@ -16,7 +16,8 @@ Heavily modified to improve security and suit our needs.
 
 - PHP >= 8.2
 - `ext-gd` (e.g. `php8.x-gd`) for QR Code generation.
-- [`jysperu/php-qr-code`](https://packagist.org/packages/jysperu/php-qr-code) — installed automatically via Composer.
+- `ext-mbstring`, required by the QR Code library.
+- [`chillerlan/php-qrcode`](https://packagist.org/packages/chillerlan/php-qrcode) 6.x — installed automatically via Composer.
 
 ## Installation
 
@@ -46,7 +47,7 @@ Authenticatron::new($accountName, $issuer);
 //    ["URL"]=>
 //    string(83) "otpauth://totp/Example Site: John Smith?secret=6MZYWOOFVAKL7LQB&issuer=Example+Site"
 //    ["QR"]=>
-//    string(630) "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUAQMAAABP8pKXAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABZklEQVRIia2WUY7DQAhDuQH3vyU3YP1MN+p33EnVJC9ShgGbSVVV66iZ1W/rM16z3u1pjdWobXDEyvc6MUl7vpRpFv2Pjv0N003pUBJy5nid0lYKnry8ZZTkazx1e8sojYKdGiaiUhOxZvmKWuGWNEQWIqYx3LB8zaPrjA36Lr97WAFpiBiyRpaFiKzMiGEYHkF0LusgYT281AK/CUNGBkjlWN7OScIkH5YPx4vSecYkG6RNd5i5gmXMvRBrY2p8nbGiQdBcB+NQ8IxhExLb7j5oIGN0RAKn5aDOj6dfs7Vf3GAdsXUZMN4odZNMp7M7ZGuIa/DzukcEzD0VFTWTrGNOGBsx5rMc6badMVd4bO6yOEO2t+7d6z63LwSMy/NLnx5dqPeMt6LvfR5m7PbQ67Ff2+hrZp9Qa9qO++xkzDUaWo/101sxOzFeydB4yrx9OtTJGd+Yrrc3gfsGCdiJ3NvKv6sT9gdy9gHcop2cdQAAAABJRU5ErkJggg=="
+//    string(1622) "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAIAAACW1xIWAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEYUlEQVR4nO2dwW4EOQgFd1b7/7+cvXYOSCB4PZGq6jjpxp48IcY24M/Pz88/wuDfb09A3kOxQSg2CMUGodggFBuEYoP4r/rD5/M5H6xa03fGer579fx0j+Fpp/NdOvbf/D/r2SAUG4Rigyhj9pPN/vk0vlbvTuNlx371bvX89HfDlPT/Wc8GodggFBtEK2Y/2cTghM0q1k7Xu9P5bOZ2NYepTT0bhGKDUGwQ45h9RSfWJmx21tAb+9N330TPBqHYIBQbxNdidoerWL45R+/Y+da59RQ9G4Rig1BsEOOYfbVGTOeUJfLa3iSxFtezQSg2CMUG0YrZiXg23Wfe7Esnnv8L5+hT9GwQig1CsUF8/kJPlXRO+MZOIgZ7ni1xFBuEYoMY12dfnd1uYuTVPvkmj6xjJ1G7tbGpZ4NQbBCKDWJcnz3do+7EmISd6Vjp73L1W2czNz0bhGKDUGwQ5d74pudXOv8rsbc8PZ/erLkTn1dzeKJng1BsEIoNolxnp9fHib4lm3eveqVNv9ebddt6NgjFBqHYIM76jV/ljl3lo037nnbmkO7XNp3ndG56NgjFBqHYIFY9Va72zDfnuJu5bewneptf5dNV6NkgFBuEYoMYn2dvzqo3n1dz63AVRzd5ZG/mDXieLYpNQrFBnPVU2eRMXa2zE+fBU5uJOu+rfm16NgjFBqHYIFY9VTbr3fQZcyIfu2P/6vnOu9P/p54NQrFBKDaISA7aVe+w57vT/iqJ/O2O/atc+qv1/RM9G4Rig1BsEPE7QqYxuGNnQ7qn97Q/+ZN0vNezQSg2CMUGMe6DNuXqnHuTn3V1HpzOQZuONUXPBqHYIBQbxDgHbdOj+yp2PrmK/dXz1VjT569quzvPV+jZIBQbhGKDaNV6TbnKa7vKNavsVyT6pk3td+Y2nY+eDUKxQSg2iLP67HSdd2WzQyJfvfP8FVf/Nz0bhGKDUGwQrVqvdP5zuv9XZ9x0r+83z9GN2aLYJBQbROT+7Kva6E2c+wu/G67i9NVvCz0bhGKDUGwQq37jFYn88Om4nc83cfHq3Sn2G5cWig1CsUGMa73S9VqdzxP9Rqpxq5ryqzh9Vbft3rj8QrFBKDaIVU+Vq3s+0mvTKZu97vSeQYXrbPmFYoNQbBDjmH21Lpza3PCtu7k2/VOrcb0jRFooNgjFBrG6I2Q18Iv3cCRy0K7u/NjMZ4qeDUKxQSg2iLM7Qjps7vlI3P3VmeemHrqaW/X51Xf0PFsUm4Rig4j3G79ag75Ze9bhzTV39bx90KREsUEoNojVeXbFt/Ko0/eIXNWRJ+rOXWfLLxQbhGKDiNRnT5nG6Y6dzVhX76Z7qkzt69kgFBuEYoP4EzF7sx9+1d/0zbtDppg3LmMUG4Rig1jVZ29InHNPe49Mx+o8v9mH3/wm6HwvPRuEYoNQbBDj+7Pf5KpvWmUzcXfnVY+2xNpdzwah2CAUG8TX6rPlffRsEIoNQrFBKDYIxQah2CAUG8T/Kk6siEF0bCoAAAAASUVORK5CYII="
 //  }
 ```
 
