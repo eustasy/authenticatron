@@ -1,4 +1,4 @@
-# eustasy/.Normal 4.0beta16
+# eustasy/.Normal 5.0
 name: "Test: PHP"
 on:
   workflow_dispatch:
@@ -39,14 +39,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: eustasy/.normal/php/setup@v4
+      - uses: eustasy/.normal/php/setup@v5
         with:
           php-version: ${{ matrix.php-version }}
           coverage: pcov
 
       # Insert project-specific steps here — fixtures, config files, migrations.
 
-      - uses: eustasy/.normal/php/test@v4
+      - uses: eustasy/.normal/php/test@v5
         with:
           coverage-token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-          upload: ${{ matrix.php-version == '8.6' }}
+          upload: ${{ matrix.php-version == '8.5' }}
