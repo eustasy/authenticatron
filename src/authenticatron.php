@@ -10,7 +10,7 @@
 // Both of these are set with Google Authenticator in mind.
 // Any other length is your own problem.
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 namespace eustasy;
 
@@ -76,50 +76,26 @@ abstract class Authenticatron
     }
 
     ////    Decode as Base32
+    // Returns null for anything that is not an unpadded Base32 secret of at
+    // least 16 characters, so a bad secret can never be turned into codes.
     protected static function base32Decode(string $secret): ?string
     {
-        // If there is no secret or it is too small.
-        if (empty($secret) || strlen($secret) < 16) {
+        $secret = rtrim($secret, '=');
+        if (strlen($secret) < 16 || ! preg_match('/^[A-Z2-7]+$/', $secret)) {
             return null;
         }
 
-        // A reference for converting from Base32
-        $base32CharsArray = str_split(self::BASE32CHARS);
-        $base32CharsFlipped = array_flip($base32CharsArray);
+        // Each character carries 5 bits; regroup the stream into whole bytes
+        // and drop the incomplete tail, as RFC 4648 does.
+        $bits = '';
+        foreach (str_split($secret) as $char) {
+            $bits .= str_pad(decbin((int) strpos(self::BASE32CHARS, $char)), 5, '0', STR_PAD_LEFT);
+        }
 
-        // Remove padding characters (there shouldn't be any)
-        $secret = str_replace('=', '', $secret);
-
-        // Split into an array
-        $secret = str_split($secret);
-
-        // Set an empty string.
         $secretDecoded = '';
-        $secretCount = count($secret);
-
-        // While $i is less than the length of $secret, 8 bits at a time.
-        for ($i = 0; $i < $secretCount; $i = $i + 8) {
-            $string = '';
-
-            // If the letter is not a Base32 Character
-            if (! in_array($secret[$i], $base32CharsArray)) {
-                return null;
-            }
-
-            // Create 8 letters
-            for ($j = 0; $j < 8; $j++) {
-                // Convert the characters to numbers, and pad them if necessary.
-                $string .= str_pad(base_convert((string) $base32CharsFlipped[$secret[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
-                // Flipped and Secret both had an @ for suppression originally.
-            }
-
-            // Turn into an array
-            $eightBits = str_split($string, 8);
-            $eightBitsCount = count($eightBits);
-
-            // Got each bit, convert the numbers to ASCII codes.
-            for ($z = 0; $z < $eightBitsCount; $z++) {
-                $secretDecoded .= (($convert = chr((int) base_convert($eightBits[$z], 2, 10))) || ord($convert) == 48) ? $convert : '';
+        foreach (str_split($bits, 8) as $byte) {
+            if (strlen($byte) === 8) {
+                $secretDecoded .= chr((int) bindec($byte));
             }
         }
 
@@ -142,11 +118,14 @@ abstract class Authenticatron
         // N = Unsigned long (always 32 bit, big endian byte order)
         $timestampPacked = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', $timeStep);
 
-        // Decode (?) the Secret
+        // A secret that does not decode must not silently become an empty key.
         $secretDecoded = self::base32Decode($secret);
+        if ($secretDecoded === null) {
+            throw new \InvalidArgumentException('The secret is not a valid Base32 string of at least 16 characters.');
+        }
 
         // Hash the Timestamp and Secret with HMAC using the SHA1 algorithm
-        $hmac = hash_hmac('SHA1', $timestampPacked, (string) $secretDecoded, true);
+        $hmac = hash_hmac('SHA1', $timestampPacked, $secretDecoded, true);
 
         // Use last nibble of result as index/offset
         $offset = ord(substr($hmac, -1)) & 0x0F;
@@ -215,12 +194,16 @@ abstract class Authenticatron
     {
         $acceptable = self::getCodesInRange($secret, $variance);
 
-        // Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
-        if (in_array($code, $acceptable)) {
-            return true;
+        // Compare byte for byte: a loose comparison would treat "0e1234" as
+        // equal to "000000", and "12345.0" as equal to "012345".
+        $matched = false;
+        foreach ($acceptable as $candidate) {
+            if (hash_equals($candidate, $code)) {
+                $matched = true;
+            }
         }
 
-        return false;
+        return $matched;
     }
 
     ////    Create a Secret and QR code for a given Member

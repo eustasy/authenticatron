@@ -93,7 +93,7 @@ final class AuthTest extends TestCase
         $this->assertSame($url, $decoded->data);
     }
 
-    // Test that $Size and $Margin change the image as before: pixels per module, and modules of margin
+    // Test that $Size is pixels per module and $Margin is modules of quiet zone
     public function testQrCodeSizeAndMargin(): void
     {
         $url = Authenticatron::getUrl('accountName', 'secret', 'issuer');
@@ -128,6 +128,46 @@ final class AuthTest extends TestCase
         $secret = Authenticatron::makeSecret();
         $result = Authenticatron::getCode($secret);
         $this->assertMatchesRegularExpression('/^\d{6}$/', $result);
+    }
+
+    // Test against the RFC 6238 SHA-1 vectors: the ASCII seed "12345678901234567890" in Base32
+    public function testRfc6238Vectors(): void
+    {
+        $secret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ';
+        $this->assertSame('94287082', Authenticatron::getCode($secret, 59, 8));
+        $this->assertSame('07081804', Authenticatron::getCode($secret, 1111111109, 8));
+        $this->assertSame('14050471', Authenticatron::getCode($secret, 1111111111, 8));
+        $this->assertSame('89005924', Authenticatron::getCode($secret, 1234567890, 8));
+        $this->assertSame('69279037', Authenticatron::getCode($secret, 2000000000, 8));
+        $this->assertSame('287082', Authenticatron::getCode($secret, 59));
+    }
+
+    // Test that a secret which is not Base32, or is too short, is refused rather than hashed as an empty key
+    public function testInvalidSecretIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Authenticatron::getCode('');
+    }
+
+    public function testShortSecretIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Authenticatron::getCode('ABCDEFGH');
+    }
+
+    public function testLowercaseSecretIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Authenticatron::getCode('abcdefghijklmnop');
+    }
+
+    // Test that a numeric look-alike of the right code is not accepted
+    public function testCheckCodeIsStrict(): void
+    {
+        $secret = Authenticatron::makeSecret();
+        $code = Authenticatron::getCode($secret);
+        $this->assertFalse(Authenticatron::checkCode($code . '.0', $secret));
+        $this->assertFalse(Authenticatron::checkCode(' ' . $code, $secret));
     }
 
     // Test that getCode is deterministic for the same secret and timestamp
