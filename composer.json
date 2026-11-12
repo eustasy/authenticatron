@@ -11,7 +11,7 @@
         "totp",
         "passwords",
         "two-factor-authentication",
-        "2fa webauthn"
+        "2fa"
     ],
     "type": "library",
     "autoload": {

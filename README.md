@@ -111,5 +111,4 @@ Allow fallbacks. Like password resets, users should be able to bypass second-fac
 - [About 2-Step Verification - Google](https://support.google.com/accounts/answer/180744)
 - [Install Google Authenticator - Google](https://support.google.com/accounts/answer/1066447)
 - [Install on Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
-- [Install on iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605)
-- [Install on Blackberry](https://m.google.com/authenticator)
+- [Install on iOS](https://apps.apple.com/app/google-authenticator/id388497605)
