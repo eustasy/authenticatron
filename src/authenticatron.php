@@ -194,16 +194,12 @@ abstract class Authenticatron
     {
         $acceptable = self::getCodesInRange($secret, $variance);
 
-        // Compare byte for byte: a loose comparison would treat "0e1234" as
-        // equal to "000000", and "12345.0" as equal to "012345".
-        $matched = false;
-        foreach ($acceptable as $candidate) {
-            if (hash_equals($candidate, $code)) {
-                $matched = true;
-            }
+        // Return a simple boolean to avoid data-leakage or zero-equivalent code issues.
+        if (in_array($code, $acceptable, true)) {
+            return true;
         }
 
-        return $matched;
+        return false;
     }
 
     ////    Create a Secret and QR code for a given Member
