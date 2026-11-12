@@ -1,5 +1,4 @@
 *~
-.venv
 vendor/
 .qlty/results
 .qlty/plugin_cachedir
