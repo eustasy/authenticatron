@@ -133,7 +133,7 @@ final class AuthTest extends TestCase
     // Test against the RFC 6238 SHA-1 vectors: the ASCII seed "12345678901234567890" in Base32
     public function testRfc6238Vectors(): void
     {
-        $secret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ';
+        $secret = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ'; // gitleaks:allow published RFC 6238 test vector
         $this->assertSame('94287082', Authenticatron::getCode($secret, 59, 8));
         $this->assertSame('07081804', Authenticatron::getCode($secret, 1111111109, 8));
         $this->assertSame('14050471', Authenticatron::getCode($secret, 1111111111, 8));
